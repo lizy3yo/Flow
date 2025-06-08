@@ -91,11 +91,14 @@ export default {
     methods: {
         async handleSubmit() {
             this.isLoading = true;
-            this.message = ''; // Clear previous messages
+            this.message = '';
             
             try {
-                console.log('Attempting login...'); // Debug log
-                const response = await axios.post('/api/flow-application-cc/api/admin-login.php', {
+                const API_URL = process.env.NODE_ENV === 'production' 
+                    ? 'https://flow-chi-dun.vercel.app/api' 
+                    : 'http://localhost:8080/flow-application-cc/api';
+                    
+                const response = await axios.post(`${API_URL}/admin-login.php`, {
                     email: this.email,
                     password: this.password
                 }, {
