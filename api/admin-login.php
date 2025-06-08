@@ -1,67 +1,149 @@
-<?php
-include 'db.php';
+<template>
+  <div class="admin-login">
+    <section class="login-content">
+      <h1>Welcome Back!<br>Ready to Flow?</h1>
+    </section>
 
-header('Access-Control-Allow-Origin: http://localhost:8080');
-header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json');
+    <section class="admin-login-form-container">
+      <h2><img src="@/images/logo2.0.png" alt="Flow Logo" style="width: 2rem; height: 2rem;"> Flow</h2>
+      <h3>Admin Login</h3>
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    exit();
-}
+      <form @submit.prevent="handleSubmit" class="admin-login-forms">
+        <!-- Keep your existing form structure -->
+        <div class="admin-form-group-content">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            v-model.trim="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          >
+        </div>
 
-$data = json_decode(file_get_contents('php://input'), true);
-
-// Simple validation
-if (empty($data['email']) || empty($data['password'])) {
-    echo json_encode(['success' => false, 'message' => 'Email and password are required']);
-    exit();
-}
-
-try {
-    $stmt = $conn->prepare("SELECT * FROM admins WHERE email = ? LIMIT 1");
-    $stmt->bind_param("s", $data['email']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $admin = $result->fetch_assoc();
-
-    if ($admin && password_verify($data['password'], $admin['password'])) {
-        // Login successful
-        session_start();
-        $_SESSION['admin_id'] = $admin['id'];
+        <div class="admin-form-group-content">
+          <label for="password">Password</label>
+          <div class="password-input-container">
+              <input
+                  id="password"
+                  v-model.trim="password"
+                  :type="showPassword ? 'text' : 'password'"
+                  placeholder="Enter your password"
+                  required
+                  autocomplete="current-password"
+              >
+              <button 
+                  type="button" 
+                  class="toggle-password"
+                  @click="showPassword = !showPassword"
+              >
+                  <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+              </button>
+          </div>
+  
+        </div>
         
-        // Generate a session token
-        $session_token = bin2hex(random_bytes(32));
-        
-        // Store session token in database
-        $token_stmt = $conn->prepare("UPDATE admins SET session_token = ? WHERE id = ?");
-        $token_stmt->bind_param("si", $session_token, $admin['id']);
-        $token_stmt->execute();
-        $token_stmt->close();
-        
-        // Remove password from response
-        unset($admin['password']);
-        
-        echo json_encode([
-            'success' => true,
-            'message' => 'Login successful',
-            'admin' => $admin,
-            'session_token' => $session_token
-        ]);
-    } else {
-        // Login failed
-        echo json_encode([
-            'success' => false,
-            'message' => 'Invalid email or password'
-        ]);
+        <div class="buttons-container">
+          <button type="button" class="back-button" @click="goBack">🡐 Back</button>
+          <button 
+            type="submit" 
+            class="admin-submit-btn"
+            :disabled="isLoading"
+          >
+            {{ isLoading ? 'Logging in...' : 'Login as Admin' }}
+          </button>
+        </div>
+
+        <div 
+          v-if="message" 
+          :class="['alert', success ? 'alert-success' : 'alert-danger']"
+        >
+          {{ message }}
+        </div>
+      </form>
+    </section>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import { isAdminLoggedIn } from '@/utils/auth';
+
+export default {
+    name: 'AdminLoginPage',
+    created() {
+        // Redirect if already logged in
+        if (isAdminLoggedIn()) {
+            this.$router.push('/admin/dashboard');
+        }
+    },
+    data() {
+        return {
+            email: '',
+            password: '',
+            message: '',
+            success: false,
+            isLoading: false,
+            showPassword: false
+        }
+    },
+    methods: {
+        async handleSubmit() {
+            this.isLoading = true;
+            this.message = '';
+            
+            try {
+                const API_URL = process.env.NODE_ENV === 'production' 
+                    ? 'https://flow-chi-dun.vercel.app/api' 
+                    : 'http://localhost:8080/flow-application-cc/api';
+                    
+                const response = await axios.post(`${API_URL}/admin-login.php`, {
+                    email: this.email,
+                    password: this.password
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    withCredentials: true
+                });
+                
+                console.log('Login response:', response.data); // Debug log
+                
+                const { data } = response;
+                this.success = data.success;
+                this.message = data.message;
+                
+                if (data.success) {
+                    // Clear any old data first
+                    localStorage.clear();
+                    
+                    // Store new admin data
+                    localStorage.setItem('userType', 'admin');
+                    localStorage.setItem('adminId', data.admin.id);
+                    localStorage.setItem('adminSessionToken', data.session_token);
+                    localStorage.setItem('adminData', JSON.stringify(data.admin));
+                    localStorage.setItem('admin', 'true');
+                    
+                    console.log('Login successful, redirecting...'); // Debug log
+                    
+                    await this.$router.push('/admin/dashboard');
+                }
+            } catch (error) {
+                console.error('Login error details:', error.response || error);
+                this.success = false;
+                this.message = error.response?.data?.message || 'Login failed. Please check your credentials.';
+            } finally {
+                this.isLoading = false;
+            }
+        },
+        goBack() {
+            this.$router.push('/login');
+        }
     }
-} catch (Exception $e) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Server error'
-    ]);
-}
+};
+</script>
 
-$stmt->close();
-$conn->close();
+<style>
+@import '@/styles/authentication/adminlogin.css';
+</style>
