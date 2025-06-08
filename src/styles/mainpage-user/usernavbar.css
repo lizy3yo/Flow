@@ -1,0 +1,851 @@
+/* CONSOLIDATED CSS FILE - Combined usernavbar.css and navbar.css */
+
+/* Import theme variables */
+@import '@/styles/mainpage-user/root.css';
+
+/* ============================================================================
+   ANIMATIONS AND UTILITIES (from usernavbar.css)
+   ============================================================================ */
+
+/* Loading Animation */
+.spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.user-nav-item.loading .nav-item-content {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Flex grow utility */
+.flex-grow-1 {
+    flex: 1;
+}
+
+/* ============================================================================
+   SIDEBAR STRUCTURE AND LAYOUT (from navbar.css)
+   ============================================================================ */
+
+/* Modern Sidebar Styling - User Version */
+.sidebar {
+    width: 350px;
+    height: calc(100vh - 70px);
+    position: fixed;
+    left: 0;
+    top: 70px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    border-right: 1px solid rgba(51, 61, 121, 0.1);
+    font-family: var(--user-mainpage-font-family);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Sidebar Header */
+.sidebar-headers {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(51, 61, 121, 0.1);
+    margin-top: 3rem;
+    margin-bottom: 2.2rem;
+    /* Align with top navbar collapse button positioning */
+    margin-left: 4.5rem;
+}
+
+.user-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--user-mainpage-accent-color), var(--user-mainpage-light-accent));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--user-mainpage-text-dark);
+    letter-spacing: -0.025em;
+}
+
+/* User Profile Section */
+.user-profile-section {
+    padding: 1rem 1.5rem 1.5rem;
+    border-bottom: 1px solid rgba(51, 61, 121, 0.1);
+    margin-bottom: 1rem;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid var(--user-mainpage-light-accent);
+    border-radius: 50%;
+}
+
+.profile-icon i {
+    font-size: 2rem;
+    color: var(--user-mainpage-light-accent);
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--user-mainpage-text-dark);
+}
+
+/* ============================================================================
+   NAVIGATION SECTIONS AND ITEMS (from navbar.css)
+   ============================================================================ */
+
+/* Navigation Sections */
+.nav-section {
+    margin-bottom: 1.5rem;
+    padding: 0 1.5rem;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* Navigation Items */
+.user-nav-item {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 0.25rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item-content {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1rem;
+    color: var(--user-mainpage-text-dark);
+    position: relative;
+}
+
+.user-nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.875rem;
+    font-size: 1.1rem;
+    color: #6c757d;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-nav-text {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.nav-item-indicator {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: var(--user-mainpage-accent-color);
+    border-radius: 0 2px 2px 0;
+    transition: height 0.3s ease;
+}
+
+/* ============================================================================
+   NAVIGATION HOVER AND ACTIVE STATES (from navbar.css)
+   ============================================================================ */
+
+/* Hover and Active States */
+.user-nav-item:hover .nav-item-content {
+    background: rgba(51, 61, 121, 0.05);
+    color: var(--user-mainpage-accent-color);
+}
+
+.user-nav-item:hover .user-nav-icon {
+    color: var(--user-mainpage-accent-color);
+    transform: scale(1.1);
+}
+
+.user-nav-item:hover .user-nav-text {
+    color: #333d79;
+}
+
+.user-nav-item:hover .nav-item-indicator {
+    height: 60%;
+}
+
+.user-nav-item.active .nav-item-content,
+.router-link-active.user-nav-item .nav-item-content {
+    background: rgba(51, 61, 121, 0.1);
+    color: var(--user-mainpage-accent-color);
+    font-weight: 600;
+}
+
+.user-nav-item.active .user-nav-icon,
+.router-link-active.user-nav-item .user-nav-icon {
+    color: var(--user-mainpage-accent-color);
+}
+
+.user-nav-item.active .user-nav-text,
+.router-link-active.user-nav-item .user-nav-text {
+    color: #333d79;
+}
+
+.user-nav-item.active .nav-item-indicator,
+.router-link-active.user-nav-item .nav-item-indicator {
+    height: 80%;
+}
+
+/* Bottom Navigation Section */
+.bottom-nav {
+    margin-top: auto;
+}
+
+/* ============================================================================
+   QUEUE BUTTON STYLING (from navbar.css)
+   ============================================================================ */
+
+/* Queue Button Styling (based on create-service-btn) */
+.user-sidebar-quick-actions {
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid rgba(51, 61, 121, 0.1);
+  margin-bottom: 1rem;
+}
+
+.join-queue-btn {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+  text-decoration: none;
+  transition:
+      width 0.3s ease,
+      height 0.3s ease,
+      border-radius 0.3s ease,
+      padding 0.3s ease,
+      gap 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+}
+
+.join-queue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+  color: white !important;
+}
+
+.join-queue-btn i {
+  font-size: 1rem;
+}
+
+/* ============================================================================
+   COLLAPSED SIDEBAR STYLES (from navbar.css)
+   ============================================================================ */
+
+/* Collapsed Sidebar Styles */
+.sidebar-collapsed {
+    width: 95px;
+    transition: width 0.3s ease;
+}
+
+.sidebar-collapsed .sidebar-headers {
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0; /* Reset margin in collapsed state */
+    display: flex;
+}
+
+.sidebar-collapsed .user-logo {
+    gap: 0;
+}
+
+.sidebar-collapsed .logo-text {
+    display: none;
+}
+
+.sidebar-collapsed .logo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+}
+
+.sidebar-collapsed .nav-section {
+    padding: 0 0.5rem;
+}
+
+.sidebar-collapsed .nav-section-title {
+    display: none;
+}
+
+.sidebar-collapsed .user-nav-text {
+    display: none;
+}
+
+.sidebar-collapsed .nav-item-content {
+    justify-content: center;
+    padding: 0.875rem 0.5rem;
+}
+
+.sidebar-collapsed .user-nav-icon {
+    margin-right: 0;
+    font-size: 1.2rem;
+}
+
+.sidebar-collapsed .nav-item-indicator {
+    display: none;
+}
+
+/* Tooltip styles for collapsed sidebar */
+.sidebar-collapsed .user-nav-item {
+    position: relative;
+}
+
+.sidebar-collapsed .user-nav-item::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--user-mainpage-text-dark);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-left: 0.5rem;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.sidebar-collapsed .user-nav-item::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: var(--user-mainpage-text-dark);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-left: -6px;
+    z-index: 1000;
+}
+
+.sidebar-collapsed .user-nav-item:hover::before,
+.sidebar-collapsed .user-nav-item:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Collapsed sidebar styles for the queue button */
+.sidebar-collapsed .user-sidebar-quick-actions {
+  padding: 0 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-collapsed .join-queue-btn {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.sidebar-collapsed .join-queue-btn span {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  transition-delay: 0s;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.sidebar-collapsed .join-queue-btn i {
+  margin: 0;
+  font-size: 1.3rem;
+  transition:
+      font-size 0.3s ease 0.1s,
+      margin 0.3s ease;
+}
+
+/* Menu Toggle for Mobile */
+.menu-toggle {
+    display: none;
+}
+
+/* ============================================================================
+   SIGN OUT CONFIRMATION MODAL (from usernavbar.css)
+   ============================================================================ */
+
+/* Sign Out Confirmation Modal Styles */
+.signout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.signout-modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 350px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.signout-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.signout-modal-header h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.signout-modal-body {
+  padding: 20px;
+  color: var(--text-secondary);
+}
+
+.signout-modal-footer {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #eee;
+}
+
+.cancel-btn, .confirm-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cancel-btn {
+  background: none;
+  border: 1px solid #ddd;
+  color: var(--text-secondary);
+}
+
+.confirm-btn {
+  background-color: var(--danger-color, #dc3545);
+  border: none;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.confirm-btn:hover {
+  background-color: var(--danger-color-dark, #c82333);
+}
+
+.confirm-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN (from navbar.css)
+   ============================================================================ */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    top: 60px;
+    height: calc(100vh - 60px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-open {
+    transform: translateX(0);
+  }
+
+  .user-profile-section {
+    padding: 0 1rem 1rem;
+  }
+
+  .nav-section {
+    padding: 0 1rem;
+  }
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    position: fixed;
+    top: calc(70px + 1rem); /* Position below navbar like AdminNavbar */
+    left: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(51, 61, 121, 0.1);
+  }
+
+  .menu-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .menu-toggle i {
+    font-size: 1.5rem;
+    color: var(--user-mainpage-accent-color);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .sidebar-headers {
+    padding: 1.5rem;
+    margin-left: 0; /* Remove large margin on mobile */
+    margin-top: 1rem;
+  }
+  /* Mobile collapsed sidebar adjustments */
+  .sidebar-collapsed {
+    width: 95px; /* Maintain 95px width on mobile */
+  }
+  
+  .sidebar-collapsed .sidebar-headers {
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0; /* Reset margin in collapsed state */
+  }
+
+  .sidebar-collapsed .logo-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .sidebar-collapsed .logo-icon i {
+    font-size: 1.3rem;
+  }
+
+  .sidebar-collapsed .nav-section {
+    padding: 0 0.5rem;
+  }
+
+  .sidebar-collapsed .nav-item-content {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .sidebar-collapsed .user-nav-icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar-collapsed .join-queue-btn {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .sidebar-collapsed .join-queue-btn i {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    margin: 0;
+    height: 100vh;
+    width: 260px;
+    padding: 0.75rem;
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .sidebar-open {
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    top: calc(70px + 1.2rem);
+    left: 1.2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 101;
+  }
+
+  .menu-toggle i {
+    font-size: 2.2rem;
+    color: var(--user-mainpage-accent-color);
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .sidebar-headers {
+    padding: 1.2rem 0.75rem;
+    margin-top: 2.2rem;
+  }
+
+  .logo-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .logo-text {
+    font-size: 1.75rem;
+  }
+
+  .user-nav-item {
+    padding: 0.625rem;
+    font-size: 1.2rem;
+  }
+
+  .user-nav-icon {
+    width: 28px;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+
+  .nav-section {
+    padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .sidebar {
+    position: fixed;
+    left: -260px;
+    margin: 0;
+    height: 100vh;
+    width: 200px;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .sidebar-open {
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
+  }
+
+  .menu-toggle i {
+    font-size: 2rem;
+    color: var(--user-mainpage-accent-color);
+  }
+
+  .menu-toggle:hover {
+    transform: scale(1.05);
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .sidebar-headers {
+    padding: 1rem 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .logo-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .user-nav-item {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .user-nav-icon {
+    width: 24px;
+    margin-right: 8px;
+    font-size: 0.875rem;
+  }
+
+  .nav-section {
+    padding: 0 0.5rem;
+  }
+}
+
+/* ============================================================================
+   KEYFRAME ANIMATIONS
+   ============================================================================ */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

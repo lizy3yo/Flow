@@ -1,0 +1,330 @@
+.admin-login {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center; 
+    flex-wrap: wrap;
+      min-height: 100vh;
+    background-color: #0B0B1B;
+    margin: 0 auto;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-button{
+    max-width: 100%;
+    width: 9rem;
+    min-width: 120px;
+    padding: 1rem;
+    background-color: transparent;
+    color: #333D79;
+    border: 2px solid #333D79;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'Georgia', serif !important;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    height: 3.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button:hover {
+   box-shadow: 0 0 0 1.1px #333D79;
+}
+
+.login-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    height: 50rem;
+    border-radius: 2rem;
+    padding: 2rem;
+    padding-left: 12rem;
+    width: 70%;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-content h1 {
+    font-size: 3.9rem;
+    color: #333D79;
+    margin-top: 18rem;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+    position: relative;
+    right: 0.2rem;
+}
+
+.login-content p {
+    color: #333D79;
+    font-size: 1rem;
+    z-index: 2;
+    position: relative;
+    left: 3rem;
+}
+
+.login-content p router-link,
+.login-content p a {
+    color: #333D79;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.login-content p router-link:hover,
+.login-content p a:hover {
+    color: #CDC8FE;
+}
+
+
+
+.admin-login-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    height: 50rem;
+    width: 50%;
+    padding: 2rem;
+    padding-left: 5rem;
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 10rem 2rem 2rem 10rem;
+    box-shadow: -15px 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.admin-login-form-container h2 {
+    color: #333D79;
+    font-family: 'georgia', serif;
+    font-size: 3rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(120deg);
+  }
+}
+
+.admin-login-form-container img {
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  will-change: transform;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  margin-top: -0.8rem;
+}
+
+.admin-login-form-container img:hover {
+  animation: spin 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 1;
+}
+
+.admin-login-form-container h3 {
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.admin-login-forms {
+    width: 100%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-form-group-content {
+    margin-bottom: 1.5rem;
+    width: 80%;
+    max-width: 70rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-form-group-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333D79;
+    font-family: 'SourceSerifPro', serif;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: left;
+}
+
+.admin-form-group-content input {
+    padding: 0.8rem;
+    border: 2px solid #333D79;
+    border-radius: 1rem;
+    background-color: #D9D9D9;
+    color: #0B0B1B;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 90%;
+    min-width: 300px;
+}
+
+
+.admin-submit-btn {
+    max-width: 100%;
+    width: 18rem;
+    min-width: 150px;
+    padding: 1rem;
+    background-color: #333D79;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'Georgia', serif !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    height: 3.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add this new container for buttons */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: -1rem 0 1rem 0; /* Changed from 1rem 0 to move buttons up */
+    gap: 0.5rem; /* Reduced from 1rem to 0.5rem */
+}
+
+.navigation-links {
+    margin-top: 1rem;
+}
+
+.navigation-links a {
+    color: #CDC8FE;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-family: 'SourceSerifPro', serif;
+    transition: all 0.3s ease;
+}
+
+.navigation-links a:hover {
+    color: #FFFFFF;
+}
+
+.alert {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    width: 90%; /* Increased to match input container width */
+    min-width: 300px;
+    text-align: center;
+    max-width: 450px; /* Increased max-width slightly to match inputs better */
+    box-sizing: border-box;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+}
+
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 19px 0;
+    gap: 15px;
+    width: 80%; /* Add width to match your form width */
+}
+  
+.divider hr {
+    flex: 1;
+    border: none;
+    border-top: 2px solid #CDC8FE; /* Changed to match your theme color */
+    margin: 0;
+}
+  
+.divider span {
+    color: #CDC8FE; /* Changed to match your theme color */
+    font-size: 1rem;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-family: 'SourceSerifPro', serif; /* Match your font family */
+}
+
+.password-input-container {
+    position: relative;
+    width: 90%;
+    min-width: 300px;
+}
+
+.password-input-container input {
+    width: 100%;
+    padding-right: 40px; /* Make room for the eye icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #0B0B1B;
+    padding: 5px;
+    z-index: 1000;
+}
+
+.toggle-password:hover {
+    color: #6461A0;
+}
+
+.forgot-password-container {
+    width: 90%;
+    min-width: 300px;
+    text-align: right;
+    margin-top: 0.5rem;
+}
+
+.forgot-password-link {
+    color: #CDC8FE;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'SourceSerifPro', serif;
+    transition: all 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}

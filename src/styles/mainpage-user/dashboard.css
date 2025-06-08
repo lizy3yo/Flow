@@ -1,0 +1,2086 @@
+/* Import design system variables */
+@import './root.css';
+
+/* Base Styles */
+.page-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  font-family: var(--user-mainpage-font-family);
+}
+
+.content,
+.user-content {
+  padding: 2rem;
+  /* Remove max-width constraint to use full available space */
+  max-width: none;
+  margin: 0;
+  /* Add top padding to account for fixed UserTopNavbar (70px height) + adequate whitespace */
+  padding-top: 100px;
+  margin-left: 350px; /* Match sidebar width */
+  transition: all 0.3s ease;
+  width: calc(100% - 350px);
+  padding-right: 2rem; /* Ensure content extends to viewport edge */
+}
+
+/* Collapsed sidebar adjustments - utilize full viewport width */
+.user-content-expanded {
+  margin-left: 95px; /* Match collapsed sidebar width */
+  width: calc(100% - 95px);
+  max-width: none; /* Remove max-width constraint to use full available space */
+  margin-right: 0; /* Ensure content extends to viewport edge */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Enhanced Mobile Responsive Design */
+@media (max-width: 768px) {
+  .content,
+  .user-content {
+    margin-left: 0;
+    padding: 1rem;
+    padding-top: 90px;
+    width: 100%;
+  }
+  
+  .user-content-expanded {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .dashboard-top-row {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  
+  .welcome-banner,
+  .active-queue {
+    flex: none;
+    max-width: 100%;
+    min-width: 0;
+    min-height: unset;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .welcome-banner {
+    padding: 1.25rem 1rem;
+    min-height: 140px;
+  }
+  
+  .active-queue {
+    padding: 1.25rem 1rem;
+    min-height: 120px;
+  }
+  
+  .welcome-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  
+  .welcome-content p {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Mobile-specific overview grid */
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .overview-card {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .overview-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 0.75rem;
+  }
+  
+  .overview-icon i {
+    font-size: 1.25rem;
+  }
+  
+  .overview-value {
+    font-size: 1.5rem;
+  }
+  
+  /* Mobile home grid adjustments */
+  .home-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .home-card {
+    padding: 1.25rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .btn-text {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  /* Services grid mobile adjustments */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .service-card {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .service-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    align-self: center;
+  }
+  
+  .service-details {
+    text-align: center;
+  }
+  
+  .service-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Enhanced Mobile Responsive Design - Continuation */
+@media (max-width: 768px) {
+  /* Quick actions mobile improvements */
+  .quick-actions {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .action-btn {
+    padding: 0.875rem 1rem;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  
+  .action-btn i {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .action-btn span {
+    font-size: 0.9rem;
+  }
+  
+  /* Active queue mobile improvements */
+  .active-queue-header h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .active-queue-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .queue-number {
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    min-width: 120px;
+    margin: 0 auto;
+  }
+  
+  .queue-details {
+    text-align: center;
+  }
+  
+  .queue-location {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-text {
+    font-size: 0.85rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .view-queue-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Appointments and activity lists mobile improvements */
+  .appointments-list,
+  .activity-list {
+    gap: 0.75rem;
+  }
+  
+  .appointment-item,
+  .activity-item {
+    padding: 0.875rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .appointment-date,
+  .activity-icon {
+    align-self: center;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .appointment-details,
+  .activity-details {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* Small Mobile Devices (≤ 640px) */
+@media (max-width: 640px) {
+  .content {
+    padding: 0.75rem;
+    padding-top: 70px;
+  }
+  
+  .welcome-banner,
+  .active-queue {
+    padding: 1rem 0.75rem;
+    min-height: 120px;
+  }
+  
+  .welcome-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .welcome-content p {
+    font-size: 0.95rem;
+  }
+  
+  .overview-card {
+    padding: 0.875rem;
+  }
+  
+  .overview-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .overview-value {
+    font-size: 1.3rem;
+  }
+  
+  .overview-title {
+    font-size: 0.8rem;
+  }
+  
+  .home-card {
+    padding: 1rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .service-card {
+    padding: 0.875rem;
+  }
+  
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .queue-number {
+    font-size: 2rem;
+    padding: 0.875rem 1.25rem;
+    min-width: 100px;
+  }
+}
+
+/* Extra Small Mobile Devices (≤ 480px) */
+@media (max-width: 480px) {
+  .content {
+    padding: 0.5rem;
+    padding-top: 60px;
+  }
+  
+  .welcome-banner,
+  .active-queue {
+    padding: 0.875rem 0.5rem;
+    min-height: 100px;
+  }
+  
+  .welcome-content h1 {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  
+  .welcome-content p {
+    font-size: 0.85rem;
+  }
+  
+  .quick-actions {
+    gap: 0.5rem;
+  }
+  
+  .action-btn {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.85rem;
+  }
+  
+  .overview-section h2,
+  .featured-services .card-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .overview-card {
+    padding: 0.75rem;
+  }
+  
+  .overview-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .overview-icon i {
+    font-size: 1rem;
+  }
+  
+  .overview-value {
+    font-size: 1.2rem;
+  }
+  
+  .home-card {
+    padding: 0.875rem;
+  }
+  
+  .service-card {
+    padding: 0.75rem;
+  }
+  
+  .service-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .service-details h3 {
+    font-size: 1rem;
+  }
+  
+  .service-details p {
+    font-size: 0.85rem;
+  }
+  
+  .queue-number {
+    font-size: 1.75rem;
+    padding: 0.75rem 1rem;
+    min-width: 80px;
+  }
+  
+  .queue-location {
+    font-size: 1rem;
+  }
+  
+  .progress-text {
+    font-size: 0.8rem;
+  }
+  
+  .view-queue-btn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Enhanced Mobile Touch Interactions and Accessibility */
+
+/* Touch-friendly button improvements */
+@media (max-width: 768px) {
+  /* Ensure all clickable elements have sufficient touch targets (44px minimum) */
+  .action-btn,
+  .view-queue-btn,
+  .btn-text,
+  .btn-primary {
+    min-height: 44px;
+    touch-action: manipulation; /* Prevents double-tap zoom */
+  }
+  
+  /* Improved button spacing for touch */
+  .quick-actions {
+    gap: 1rem; /* Increased gap for better touch separation */
+  }
+  
+  /* Better tap feedback for mobile */
+  .action-btn:active,
+  .view-queue-btn:active,
+  .btn-text:active,
+  .btn-primary:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Service cards touch improvements */
+  .service-card:active {
+    transform: scale(0.98) translateY(-2px);
+  }
+  
+  /* Overview cards touch improvements */
+  .overview-card:active {
+    transform: scale(0.98) translateY(-2px);
+  }
+  
+  /* Queue number touch improvements */
+  .queue-number:active {
+    transform: scale(0.95) translateY(-2px);
+  }
+  
+  /* Improved scrolling behavior */
+  .appointments-list,
+  .activity-list,
+  .services-grid {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Table responsiveness improvements */
+  .queue-table-container,
+  .appointments-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+  }
+  
+  .queue-table,
+  .appointments-table {
+    min-width: 100%;
+    white-space: nowrap;
+  }
+  
+  .queue-table th,
+  .queue-table td,
+  .appointments-table th,
+  .appointments-table td {
+    padding: 12px 8px;
+    font-size: 0.9rem;
+  }
+  
+  /* Status badges mobile improvements */
+  .status-badge {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  
+  /* Empty state improvements for mobile */
+  .empty-state {
+    padding: 1.5rem 1rem;
+  }
+  
+  .empty-state i {
+    font-size: 2.5rem;
+  }
+  
+  .empty-state p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Hardware acceleration for smooth animations */
+  .action-btn,
+  .overview-card,
+  .service-card,
+  .queue-number,
+  .view-queue-btn {
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Optimize font rendering on mobile */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Prevent text selection on interactive elements */
+  .action-btn,
+  .overview-card,
+  .service-card,
+  .queue-number,
+  .view-queue-btn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Improve scrolling performance */
+  .content {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+  
+  /* Mobile-specific image optimizations */
+  .establishment-avatar {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .welcome-banner,
+  .active-queue {
+    min-height: 160px;
+  }
+  
+  .welcome-content h1 {
+    font-size: 1.6rem;
+  }
+  
+  .welcome-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .active-queue-content {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .queue-number {
+    font-size: 2.2rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .overview-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .home-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* High DPI / Retina display optimizations */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .overview-card,
+  .service-card,
+  .welcome-banner,
+  .active-queue {
+    box-shadow: 0 4px 20px rgba(100, 97, 160, 0.12);
+  }
+  
+  .queue-number {
+    box-shadow: 0 4px 20px rgba(100, 97, 160, 0.15);
+  }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+  /* Larger touch targets for better accessibility */
+  .action-btn,
+  .view-queue-btn,
+  .btn-text,
+  .btn-primary {
+    min-height: 48px; /* WCAG AA compliant touch target */
+  }
+  
+  /* Better focus visibility */
+  .action-btn:focus-visible,
+  .view-queue-btn:focus-visible,
+  .overview-card:focus-visible,
+  .service-card:focus-visible {
+    outline: 3px solid var(--user-mainpage-accent-color);
+    outline-offset: 2px;
+  }
+  
+  /* Improved contrast for better readability */
+  .progress-text,
+  .service-stats,
+  .overview-title {
+    color: #495057;
+  }
+}
+
+/* Dark mode support for mobile (if implemented) */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .welcome-banner,
+  .active-queue,
+  .overview-card,
+  .service-card,
+  .home-card {
+    background: #2d3748;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .welcome-content h1,
+  .overview-value,
+  .service-details h3,
+  .card-header h2 {
+    color: #ffffff;
+  }
+  
+  .welcome-content p,
+  .overview-title,
+  .service-details p,
+  .progress-text {
+    color: #cbd5e0;
+  }
+}
+
+/* Base typography */
+h1, h2, h3 {
+  margin: 0;
+  color: var(--user-mainpage-text-dark);
+  font-family: var(--user-mainpage-font-family);
+}
+
+/* Tablet landscape adjustments - Enhanced for better tablet experience */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-top-row {
+    gap: 1.5rem;
+  }
+  
+  .welcome-banner,
+  .active-queue {
+    min-height: 280px;
+  }
+  
+  .welcome-banner {
+    padding: 1.5rem;
+  }
+  
+  .active-queue {
+    padding: 1.5rem;
+  }
+  
+  .welcome-content h1 {
+    font-size: 2rem;
+  }
+  
+  .welcome-content p {
+    font-size: 1.2rem;
+  }
+  
+  .action-btn {
+    padding: 0.9rem 1.1rem;
+  }
+  
+  .queue-number {
+    font-size: 2.8rem;
+    padding: 1.25rem 1.75rem;
+    min-width: 120px;
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    background: var(--user-mainpage-white);
+  }
+  
+  .queue-location {
+    font-size: 1.3rem;
+  }
+  
+  .active-queue-content {
+    gap: 2rem;
+  }
+  
+  /* Tablet-specific grid adjustments */
+  .overview-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .home-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Dashboard Top Row - Side by Side Layout */
+.dashboard-top-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  align-items: stretch;
+}
+
+/* Enhanced Welcome Banner with Improved Visual Hierarchy - Equal Width with Active Queue */
+.welcome-banner {
+  background: var(--user-mainpage-white);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px);
+  padding: 2rem;
+  box-shadow: 0 6px 24px rgba(100, 97, 160, 0.15);
+  border: 2px solid rgba(100, 97, 160, 0.1);
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--user-mainpage-gradient-primary);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px) 0 0 var(--user-mainpage-border-radius-xl, 24px);
+  z-index: 1;
+}
+
+.welcome-content {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.welcome-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--user-mainpage-text-dark);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.welcome-content p {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: #6C757D;
+  font-weight: 500;
+}
+
+.welcome-illustration {
+  display: none; /* Hide for cleaner modern look */
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced quick actions for expanded content */
+.user-content-expanded .quick-actions {
+  grid-template-columns: 1fr;
+  max-width: none;
+}
+
+/* Enhanced action buttons with join-queue-btn styling */
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  gap: 0.5rem;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  color: white;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+}
+
+.action-btn.secondary {
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  color: white;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+}
+
+.action-btn.secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.action-btn.secondary:hover::before {
+  left: 100%;
+}
+
+.action-btn.tertiary {
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  color: white;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+}
+
+.action-btn.tertiary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.action-btn.tertiary:hover::before {
+  left: 100%;
+}
+
+.action-btn i {
+  font-size: 1rem;
+}
+
+.action-btn span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Enhanced hover effects matching join-queue-btn */
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.action-btn.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.action-btn.tertiary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+/* Active Queue - Equal Width with Welcome Banner */
+.active-queue {
+  background: var(--user-mainpage-white);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px);
+  padding: 2rem;
+  box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+  border: 1px solid rgba(100, 97, 160, 0.1);
+  border-left: 4px solid var(--user-mainpage-accent-color);
+  flex: 1;
+  min-width: 0;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+}
+
+.active-queue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.active-queue-header h2 {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--user-mainpage-text-dark);
+  font-weight: 600;
+}
+
+.active-queue-header h2 i {
+  margin-right: 0.5rem;
+  color: var(--user-mainpage-accent-color);
+}
+
+.active-queue-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.queue-number {
+  font-size: 3rem;
+  font-weight: 800;
+  padding: 1.5rem 2rem;
+  background: var(--user-mainpage-white);
+  color: var(--user-mainpage-accent-color);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px);
+  border: 2px solid rgba(100, 97, 160, 0.1);
+  text-align: center;
+  width: fit-content;
+  min-width: 140px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.queue-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--user-mainpage-gradient-hover);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.queue-number:hover::before {
+  opacity: 1;
+}
+
+.queue-number:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(100, 97, 160, 0.3);
+  border-color: var(--user-mainpage-accent-color);
+  border-width: 3px;
+}
+
+.queue-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.queue-location {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--user-mainpage-text-dark);
+  line-height: 1.3;
+}
+
+.queue-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progress-bar {
+  height: 12px;
+  background: rgba(100, 97, 160, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-filled {
+  height: 100%;
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.status.active {
+    background: #198754;
+    color: white;
+}
+
+.queue-table-container {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.queue-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.queue-table th,
+.queue-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.queue-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(100, 97, 160, 0.15);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn.primary {
+    background: #f0f0f0;
+    color: #333;
+    border-color: #ddd;
+}
+
+.action-btn.secondary {
+    background: #ffffff;
+    color: #333;
+    border-color: #eee;
+}
+
+.action-btn.tertiary {
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+}
+
+.action-btn i {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+.action-btn span {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Hover effects */
+.action-btn:hover {
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.action-btn.primary:hover {
+    background: #e9e9e9;
+    border-color: #ccc;
+}
+
+.action-btn.secondary:hover {
+    background: #f8f8f8;
+    border-color: #ddd;
+}
+
+.action-btn.tertiary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.calendar-section {
+    margin-top: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.appointments-section {
+    margin-top: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.appointments-table-container {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.appointments-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.appointment-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.appointment-status.confirmed {
+    background: #198754;
+    color: white;
+}
+
+.appointment-status.pending {
+    background: #ffc107;
+    color: #000;
+}
+
+h3 {
+    color: #343a40;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* Quick Navigation Buttons */
+.quick-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(100, 97, 160, 0.15);
+}
+
+/* Primary quick nav button (Join Queue) */
+.quick-nav-primary {
+    background: linear-gradient(135deg, #6964DE, #FCA6E9);
+    color: white;
+}
+
+/* Secondary quick nav button (Book Appointment) */
+.quick-nav-secondary {
+    background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+    color: #334155;
+}
+
+/* Tertiary quick nav button (My Appointments) */
+.quick-nav-tertiary {
+    background: white;
+    color: #334155;
+    border-color: #6964DE;
+}
+
+.quick-nav-btn i {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+.quick-nav-btn span {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Keep the original action-btn for other buttons */
+.action-btn {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Enhanced View Queue Button - Using action-btn-secondary styling */
+.view-queue-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  color: white;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+  font-size: 1rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.view-queue-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.view-queue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.view-queue-btn:hover::before {
+  left: 100%;
+}
+
+/* Enhanced Overview Section */
+.overview-section {
+  margin-bottom: 2.5rem;
+}
+
+.overview-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: var(--user-mainpage-text-dark);
+  font-weight: 700;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.overview-section h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--user-mainpage-gradient-primary);
+  border-radius: 2px;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Enhanced overview grid for expanded content */
+.user-content-expanded .overview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Enhanced Overview Cards with Subtle Gradient Effects */
+.overview-card {
+  background: var(--user-mainpage-white);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+  border: 2px solid rgba(100, 97, 160, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.overview-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--user-mainpage-gradient-hover);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.overview-card:hover::before {
+  opacity: 1;
+}
+
+.overview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(100, 97, 160, 0.3);
+  border-color: var(--user-mainpage-accent-color);
+  border-width: 3px;
+}
+
+/* Ensure content stays above the gradient overlay */
+.overview-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.overview-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.overview-icon:hover {
+  transform: translateY(-2px);
+}
+
+.overview-icon i {
+  font-size: 1.5rem;
+  color: #fff;
+  z-index: 2;
+  position: relative;
+}
+
+/* Calendar icon - Blue to Purple gradient */
+.calendar-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.3);
+}
+
+.calendar-icon:hover {
+  box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.4);
+}
+
+/* Stopwatch icon - Orange to Pink gradient */
+.stopwatch-icon {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  box-shadow: 0 4px 15px 0 rgba(245, 87, 108, 0.3);
+}
+
+.stopwatch-icon:hover {
+  box-shadow: 0 6px 20px 0 rgba(245, 87, 108, 0.4);
+}
+
+/* Building icon - Green to Blue gradient */
+.building-icon {
+  background: linear-gradient(135deg, #dc3545, #fd7e14);
+  box-shadow: 0 4px 15px 0 rgba(79, 172, 254, 0.3);
+}
+
+.building-icon:hover {
+  box-shadow: 0 6px 20px 0 rgba(79, 172, 254, 0.4);
+}
+
+.overview-info {
+  flex: 1;
+}
+
+.overview-title {
+  font-size: 0.9rem;
+  color: #6C757D;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.overview-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--user-mainpage-text-dark);
+}
+
+/* Home Grid */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Enhanced home grid for expanded content */
+.user-content-expanded .home-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.home-card {
+  background: var(--user-mainpage-white);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px);
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+  border: 1px solid rgba(100, 97, 160, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(100, 97, 160, 0.1);
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  color: var(--user-mainpage-text-dark);
+  font-weight: 700;
+}
+
+.card-header h2 i {
+  margin-right: 0.75rem;
+  color: var(--user-mainpage-accent-color);
+  font-size: 1.2rem;
+}
+
+.btn-text {
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+  font-size: 0.9rem;
+}
+
+.btn-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-text:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+  text-decoration: none;
+}
+
+.btn-text:hover::before {
+  left: 100%;
+}
+
+/* Appointments List */
+.appointments-list, .activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.appointment-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+  background: rgba(100, 97, 160, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.appointment-item:hover {
+  background: rgba(100, 97, 160, 0.1);
+  border-color: var(--user-mainpage-accent-color);
+  transform: translateY(-1px);
+}
+
+.appointment-date {
+  width: 50px;
+  height: 50px;
+  background: var(--user-mainpage-white);
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  box-shadow: 0 2px 8px rgba(100, 97, 160, 0.1);
+  border: 1px solid rgba(100, 97, 160, 0.1);
+}
+
+.date-day {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--user-mainpage-text-dark);
+}
+
+.date-month {
+  font-size: 0.75rem;
+  color: var(--user-mainpage-text-light);
+  font-weight: 500;
+}
+
+.appointment-details {
+  flex: 1;
+}
+
+.appointment-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--user-mainpage-text-dark);
+}
+
+.appointment-time {
+  font-size: 0.9rem;
+  color: var(--user-mainpage-text-light);
+}
+
+/* Activity List */
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+  background: rgba(100, 97, 160, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+
+
+.activity-item:hover {
+  background: rgba(100, 97, 160, 0.1);
+  border-color: var(--user-mainpage-accent-color);
+  transform: translateY(-1px);
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.icon-waiting {
+  background: rgba(100, 97, 160, 0.2);
+  color: var(--user-mainpage-accent-color);
+}
+
+.icon-completed {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.icon-cancelled {
+  background: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+}
+
+.icon-pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.activity-details {
+  flex: 1;
+}
+
+.activity-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--user-mainpage-text-dark);
+}
+
+.activity-time {
+  font-size: 0.9rem;
+  color: var(--user-mainpage-text-light);
+}
+
+/* Enhanced Featured Services Section */
+.featured-services {
+  margin-bottom: 2.5rem;
+}
+
+.featured-services .card-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.featured-services .card-header h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--user-mainpage-gradient-primary);
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Enhanced services grid for expanded content */
+.user-content-expanded .services-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Enhanced Service Cards with Gradient Hover Effects */
+.service-card {
+  background: var(--user-mainpage-white);
+  border-radius: var(--user-mainpage-border-radius-xl, 24px);
+  padding: 1.5rem;
+  display: flex;
+  box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+  border: 2px solid rgba(100, 97, 160, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--user-mainpage-gradient-subtle);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(100, 97, 160, 0.3);
+  border-color: var(--user-mainpage-accent-color);
+  border-width: 3px;
+}
+
+/* Ensure content stays above the gradient overlay */
+.service-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+  background: rgba(100, 97, 160, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  overflow: hidden; /* Add this for proper image clipping */
+}
+
+.establishment-avatar {
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+}
+
+.service-icon i {
+  font-size: 1.5rem;
+  color: var(--user-mainpage-accent-color);
+}
+
+.service-details {
+  flex: 1;
+}
+
+.service-details h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--user-mainpage-text-dark);
+}
+
+.service-details p {
+  font-size: 0.9rem;
+  color: var(--user-mainpage-text-light);
+  margin-bottom: 0.75rem;
+}
+
+.service-stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--user-mainpage-text-light);
+}
+
+.service-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.status-badge.confirmed,
+.status-badge.completed {
+  background: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+.status-badge.pending {
+  background: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+  border-color: rgba(255, 193, 7, 0.2);
+}
+
+.status-badge.waiting {
+  background: rgba(100, 97, 160, 0.1);
+  color: var(--user-mainpage-accent-color);
+  border-color: rgba(100, 97, 160, 0.2);
+}
+
+.status-badge.cancelled {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.2);
+}
+
+/* Empty States */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--user-mainpage-text-light);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+  color: var(--user-mainpage-accent-color);
+}
+
+.empty-state p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Enhanced Primary Buttons for Empty States */
+.btn-primary {
+  background: var(--user-mainpage-gradient-primary);
+  color: var(--user-mainpage-white);
+  border: 2px solid var(--user-mainpage-accent-color-secondary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--user-mainpage-border-radius-md, 10px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(100, 97, 160, 0.15);
+}
+
+.btn-primary:hover {
+  border-color: var(--user-mainpage-white);
+  border-width: 3px;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(100, 97, 160, 0.25);
+}
+
+/* Loading State Styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* ===============================================
+   IMPORTANT: QUEUE NUMBER STYLING PRIORITY
+   ===============================================
+   
+   This CSS file contains high-specificity queue-number styling rules
+   to prevent them from being overridden by other CSS files.
+   
+   The following approaches are used to ensure styling priority:
+   
+   1. HIGH SPECIFICITY SELECTORS:
+      - Multiple class combinations (.active-queue .queue-number)
+      - Element type selectors (div.queue-number, span.queue-number)
+      - Container-specific selectors (.notification-item .queue-number)
+   
+   2. IMPORTANT DECLARATIONS:
+      - All critical properties use !important
+      - Ensures override of any conflicting styles
+   
+   3. CONTEXT-SPECIFIC STYLING:
+      - Different queue-number contexts maintain their intended appearance
+      - Dashboard: Large, prominent display
+      - Activity Log: Small, monospace table format
+      - My Appointments: Medium, clean text format
+      - Book Appointment: Inline table format
+   
+   Files with queue-number styling protections:
+   - dashboard.css (this file) - Main dashboard display
+   - useractivitylog.css - Table/log format
+   - myappointments.css - Card format
+   - bookappointmentview.css - Table/queue format
+   
+   =============================================== */
+
+/* Primary queue number styling with high specificity */
+.active-queue .queue-number,
+.notification-item .queue-number,
+.queue-item .queue-number,
+.appointment-card .queue-number,
+.queue-list .queue-number,
+.queue-container .queue-number,
+div.queue-number,
+span.queue-number {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  padding: 1.5rem 2rem !important;
+  background: var(--user-mainpage-white) !important;
+  color: var(--user-mainpage-accent-color) !important;
+  border-radius: var(--user-mainpage-border-radius-xl, 24px) !important;
+  border: 2px solid rgba(100, 97, 160, 0.1) !important;
+  text-align: center !important;
+  width: fit-content !important;
+  min-width: 140px !important;
+  flex-shrink: 0 !important;
+  letter-spacing: 0.05em !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 20px var(--user-mainpage-shadow) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
+}
+
+/* Pseudo-element styling with high specificity */
+.active-queue .queue-number::before,
+.notification-item .queue-number::before,
+.queue-item .queue-number::before,
+.appointment-card .queue-number::before,
+.queue-list .queue-number::before,
+.queue-container .queue-number::before,
+div.queue-number::before,
+span.queue-number::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: var(--user-mainpage-gradient-hover) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  z-index: 1 !important;
+}
+
+/* Hover effects with high specificity */
+.active-queue .queue-number:hover::before,
+.notification-item .queue-number:hover::before,
+.queue-item .queue-number:hover::before,
+.appointment-card .queue-number:hover::before,
+.queue-list .queue-number:hover::before,
+.queue-container .queue-number:hover::before,
+div.queue-number:hover::before,
+span.queue-number:hover::before {
+  opacity: 1 !important;
+}
+
+.active-queue .queue-number:hover,
+.notification-item .queue-number:hover,
+.queue-item .queue-number:hover,
+.appointment-card .queue-number:hover,
+.queue-list .queue-number:hover,
+.queue-container .queue-number:hover,
+div.queue-number:hover,
+span.queue-number:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 40px rgba(100, 97, 160, 0.3) !important;
+  border-color: var(--user-mainpage-accent-color) !important;
+  border-width: 3px !important;
+}
+
+/* Enhanced Responsive adjustments with high specificity for queue numbers */
+@media (max-width: 768px) {
+  .active-queue .queue-number,
+  .notification-item .queue-number,
+  .queue-item .queue-number,
+  .appointment-card .queue-number,
+  .queue-list .queue-number,
+  .queue-container .queue-number,
+  div.queue-number,
+  span.queue-number {
+    font-size: 2.5rem !important;
+    padding: 1.25rem 1.75rem !important;
+    min-width: 120px !important;
+    border-radius: var(--user-mainpage-border-radius-xl, 20px) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .active-queue .queue-number,
+  .notification-item .queue-number,
+  .queue-item .queue-number,
+  .appointment-card .queue-number,
+  .queue-list .queue-number,
+  .queue-container .queue-number,
+  div.queue-number,
+  span.queue-number {
+    font-size: 2rem !important;
+    padding: 1rem 1.5rem !important;
+    min-width: 100px !important;
+    border-radius: var(--user-mainpage-border-radius-xl, 16px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .active-queue .queue-number,
+  .notification-item .queue-number,
+  .queue-item .queue-number,
+  .appointment-card .queue-number,
+  .queue-list .queue-number,
+  .queue-container .queue-number,
+  div.queue-number,
+  span.queue-number {
+    font-size: 1.75rem !important;
+    padding: 0.75rem 1.25rem !important;
+    min-width: 80px !important;
+    border-radius: var(--user-mainpage-border-radius-xl, 12px) !important;
+    letter-spacing: 0.03em !important;
+  }
+}
+
+/* Very small screens - maintain readability */
+@media (max-width: 360px) {
+  .active-queue .queue-number,
+  .notification-item .queue-number,
+  .queue-item .queue-number,
+  .appointment-card .queue-number,
+  .queue-list .queue-number,
+  .queue-container .queue-number,
+  div.queue-number,
+  span.queue-number {
+    font-size: 1.5rem !important;
+    padding: 0.625rem 1rem !important;
+    min-width: 70px !important;
+    border-radius: var(--user-mainpage-border-radius-md, 8px) !important;
+  }
+}

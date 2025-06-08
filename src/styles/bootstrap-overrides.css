@@ -1,0 +1,58 @@
+/* Bootstrap Override - Dark Background for Landing Page */
+/* This file is imported after Bootstrap to override its default styles */
+
+html, body {
+  background-color: #0B0B1B !important;
+  background: #0B0B1B !important;
+}
+
+#app {
+  background-color: #0B0B1B !important;
+  background: #0B0B1B !important;
+  min-height: 100vh;
+}
+
+/* Ensure Bootstrap containers don't add white backgrounds */
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override any Bootstrap row/col backgrounds */
+.row, .col, [class*="col-"] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override Bootstrap card backgrounds on landing page */
+.landing-page .card {
+  background-color: transparent !important;
+}
+
+/* Only apply transparent background to Bootstrap-specific elements, not landing sections */
+main {
+  background-color: transparent !important;
+}
+
+/* Only override generic divs without specific landing classes or landing6 containers */
+div:not([class*="landing"]):not([class*="banner"]):not([class*="section"]):not(.container):not([class*="container-"]) {
+  background-color: transparent !important;
+}
+
+/* Specifically exclude landing6 containers from bootstrap overrides */
+.landing4-wrapper .container {
+  background-color: initial !important;
+  background: initial !important;
+}
+
+/* Only apply dark background to root elements */
+html, body, #app {
+  background-color: #0B0B1B !important;
+  background: #0B0B1B !important;
+}

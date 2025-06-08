@@ -1,0 +1,46 @@
+:root {
+    /* Existing variables */
+    --user-mainpage-primary-bg: #0B0B1B;
+    --user-mainpage-form-bg: #0B0B1B;
+    --user-mainpage-accent-color: #0B0B1B;
+    --user-mainpage-accent-color-secondary: #6461A0;
+    --user-mainpage-text-primary: #CDC8FE;    --user-mainpage-text-secondary: blaCK;
+    --user-mainpage-text-hover: #0B0B1B;
+    --user-mainpage-font-family: 'Merriweather', serif;
+
+    /* New variables needed for dashboard */
+    --user-mainpage-white: #FFFFFF;
+    --user-mainpage-background: #CDC8FE;
+    --user-mainpage-error: #FF4444;
+    --user-mainpage-success: #28a745;
+    --user-mainpage-danger: #dc3545;
+    --user-mainpage-secondary: #9693CE;
+    --user-mainpage-shadow: rgba(100, 97, 160, 0.2);
+
+    /* Add these new variables */
+    --user-mainpage-form-secondary: #F5F5F7;
+    --user-mainpage-light-accent: #8A88C2;
+    --user-mainpage-text-dark: #0B0B1B;
+    --user-mainpage-text-light: #6461A0;
+    --user-mainpage-highlight: #8A88C2;
+
+    /* Spacing */
+    --user-mainpage-spacing-xs: 0.25rem;
+    --user-mainpage-spacing-sm: 0.5rem;
+    --user-mainpage-spacing-md: 1rem;
+    --user-mainpage-spacing-lg: 1.5rem;
+    --user-mainpage-spacing-xl: 2rem;
+
+    /* Border radius */
+    --user-mainpage-border-radius-sm: 8px;
+    --user-mainpage-border-radius-md: 10px;
+    --user-mainpage-border-radius-lg: 20px;
+    --user-mainpage-border-radius-xl: 24px;
+
+    /* Gradient variables for enhanced visual hierarchy */
+    --user-mainpage-gradient-primary: linear-gradient(135deg, #6461A0, #8A88C2);
+    --user-mainpage-gradient-secondary: linear-gradient(135deg, #8A88C2, #9693CE);
+    --user-mainpage-gradient-accent: linear-gradient(135deg, #0B0B1B, #6461A0);
+    --user-mainpage-gradient-subtle: linear-gradient(135deg, rgba(100, 97, 160, 0.1), rgba(138, 136, 194, 0.1));
+    --user-mainpage-gradient-hover: linear-gradient(135deg, rgba(100, 97, 160, 0.15), rgba(138, 136, 194, 0.15));
+}

@@ -1,0 +1,1137 @@
+.user-book-content-wrapper {
+    background: var(--user-mainpage-primary-bg);
+    border-radius: var(--user-mainpage-border-radius-xl);
+    padding: var(--user-mainpage-spacing-xl);
+    margin: 0 auto;
+    max-width: 100%;
+    padding-left: 20rem;
+    padding-right: 0;
+}
+
+.user-book-card {
+    background: var(--user-mainpage-form-secondary);
+    border-radius: var(--user-mainpage-border-radius-md);
+    padding: 2.5rem;
+    margin: 2rem auto;
+    width: 350px; /* Add fixed width */
+    height: 600px; /* Add fixed height */
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px var(--user-mainpage-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.user-book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px var(--user-mainpage-shadow);
+}
+
+.user-book-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Add this to center all content */
+    text-align: center;  /* Add this to center text content */
+    padding: 0.9rem;
+}
+
+/* Avatar styles moved to component scoped styles to prevent conflicts */
+
+.user-book-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--user-mainpage-spacing-md);
+    margin-bottom: var(--user-mainpage-spacing-xl);
+}
+
+.user-book-info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--user-mainpage-spacing-sm);
+    color: var(--user-mainpage-text-secondary);
+    font-size: 1.1rem;
+}
+
+.user-book-info-item i {
+    color: var(--user-mainpage-accent-color);
+}
+
+.user-book-departments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.user-book-filters-container {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.user-book-search-bar {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.user-book-search-bar input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    font-size: 1rem;
+    border: 4px solid var(--user-mainpage-accent-color);
+    border-radius: var(--user-mainpage-border-radius-sm);
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+
+}
+
+.user-book-search-bar i {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--user-mainpage-accent-color);
+}
+
+.user-book-filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.user-book-filter-select {
+    padding: 0.6rem;
+    border: 4px solid var(--user-mainpage-accent-color);
+    border-radius: var(--user-mainpage-border-radius-sm);
+    font-size: 1rem;
+    min-width: 200px;
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+}
+
+.user-book-filter-select:focus {
+    outline: none;
+    border-color: var(--user-mainpage-light-accent);
+}
+
+.user-book-queue-active {
+    color: var(--user-mainpage-success);
+    font-weight: 600;
+}
+
+.user-book-queue-inactive {
+    color: var(--user-mainpage-danger);
+    font-weight: 600;
+}
+
+.user-book-highlight,
+mark.user-book-highlight {
+    background-color: var(--user-mainpage-light-accent);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 0.5px;
+}
+
+.user-book-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-book-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 1000;
+    margin-top: 4px;
+}
+
+.user-book-filter-button {
+    padding: 0.8rem;
+    border: 4px solid var(--user-mainpage-accent-color);
+    border-radius: var(--user-mainpage-border-radius-sm);
+    font-size: 1rem;
+    min-width: 200px;
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+}
+
+.user-book-filter-button:hover {
+    border-color: var(--user-mainpage-light-accent);
+}
+
+.user-book-filter-button:focus {
+    outline: none;
+    border-color: var(--user-mainpage-light-accent);
+}
+
+.filter-group {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-group:last-child {
+    border-bottom: none;
+}
+
+.filter-group h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--user-mainpage-text-dark);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.checkbox-container:hover {
+    color: var(--user-mainpage-accent-color);
+}
+
+.checkbox-container input[type="radio"] {
+    margin: 0;
+    accent-color: var(--user-mainpage-accent-color);
+}
+
+/* Page container with modern background */
+.page-container {
+    background: #f8f9fa;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Enhanced content area with viewport maximization */
+.content {
+    padding: 2rem;
+    max-width: none; /* Remove max-width constraint for full viewport utilization */
+    margin: 0;
+    padding-top: 50px; /* Account for fixed UserTopNavbar (70px height) */
+    margin-left: 350px; /* Match sidebar width */
+    transition: all 0.3s ease;
+    width: calc(100% - 350px);
+    padding-right: 2rem;
+    background: transparent;
+}
+
+/* Header Section Styling */
+.user-book-header-section {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+}
+
+.user-book-main-header {
+    color: #000000;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    font-family: var(--user-mainpage-font-family);
+    letter-spacing: -0.5px;
+}
+
+.user-book-subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    font-family: var(--user-mainpage-font-family);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Collapsed sidebar adjustments - maximize viewport space */
+.user-content-expanded {
+    margin-left: 95px; /* Match collapsed sidebar width */
+    width: calc(100% - 95px);
+    max-width: none; /* Remove max-width constraint */
+    margin-right: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Modern department cards grid with enhanced spacing - PRIORITIZED */
+.user-book-departments-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+    gap: 2rem !important;
+    padding: 1rem 0 !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Enhanced department cards with UserDashboard styling patterns - PRIORITIZED */
+.user-book-card {
+    background: var(--user-mainpage-white) !important;
+    border-radius: var(--user-mainpage-border-radius-xl, 24px) !important;
+    padding: 2rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: 550px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow) !important;
+    border: 2px solid rgba(100, 97, 160, 0.1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 5 !important;
+}
+
+/* Border-based hover effects matching UserDashboard patterns - PRIORITIZED */
+.user-book-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: var(--user-mainpage-gradient-hover) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    z-index: 1 !important;
+}
+
+.user-book-card:hover::before {
+    opacity: 1 !important;
+}
+
+.user-book-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 24px rgba(100, 97, 160, 0.2) !important;
+    border-color: rgba(100, 97, 160, 0.2) !important;
+}
+
+/* Ensure content stays above hover overlay - PRIORITIZED */
+.user-book-content {
+    position: relative !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0.5rem !important;
+    height: 100% !important;
+    justify-content: flex-start !important;
+}
+
+/* Create a content wrapper that grows to push button to bottom */
+.user-book-content > .user-book-icon,
+.user-book-content > h2,
+.user-book-content > p,
+.user-book-content > .user-book-info {
+    flex-shrink: 0;
+}
+
+/* Add flex-grow to the info section to take available space */
+.user-book-content .user-book-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Ensure the button stays at the bottom */
+.user-book-content .user-book-view-btn {
+    margin-top: auto;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+/* Icon styling for grid cards - PRIORITIZED */
+.user-book-icon {
+    width: 100px !important;
+    height: 100px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--user-mainpage-gradient-subtle) !important;
+    border-radius: 50% !important;
+    margin-bottom: 1.5rem !important;
+    overflow: hidden !important;
+    border: 2px solid rgba(100, 97, 160, 0.1) !important;
+    flex-shrink: 0 !important;
+}
+
+.user-book-icon i {
+    font-size: 2.5rem !important;
+    color: var(--user-mainpage-accent-color) !important;
+}
+
+.establishment-avatar {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 50% !important;
+}
+
+/* Ensure consistent spacing for card content */
+.user-book-content h2 {
+    color: var(--user-mainpage-text-dark);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.user-book-content p {
+    color: var(--user-mainpage-text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    flex-shrink: 0;
+}
+
+/* Modern filters container with enhanced spacing */
+.user-book-filters-container {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+}
+
+/* Enhanced search bar with modern styling */
+.user-book-search-bar {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.user-book-search-bar input {
+    width: 100%;
+    padding: 0.9rem 1rem 0.9rem 2.8rem;
+    font-size: 1rem;
+    border: 2px solid rgba(100, 97, 160, 0.2);
+    border-radius: var(--user-mainpage-border-radius-md);
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+    transition: all 0.3s ease;
+    font-family: var(--user-mainpage-font-family);
+}
+
+.user-book-search-bar input:focus {
+    outline: none;
+    border-color: var(--user-mainpage-accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 97, 160, 0.1);
+}
+
+.user-book-search-bar i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--user-mainpage-accent-color);
+    font-size: 1.1rem;
+}
+
+/* Modern filter options layout */
+.user-book-filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Enhanced filter select styling */
+.user-book-filter-select {
+    padding: 0.9rem 1rem;
+    border: 2px solid rgba(100, 97, 160, 0.2);
+    border-radius: var(--user-mainpage-border-radius-md);
+    font-size: 1rem;
+    min-width: 200px;
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+    transition: all 0.3s ease;
+    font-family: var(--user-mainpage-font-family);
+    cursor: pointer;
+}
+
+.user-book-filter-select:focus,
+.user-book-filter-select:hover {
+    outline: none;
+    border-color: var(--user-mainpage-accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 97, 160, 0.1);
+}
+
+/* Enhanced filter button with border-based hover */
+.user-book-filter-button {
+    padding: 0.9rem 1.2rem;
+    border: 2px solid rgba(100, 97, 160, 0.2);
+    border-radius: var(--user-mainpage-border-radius-md);
+    font-size: 1rem;
+    min-width: 150px;
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+    transition: all 0.3s ease;
+    font-family: var(--user-mainpage-font-family);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-book-filter-button:hover,
+.user-book-filter-button:focus {
+    outline: none;
+    border-color: var(--user-mainpage-accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 97, 160, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Enhanced dropdown styling */
+.user-book-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--user-mainpage-white);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    border-radius: var(--user-mainpage-border-radius-md);
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    min-width: 250px;
+    z-index: 1000;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.filter-group {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(100, 97, 160, 0.1);
+}
+
+.filter-group:last-child {
+    border-bottom: none;
+}
+
+.filter-group h4 {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.9rem;
+    color: var(--user-mainpage-text-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Enhanced Book Appointment button with gradient matching view-queue-btn */
+.user-book-view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #333D79, #9693CE);
+    color: white;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+    font-size: 1rem;
+    margin-top: auto;
+    font-family: var(--user-mainpage-font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+/* user */
+/* Table view specific styling for more compact appearance */
+.user-book-table-container .user-book-view-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    border-radius: var(--user-mainpage-border-radius-sm);
+    margin-top: 0;
+}
+
+.user-book-view-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.user-book-view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+/* Table view hover effect - more subtle */
+.user-book-table-container .user-book-view-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.3);
+}
+
+.user-book-view-btn:hover::before {
+    left: 100%;
+}
+
+.user-book-view-btn i {
+    transition: transform 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.user-book-view-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Table view icon animation - more subtle */
+.user-book-table-container .user-book-view-btn i {
+    font-size: 0.9rem;
+}
+
+.user-book-table-container .user-book-view-btn:hover i {
+    transform: translateX(2px);
+}
+
+/* Disabled button styling */
+.user-book-view-btn.disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.8;
+    border-color: transparent;
+}
+
+.user-book-view-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.user-book-view-btn.disabled::before {
+    display: none;
+}
+
+/* View Toggle Buttons - PRIORITIZED */
+.view-toggle-container {
+    display: flex !important;
+    background: rgba(100, 97, 160, 0.1) !important;
+    border-radius: var(--user-mainpage-border-radius-md) !important;
+    padding: 0.3rem !important;
+    gap: 0.2rem !important;
+    position: relative !important;
+    z-index: 15 !important;
+}
+
+.view-toggle-btn {
+    padding: 0.7rem 1rem !important;
+    border: none !important;
+    border-radius: var(--user-mainpage-border-radius-sm) !important;
+    background: transparent !important;
+    color: var(--user-mainpage-text-dark) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.1rem !important;
+    min-width: 45px !important;
+}
+
+.view-toggle-btn:hover {
+    background: rgba(100, 97, 160, 0.1) !important;
+    color: var(--user-mainpage-accent-color) !important;
+}
+
+.view-toggle-btn.active {
+    background: var(--user-mainpage-white) !important;
+    color: var(--user-mainpage-accent-color) !important;
+    box-shadow: 0 2px 8px rgba(100, 97, 160, 0.15) !important;
+}
+
+/* Table View Styles */
+.user-book-table-container {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    overflow: hidden;
+}
+
+.user-book-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--user-mainpage-border-radius-md);
+}
+
+.user-book-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--user-mainpage-font-family);
+    font-size: 0.95rem;
+}
+
+.user-book-table thead th {
+    background: var(--user-mainpage-gradient-subtle);
+    color: var(--user-mainpage-text-dark);
+    font-weight: 600;
+    padding: 1.2rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid rgba(100, 97, 160, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+.user-book-table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(100, 97, 160, 0.1);
+}
+
+.user-book-table tbody tr:hover {
+    background: rgba(100, 97, 160, 0.05);
+    transform: scale(1.002);
+}
+
+.user-book-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.user-book-table td {
+    padding: 1.2rem 1rem;
+    vertical-align: middle;
+    color: var(--user-mainpage-text-dark);
+    line-height: 1.5;
+}
+
+/* Service Cell Styling */
+.service-cell {
+    min-width: 200px;
+}
+
+.service-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.service-avatar {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--user-mainpage-gradient-subtle);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    flex-shrink: 0;
+}
+
+.table-establishment-avatar {
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.service-avatar i {
+    font-size: 1.5rem;
+    color: var(--user-mainpage-accent-color);
+}
+
+.service-name {
+    font-weight: 600;
+    color: var(--user-mainpage-text-dark);
+    font-size: 1rem;
+}
+
+/* Description Cell */
+.description-cell {
+    max-width: 300px;
+    min-width: 250px;
+}
+
+.service-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+/* Address Cell */
+.address-text {
+    max-width: 200px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+/* Type Badge */
+.type-badge {
+    background: rgba(100, 97, 160, 0.1);
+    color: var(--user-mainpage-accent-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--user-mainpage-border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: var(--user-mainpage-border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.status-badge.status-active {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.status-badge.status-inactive {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+/* Responsive Table Styles */
+@media (max-width: 1200px) {
+    .user-book-table-container {
+        padding: 1.5rem;
+    }
+    
+    .description-cell {
+        max-width: 250px;
+        min-width: 200px;
+    }
+    
+    .address-text {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+    .user-book-table-container {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .user-book-table {
+        font-size: 0.9rem;
+    }
+    
+    .user-book-table thead th {
+        padding: 1rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .user-book-table td {
+        padding: 1rem 0.8rem;
+    }
+    
+    .service-info {
+        gap: 0.8rem;
+    }
+    
+    .service-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .table-establishment-avatar {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .service-avatar i {
+        font-size: 1.2rem;
+    }
+    
+    .service-name {
+        font-size: 0.95rem;
+    }
+    
+    .description-cell {
+        max-width: 200px;
+        min-width: 150px;
+    }
+    
+    .address-text {
+        max-width: 120px;
+    }    
+    .user-book-table-container .user-book-view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .view-toggle-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .view-toggle-btn {
+        flex: 1;
+        max-width: 80px;
+    }
+    
+    .user-book-table-wrapper {
+        border-radius: var(--user-mainpage-border-radius-sm);
+    }
+    
+    .user-book-table {
+        font-size: 0.85rem;
+        min-width: auto; /* Change from 700px to auto */
+        width: 100%;     /* Add this to ensure table fits container */
+    }
+    
+    .user-book-table thead th {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .user-book-table td {
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .service-cell {
+        min-width: 180px;
+    }
+    
+    .description-cell {
+        max-width: 180px;
+        min-width: 150px;
+    }
+    
+    .address-text {
+        max-width: 100px;
+    }
+      .user-book-table-container .user-book-view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-book-header-section {
+        padding: 1.2rem 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-main-header {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .user-book-card {
+        min-height: 420px;
+        padding: 1.2rem;
+    }
+
+    .user-book-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .user-book-info-item {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    .user-book-icon {
+        width: 84px;
+        height: 84px;
+        margin-bottom: 1rem;
+        flex-shrink: 0; /* Maintain size on small screens */
+    }
+
+    .establishment-avatar {
+        width: 84px !important;
+        height: 84px !important;
+        min-width: 84px;
+        min-height: 84px;
+        max-width: 84px;
+        max-height: 84px;
+    }
+
+    .user-book-icon i {
+        font-size: 2rem;
+    }
+
+    .user-book-view-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .user-book-filters-container {
+        padding: 0.8rem;
+    }
+
+    .user-book-search-bar input {
+        padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ========================================
+   HIGH PRIORITY GRID VIEW STYLES - SCOPED TO USERBOOK
+   These styles use high specificity and !important
+   to prevent being overridden by other CSS
+   ======================================== */
+
+/* Grid container with maximum priority - scoped to UserBook component */
+.user-book-departments-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+    gap: 2rem !important;
+    padding: 1rem 0 !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+    position: relative !important;
+    z-index: 1000;
+    box-sizing: border-box !important;
+}
+
+/* Grid cards with maximum priority - scoped to UserBook component */
+.user-book-departments-grid .user-book-card {
+    background: var(--user-mainpage-white) !important;
+    border-radius: var(--user-mainpage-border-radius-xl, 24px) !important;
+    padding: 2rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: 550px !important;
+    max-width: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow) !important;
+    border: 2px solid rgba(100, 97, 160, 0.1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 100;
+    box-sizing: border-box !important;
+}
+
+/* Card content with maximum priority - scoped to UserBook component */
+.user-book-departments-grid .user-book-card .user-book-content {
+    position: relative !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0.5rem !important;
+    height: 100% !important;
+    justify-content: flex-start !important;
+}
+
+/* View toggle with maximum priority - scoped to UserBook component */
+.user-book-filter-options .view-toggle-container {
+    display: flex !important;
+    background: rgba(100, 97, 160, 0.1) !important;
+    border-radius: var(--user-mainpage-border-radius-md) !important;
+    padding: 0.3rem !important;
+    gap: 0.2rem !important;
+    position: relative !important;
+    z-index: 1001 !important;
+}
+
+/* Override any potential conflicting styles */
+.user-book-departments-grid * {
+    box-sizing: border-box !important;
+}
+
+/* Ensure grid view is always visible when selected */
+.user-book-departments-grid[style*="display: none"] {
+    display: grid !important;
+}
+
+/* Force grid layout even if other styles try to change it */
+div[class*="user-book-departments-grid"] {
+    display: grid !important;
+}
+
+/* Responsive adjustments with high priority - scoped to UserBook component */
+@media (max-width: 1200px) {
+    .user-book-departments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-book-departments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+        gap: 1rem !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .user-book-departments-grid .user-book-card {
+        min-height: 450px !important;
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-book-departments-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+

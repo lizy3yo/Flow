@@ -1,0 +1,98 @@
+.page-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding: 1rem;
+    padding-top: 70px; /* Account for fixed top navbar */
+    display: flex;
+    transition: all 0.3s ease;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.content {
+    flex: 1;
+    padding: 1.5rem 2rem 2rem;
+    margin-left: 350px; /* Match the width of expanded sidebar */
+    transition: margin-left 0.3s ease;
+    margin-top: 0; /* Ensure no additional top margin */
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.sidebar-collapsed-content .content {
+    margin-left: 95px; /* Match the width of collapsed sidebar */
+}
+
+/* Content expanded state for collapsed sidebar */
+.content-expanded {
+    margin-left: 95px !important; /* Match actual collapsed sidebar width */
+    width: calc(100vw - 95px) !important;
+    box-sizing: border-box;
+}
+
+/* Add media queries for mobile responsiveness */
+@media (max-width: 768px) {
+  .page-container {
+    padding-top: 60px; /* Account for smaller mobile navbar */
+  }
+  .content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .sidebar-collapsed-content .content {
+    margin-left: 0;
+  }
+
+  .content-expanded {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-dash-dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .admin-dash-service-units-section,
+  .admin-dash-charts-section {
+    height: calc(100vh - 300px) !important; /* Fit viewport on mobile */
+    max-height: calc(100vh - 300px) !important;
+    min-height: 400px;
+  }
+}
+
+/* Content expanded state handled by sidebar-collapsed-content class above */
+
+/* Adjust the profile layout when sidebar is collapsed */
+@media (max-width: 992px) {  .content {
+    margin-left: 0;
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .sidebar-collapsed-content .content {
+    margin-left: 0;
+  }
+
+  .content-expanded {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-profile-layout {
+    display: block;
+  }
+
+  .admin-profile-sidebar {
+    margin-bottom: 2rem;
+    position: static;
+  }
+
+  .admin-profile-main {
+    padding: 1rem;
+  }
+}
+
+/* Universal font-family for all Admin pages */
+.page-container *,
+.content *,
+.admin-top-navbar *,
+.admin-sidebar * {
+    font-family: var(--admin-mainpage-font-family);
+}

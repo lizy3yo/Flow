@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Spin Animation Demo</title>
+    <style>
+        :root {
+            --admin-mainpage-text-dark: #333;
+            --admin-mainpage-accent-color: #333D79;
+            --admin-mainpage-form-secondary: #ffffff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Simulate the admin navbar */
+        .admin-top-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            background-color: var(--admin-mainpage-form-secondary);
+            padding: 0 2rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            margin-bottom: 0;
+        }
+
+        .admin-top-left {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Compact hamburger button */
+        .sidebar-collapse-btn {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border-radius: 6px;
+            opacity: 0.7;
+            margin-right: 1.25rem;
+        }
+
+        .sidebar-collapse-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--admin-mainpage-text-dark);
+            margin-top: 1rem;
+        }
+
+        /* Logo styling with spin animation */
+        .navbar-logo {
+            height: 35px;
+            width: auto;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+            will-change: transform;
+            cursor: pointer;
+        }
+
+        .navbar-logo:hover {
+            animation: logo-spin 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 1;
+        }
+
+        @keyframes logo-spin {
+            100% {
+                transform: rotate(120deg);
+            }
+        }
+
+        .brand-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--admin-mainpage-text-dark);
+        }
+
+        /* Demo content */
+        .demo-content {
+            margin-top: 100px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .demo-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--admin-mainpage-accent-color);
+            margin-bottom: 30px;
+        }
+
+        .demo-text {
+            color: #666;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .feature-list {
+            text-align: left;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            margin: 8px 0;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .breadcrumb {
+                font-size: 1.2rem;
+                gap: 0.5rem;
+            }
+
+            .navbar-logo {
+                height: 28px;
+            }
+
+            .brand-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-logo {
+                height: 24px;
+            }
+
+            .brand-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Placeholder for logo if image doesn't load */
+        .logo-placeholder {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, #333D79, #4A5FBF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+            will-change: transform;
+            cursor: pointer;
+        }
+
+        .logo-placeholder:hover {
+            animation: logo-spin 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 1;
+        }
+
+        /* Hamburger menu styles */
+        .hamburger-icon {
+            width: 18px;
+            height: 14px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 2px;
+            background-color: var(--admin-mainpage-text-dark);
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .sidebar-collapse-btn.active .hamburger-icon {
+            transform: rotate(90deg);
+        }
+
+        .sidebar-collapse-btn.active .hamburger-line {
+            background-color: var(--admin-mainpage-accent-color);
+        }
+
+        .sidebar-collapse-btn:hover .hamburger-line {
+            background-color: var(--admin-mainpage-accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Simulated Admin Top Navbar -->
+    <div class="admin-top-navbar">
+        <div class="admin-top-left">
+            <button class="sidebar-collapse-btn" onclick="toggleHamburger()">
+                <div class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </button>
+
+            <div class="breadcrumb">
+                <!-- Try to load the actual logo, fallback to placeholder -->
+                <img src="src/images/logo.png" alt="Flow Logo" class="navbar-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">F</div>
+                <span class="brand-text">Flow</span>
+            </div>
+        </div>
+        <div class="admin-top-right">
+            <!-- Placeholder for other navbar elements -->
+        </div>
+    </div>
+
+    <!-- Demo Content -->
+    <div class="demo-content">
+        <div class="demo-container">
+            <h1>Enhanced Visual Hierarchy Demo</h1>
+            <p><strong>Notice the improved visual clarity between the hamburger menu and company logo!</strong></p>
+
+            <div class="demo-text">
+                <p><strong>Visual Hierarchy Improvements:</strong></p>
+                <ul class="feature-list">
+                    <li><strong>Compact hamburger menu:</strong> Reduced from 40px to 32px button size</li>
+                    <li><strong>Smaller icon:</strong> Hamburger lines reduced from 24px to 18px width</li>
+                    <li><strong>Reduced prominence:</strong> 70% opacity (100% on hover)</li>
+                    <li><strong>Increased spacing:</strong> 1.25rem margin between hamburger and logo</li>
+                    <li><strong>Logo emphasis:</strong> Company logo remains prominent at 35px height</li>
+                    <li><strong>Clear brand identity:</strong> Logo with spin animation draws attention</li>
+                </ul>
+
+                <p><strong>Interactive Elements:</strong></p>
+                <ul class="feature-list">
+                    <li>Click hamburger menu to see rotation animation</li>
+                    <li>Hover over logo to see spin animation</li>
+                    <li>Hamburger becomes fully opaque on hover</li>
+                    <li>Both elements have smooth transitions</li>
+                </ul>
+
+                <p><strong>Responsive Sizing:</strong></p>
+                <ul class="feature-list">
+                    <li>Desktop: 32px hamburger, 35px logo</li>
+                    <li>Tablet (≤768px): 28px hamburger, 28px logo</li>
+                    <li>Mobile (≤576px): 24px hamburger, 24px logo</li>
+                </ul>
+
+                <p>The hamburger menu is now clearly a functional control, while the logo stands out as the primary brand element.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleHamburger() {
+            const btn = document.querySelector('.sidebar-collapse-btn');
+            btn.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

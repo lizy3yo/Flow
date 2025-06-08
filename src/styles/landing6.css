@@ -1,0 +1,680 @@
+.landing4-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  padding: 2rem;
+  justify-content: center; /* This centers horizontally */
+  width: 100%;
+  overflow-x: hidden;
+  margin-top: -16rem; /* Increased from 8rem */
+  margin-bottom: 5rem; /* Reduced from 16rem to 6rem */
+  align-items: center; /* This centers vertically */
+  position: relative;
+  min-height: 1100px; /* Increased from 900px to 1100px */
+  transition: all 0.4s ease;
+  padding-top: 200px; /* Increased from 140px to 200px */
+  padding-bottom: 100px;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+/* Section heading styles - positioned on top of containers */
+.landing4-heading {
+  text-align: center;
+  color: #CDC8FE; /* Changed from #333D79 to #CDC8FE */
+  font-size: clamp(2.5rem, 5vw, 5rem); /* Responsive font size */
+  font-family: 'Georgia', serif;
+  font-weight: 500;
+  letter-spacing: -1px;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Update the Flow span to match */
+.landing4-flow {
+  color: #CDC8FE; /* Changed from #333D79 to #CDC8FE */
+  position: relative;
+}
+
+/* Remove the underline from Flow text */
+.landing4-flow::after {
+  display: none; /* Removes the underline completely */
+}
+
+/* Alternative option if you want to keep the element in the DOM but hide it */
+.landing4-flow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 0; /* Set height to 0 instead of 4px */
+  background-color: transparent; /* Make background transparent */
+  border-radius: 2px;
+  z-index: 21;
+}
+
+/* Navigation buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent; /* Remove background */
+  border: none;
+  width: 56px; /* Increased clickable area */
+  height: 56px;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem; /* Slightly larger for < and > */
+  cursor: pointer;
+  box-shadow: none; /* Remove shadow */
+  z-index: 10;
+  transition: all 0.2s ease;
+  color: #333D79; /* Use main accent color for arrows */
+}
+
+.nav-button span {
+  display: flex;
+  align-items: center;
+  height: 2.6rem;
+  transform: scaleY(1.7) scale(1.3); /* Default: bigger and vertically stretched */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: transform 0.35s cubic-bezier(0.4,1.5,0.6,1), filter 0.25s;
+}
+
+.nav-button:hover {
+  background: transparent; /* Keep transparent on hover */
+  box-shadow: none;
+  color: #CDC8FE; /* Lighter color on hover */
+}
+
+.nav-button:hover span {
+  transform: scaleY(2) scale(1.5); /* Optionally, make it even bigger on hover for feedback */
+  transition: transform 0.35s cubic-bezier(0.4,1.5,0.6,1), filter 0.25s;
+}
+
+/* Remove the disabled styling for navigation buttons */
+.nav-button:disabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.nav-prev {
+  left: 100px;
+}
+
+.nav-next {
+  right: 100px;
+}
+
+/* Add a subtle animation for circular navigation */
+@keyframes pulse {
+  0% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.1); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+/* Optional: Add a visual cue when wrapping around */
+.nav-button.wrapping {
+  animation: pulse 0.5s ease-out;
+}
+
+/* Enhanced base container styles with increased width */
+.landing4-wrapper .container {
+  width: 360px; /* Increased from 280px to 380px */
+  height: 470px; /* Increased height to maintain proportions */
+  padding: 4rem; /* Slightly increased padding */
+  border-radius: 28px; /* Matches landing6 border-radius */
+  /* Updated shadow with stronger right side for stack effect */
+  box-shadow: 8px 6px 16px rgba(0, 0, 0, 0.12), 4px 3px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  
+  /* Adjust overlap for more stacked appearance with wider cards */
+  margin: 15px 0 0 -130px; /* Reduced negative margin */
+  transform-origin: center bottom;
+  transform: scale(0.9);
+  
+  /* Enhanced transitions */
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  
+  /* Remove base opacity */
+  opacity: 1;  z-index: 1;
+  
+  /* Solid white background with stronger border - Enhanced specificity */
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  counter-reset: none;
+  position: relative;
+}
+
+.landing4-wrapper .container:not(.focused) {
+  height: 440px; /* Make unfocused containers taller, closer to focused (470px) */
+  /* Ensure white background for unfocused containers */
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+.landing4-wrapper .container::after {
+  content: "0" counter(section);
+  position: absolute;
+  top: 12px;    /* Changed from 20px to 12px */
+  right: 12px;  /* Changed from 20px to 12px */
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.2rem;
+  color: #999;
+  font-weight: 500;
+  transition: all 0.4s ease;
+}
+
+.landing4-wrapper .container-1::after { content: "01"; }
+.landing4-wrapper .container-2::after { content: "02"; }
+.landing4-wrapper .container-3::after { content: "03"; }
+.landing4-wrapper .container-4::after { content: "04"; }
+.landing4-wrapper .container-5::after { content: "05"; }
+
+/* Enhanced shadows for each container in the stack */
+.landing4-wrapper .container-1 { 
+  z-index: 5; 
+  transform: scale(0.9); 
+  margin-top: 10px;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 12px 6px 20px rgba(0, 0, 0, 0.14), 6px 3px 8px rgba(0, 0, 0, 0.1);
+}
+.landing4-wrapper .container-2 { 
+  z-index: 4; 
+  transform: scale(0.87); 
+  margin-top: 12px;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 10px 5px 18px rgba(0, 0, 0, 0.13), 5px 3px 7px rgba(0, 0, 0, 0.09);
+}
+.landing4-wrapper .container-3 { 
+  z-index: 3; 
+  transform: scale(0.84); 
+  margin-top: 14px;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 8px 4px 16px rgba(0, 0, 0, 0.12), 4px 2px 6px rgba(0, 0, 0, 0.08);
+}
+.landing4-wrapper .container-4 { 
+  z-index: 2; 
+  transform: scale(0.81); 
+  margin-top: 16px;  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 6px 3px 14px rgba(0, 0, 0, 0.11), 3px 2px 5px rgba(0, 0, 0, 0.07);
+}
+.landing4-wrapper .container-5 { 
+  z-index: 1; 
+  transform: scale(0.78); 
+  margin-top: 18px;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 4px 2px 12px rgba(0, 0, 0, 0.1), 2px 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Bring first container forward with adjusted margin - moved left */
+.landing4-wrapper .container:first-child {
+  margin-left: -80px; /* Added negative margin to move left */
+  transform: scale(0.9);
+}
+
+/* Focused container with enhanced depth shadow */
+.landing4-wrapper .container.focused {
+  z-index: 10;
+  transform: scale(1.3) translateY(-10px); /* Lift up slightly, no rotation */
+  margin-left: 0;
+  margin-right: 0;
+  /* Gradient background for focused container - Enhanced specificity */
+  background: linear-gradient(340deg, #333D79 40%, #6f62df 100%) !important;
+  background-color: #333D79 !important; /* Fallback color */
+  color: white;
+  box-shadow: 16px 18px 36px rgba(0, 0, 0, 0.25), 8px 10px 20px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.landing4-wrapper .container.focused h2,
+.landing4-wrapper .container.focused p {
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 90%;
+}
+
+.landing4-wrapper .container.focused h2 {
+  margin-top: -0.8rem;
+  font-size: 1.8rem; /* Decreased from 1.8rem */
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.landing4-wrapper .container.focused p {
+  font-size: 1rem; /* Decreased from 1.05rem */
+  color: rgba(255,255,255,0.7);
+  max-width: 400px; 
+  margin: 0 0 0 -20px; /* Move text 10px to the left for focused as well */
+}
+
+.landing4-wrapper .container.focused::after {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.4rem;
+  top: 10px;    /* Changed from 18px to 10px */
+  right: 10px;  /* Changed from 18px to 10px */
+}
+
+/* Number indicators with enhanced contrast */
+.landing4-wrapper .container::before {
+  display: none; /* Hide the circular indicators */
+}
+
+/* Make focused number more prominent */
+.landing4-wrapper .container.focused::before {
+  display: none; /* Hide focused circular indicator */
+}
+
+/* H2 headings with smoother text color transitions */
+.landing4-wrapper .container h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem; /* Decreased from 1.8rem */
+  font-weight: 600;
+  text-shadow: none;
+  transition: color 0.5s ease, text-shadow 0.5s ease;
+  font-family: 'Georgia', serif;
+  font-weight: 500;
+  color: #333D79;
+}
+
+/* Adjust content typography for larger containers */
+.landing4-wrapper .container p {
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem; /* Decreased from 1.05rem */
+  line-height: 1.6;
+  text-align: center;
+  max-width: 200px; /* Adjusted from 200px */
+  margin: 0 0 0 10px; /* Move text 10px to the left */
+}
+
+/* Enhanced hover effects with improved right shadow */
+.landing4-wrapper .container:not(.focused):hover {
+  transform: scale(0.95) translateY(-5px); /* Lift on hover, no rotation */
+  z-index: 6; /* Higher than any non-focused card */
+  opacity: 1;
+  box-shadow: 12px 10px 24px rgba(0, 0, 0, 0.18), 6px 6px 12px rgba(0, 0, 0, 0.14);
+}
+
+/* Fixed z-index for container after focused one with adjusted margin */
+.landing4-wrapper .container.focused + .container {
+  transform: scale(0.9);
+  margin-left: -100px; /* Adjusted for wider cards */
+  z-index: 4; /* Higher than other containers but lower than focused */
+  opacity: 1;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure proper stacking for the container two positions after focused one */
+.landing4-wrapper .container.focused + .container + .container {
+  z-index: 3;
+}
+
+/* Ensure proper stacking for the container three positions after focused one */
+.landing4-wrapper .container.focused + .container + .container + .container {
+  z-index: 2;
+}
+
+/* Ensure proper stacking for the container four positions after focused one */
+.landing4-wrapper .container.focused + .container + .container + .container + .container {
+  z-index: 1;
+}
+
+/* Improved hover effect for the container after focused one */
+.landing4-wrapper .container.focused + .container:hover {
+  transform: scale(0.95) translateY(-5px); /* No rotation */
+  opacity: 1;
+  background-color: #f8f8ff;
+  box-shadow: 12px 10px 24px rgba(0, 0, 0, 0.18), 6px 6px 12px rgba(0, 0, 0, 0.14);
+  z-index: 6;
+}
+
+/* Container wrapper to help with centering */
+.landing4-wrapper::before {
+  content: "";
+  display: block;
+  width: 120px; /* Reduced from 180px to compensate for first container shift */
+  height: 0;
+}
+
+/* Optional: Add a subtle progress indicator below the cards */
+.landing4-wrapper .progress-dots {
+  position: absolute;
+  bottom: 200px;  /* Changed from 40px to 60px to move closer to containers */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 20;
+}
+
+.landing4-wrapper .progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(51, 61, 121, 0.3);
+  transition: all 0.3s ease;
+}
+
+.landing4-wrapper .progress-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background-color: #333D79;
+}
+
+/* Responsive adjustments for wider containers */
+@media (max-width: 1400px) {
+  .landing4-wrapper .container {
+    width: 340px;
+    height: 480px;
+    margin-left: -140px;
+  }
+  
+  .landing4-wrapper .container:first-child {
+    margin-left: -50px;
+  }
+  
+  .landing4-wrapper .container.focused + .container {
+    margin-left: -90px;
+  }
+
+  .landing4-wrapper .container:not(.focused) {
+    height: 450px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .landing4-wrapper {
+    padding: 1rem;
+    min-height: 1000px;
+  }
+  
+  .landing4-wrapper .container {
+    width: 320px;
+    height: 460px;
+    margin-left: -120px;
+    padding: 2.5rem;
+  }
+  
+  .landing4-wrapper .container:first-child {
+    margin-left: -40px;
+  }
+  
+  .landing4-wrapper .container.focused + .container {
+    margin-left: -80px;
+  }
+  
+  .landing4-wrapper .container.focused {
+    transform: scale(1.2) translateY(-10px);
+  }
+
+  .landing4-wrapper .container:not(.focused) {
+    height: 430px;
+  }
+}
+
+/* Add new media queries for tablets */
+@media (max-width: 992px) {
+  .landing4-wrapper {
+    min-height: 900px;
+    padding-top: 160px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .landing4-heading {
+    top: 80px;
+  }
+  
+  /* Begin reducing visibility of non-focused containers */
+  .landing4-wrapper .container {
+    width: 280px;
+    height: 420px;
+    margin-left: -70px; /* Reduced overlap */
+    padding: 2rem;
+    opacity: 0.6; /* Make non-focused containers less visible */
+  }
+  
+  .landing4-wrapper .container:first-child {
+    margin-left: -20px;
+  }
+  
+  .landing4-wrapper .container.focused {
+    transform: scale(1.15) translateY(-10px);
+    opacity: 1; /* Keep focused container fully visible */
+  }
+  
+  .landing4-wrapper .container.focused + .container {
+    margin-left: -50px;
+  }
+  
+  .landing4-wrapper .container h2 {
+    font-size: 1.6rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .landing4-wrapper .container p {
+    font-size: 1rem;
+  }
+  
+  .nav-prev {
+    left: 15px;
+  }
+  
+  .nav-next {
+    right: 15px;
+  }
+
+  .landing4-wrapper .container:not(.focused) {
+    height: 400px;
+  }
+}
+
+/* Mobile devices - show ONLY the focused container */
+@media (max-width: 768px) {
+  .landing4-wrapper {
+    min-height: 800px;
+    padding-top: 140px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-out;
+  }
+  
+  .landing4-heading {
+    top: 60px;
+    transition: top 0.4s ease, font-size 0.4s ease;
+  }
+  
+  /* Completely hide all non-focused containers */
+  .landing4-wrapper .container {
+    width: 280px;
+    height: 420px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden; /* Completely hide from view */
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.2, 0.1, 0.3, 1);
+  }
+  
+  /* Only show the focused container */
+  .landing4-wrapper .container.focused {
+    opacity: 1;
+    visibility: visible; /* Make visible */
+    transform: translateY(-50%) scale(1);
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+  }
+  
+  /* Reset all container-specific styling that affects layout */
+  .landing4-wrapper .container:not(.focused),
+  .landing4-wrapper .container.focused + .container,
+  .landing4-wrapper .container.focused + .container + .container,
+  .landing4-wrapper .container.focused + .container + .container + .container,
+  .landing4-wrapper .container.focused + .container + .container + .container + .container {
+    margin: 0;
+    z-index: -1;
+  }
+  
+  /* Hide the before pseudo-element that creates spacing */
+  .landing4-wrapper::before {
+    display: none;
+  }
+
+  .landing4-wrapper .container:not(.focused) {
+    height: 420px; /* Match focused for mobile, since only one is visible */
+  }
+}
+
+/* Small mobile devices - optimize single container further */
+@media (max-width: 480px) {
+  .landing4-wrapper {
+    min-height: 650px;
+    padding-top: 120px;
+  }
+  
+  .landing4-heading {
+    top: 50px;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+  
+  .landing4-wrapper .container {
+    width: 260px;
+    height: 400px;
+    padding: 1.25rem;
+    /* Keep the same transform as the 768px breakpoint for consistency */
+    transform: translateY(-50%) scale(0.9);
+  }
+  
+  .landing4-wrapper .container.focused {
+    /* Keep the same transform as the 768px breakpoint for consistency */
+    transform: translateY(-50%) scale(1);
+  }
+  
+  /* Navigation buttons with smoother positioning */
+  .nav-button {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    top: auto;
+    bottom: 40px;
+    transform: none;
+    transition: all 0.4s ease;
+  }
+  
+  .nav-prev {
+    left: calc(50% - 50px);
+  }
+  
+  .nav-next {
+    right: calc(50% - 50px);
+  }
+  
+  .landing4-wrapper .progress-dots {
+    bottom: 20px;
+  }
+
+  .landing4-wrapper .container:not(.focused) {
+    height: 400px;
+  }
+}
+
+/* Extreme small device adjustments */
+@media (max-width: 360px) {
+  .landing4-wrapper {
+    min-height: 600px;
+  }
+  
+  .landing4-wrapper .container {
+    width: 240px;
+    height: 380px;
+    padding: 1rem;
+    /* Keep the transform consistent with larger breakpoints */
+    transform: translateY(-50%) scale(0.9);
+  }
+  
+  .landing4-wrapper .container.focused {
+    /* Keep the transform consistent with larger breakpoints */
+    transform: translateY(-50%) scale(1);
+  }
+  
+  .landing4-wrapper .container h2 {
+    font-size: 1.2rem;
+  }
+  
+  .landing4-wrapper .container p {
+    font-size: 0.85rem;
+  }
+
+  .landing4-wrapper .container:not(.focused) {
+    height: 380px;
+  }
+}
+
+/* General image styling */
+.landing6-service-img {
+  max-width: 180px !important;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: max-width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* Remove margin and positioning for base style */
+  margin: 0;
+  position: static;
+  top: auto;
+}
+
+/* Positioning and spacing for image inside focused container */
+.landing4-wrapper .container.focused .landing6-service-img {
+  margin: 0.5rem auto 1.2rem;
+  position: relative;
+  top: var(--landing6-img-top, 0);
+}

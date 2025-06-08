@@ -1,0 +1,850 @@
+/* Modern Page Header Styles */
+.admin-appoint-view-page-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.admin-appoint-view-header-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.admin-appoint-view-header-content h1.admin-appoint-view-page-title {
+    margin: 0 0 0.5rem 0;
+    color: var(--admin-mainpage-text-primary);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.1rem !important;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.admin-appoint-view-page-subtitle {
+    margin: 0;
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.admin-appoint-view-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Enhanced Back Button */
+.admin-appoint-view-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    color: var(--admin-mainpage-white);
+    border: none;
+    border-radius: 12px;
+    font-family: var(--admin-mainpage-font-family);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.3);
+    font-size: 1rem;
+}
+
+.admin-appoint-view-back-btn:hover {
+    background: linear-gradient(135deg, #2c3570, #5a5a9a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(51, 61, 121, 0.4);
+}
+
+.admin-appoint-view-back-btn i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.admin-appoint-view-back-btn:hover i {
+    transform: translateX(-2px);
+}
+
+/* Back Button Section */
+.admin-appoint-view-back-section {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Currently Viewing Service Context */
+.admin-appoint-view-current-service {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border: 2px solid rgba(51, 61, 121, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    font-family: var(--admin-mainpage-font-family);
+    animation: fadeInUp 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.admin-appoint-view-current-service::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    border-radius: 0 2px 2px 0;
+}
+
+.admin-appoint-view-current-service:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+    border-color: rgba(51, 61, 121, 0.25);
+}
+
+.current-service-label {
+    color: #6c757d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.current-service-label i {
+    color: var(--admin-mainpage-accent-color);
+    font-size: 1rem;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.admin-appoint-view-current-service:hover .current-service-label i {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.current-service-name {
+    color: var(--admin-mainpage-accent-color); /* Fallback color */
+    font-size: 1.1rem;
+    font-weight: 700;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+/* Fallback for browsers that don't support background-clip: text */
+@supports not (-webkit-background-clip: text) {
+    .current-service-name {
+        color: var(--admin-mainpage-accent-color);
+        background: none;
+    }
+}
+
+/* Modern Statistics Cards */
+.admin-appoint-view-stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-appoint-view-stat-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: fadeInUp 0.8s ease-out;
+    animation-fill-mode: both;
+}
+
+.admin-appoint-view-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.admin-appoint-view-stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.admin-appoint-view-stat-icon.icon-serving {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.admin-appoint-view-stat-icon.icon-priority {
+    background: linear-gradient(135deg, #ffc107, #f39c12);
+}
+
+.admin-appoint-view-stat-icon.icon-total {
+    background: linear-gradient(135deg, #333D79, #6461A0);
+}
+
+.admin-appoint-view-stat-info {
+    flex: 1;
+}
+
+.admin-appoint-view-stat-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-appoint-view-stat-number {
+    margin: 0;
+    color: var(--admin-mainpage-text-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.serving-time {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+/* Modern Queue Section */
+.admin-appoint-view-queue-section {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    animation: fadeInUp 1s ease-out;
+    overflow: hidden;
+}
+
+.admin-appoint-view-queue-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.admin-appoint-view-queue-title {
+    margin: 0 0 1rem 0;
+    color: var(--admin-mainpage-text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.admin-appoint-view-queue-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.admin-appoint-view-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid rgba(51, 61, 121, 0.2);
+    border-radius: 12px;
+    background: #f8f9fa;
+    color: var(--admin-mainpage-text-primary);
+    font-family: var(--admin-mainpage-font-family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-appoint-view-tab-btn:hover {
+    background: #ffffff;
+    border-color: var(--admin-mainpage-accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.15);
+}
+
+.admin-appoint-view-tab-btn.admin-appoint-view-active {
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    color: #ffffff;
+    border-color: var(--admin-mainpage-accent-color);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.3);
+}
+
+.admin-appoint-view-tab-btn.admin-appoint-view-active:hover {
+    background: linear-gradient(135deg, #2c3570, #5a5a9a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(51, 61, 121, 0.4);
+}
+
+.admin-appoint-view-tab-btn i {
+    font-size: 0.9rem;
+}
+
+/* Modern Table Container */
+.admin-appoint-view-table-container {
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+.admin-appoint-view-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    min-width: 800px;
+}
+
+.admin-appoint-view-table thead {
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    color: #ffffff;
+}
+
+.admin-appoint-view-table thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.admin-appoint-view-table tbody tr {
+    border-bottom: 1px solid #f1f3f4;
+    transition: all 0.3s ease;
+}
+
+.admin-appoint-view-table tbody tr:hover {
+    background: #f8f9fa;
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-appoint-view-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.admin-appoint-view-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: var(--admin-mainpage-text-primary);
+    font-size: 0.95rem;
+}
+
+/* Custom scrollbar for table container */
+.admin-appoint-view-table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.admin-appoint-view-table-container::-webkit-scrollbar-track {
+    background: #f1f3f4;
+    border-radius: 4px;
+}
+
+.admin-appoint-view-table-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    border-radius: 4px;
+}
+
+.admin-appoint-view-table-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #2c3570, #5a5a9a);
+}
+
+/* Column widths for all tables */
+.column-queue-number {
+  width: 120px;
+}
+
+.column-name {
+  width: 200px;
+}
+
+.column-time {
+  width: 120px;
+}
+
+.column-date {
+  width: 120px;
+}
+
+.column-status {
+  width: 150px;
+}
+
+.column-priority {
+  width: 150px;
+}
+
+.column-actions {
+  width: 200px;
+}
+
+/* Row heights */
+.admin-appoint-view-table th,
+.admin-appoint-view-table td {
+  height: 50px;
+  padding: 10px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-appoint-view-table th,
+.admin-appoint-view-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-appoint-view-table td {
+  max-width: 200px;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.admin-appoint-view-table td:last-child {
+  min-width: 160px; /* Ensure enough space for both buttons */
+  white-space: nowrap; /* Prevent button wrapping */
+}
+
+/* Modern Status Badges */
+.admin-appoint-view-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-appoint-view-status-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.admin-appoint-view-status-badge.completed {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #ffffff;
+    border: 2px solid #1e7e34;
+}
+
+.admin-appoint-view-status-badge.waiting {
+    background: linear-gradient(135deg, #17a2b8, #20c997);
+    color: #ffffff;
+    border: 2px solid #138496;
+}
+
+.admin-appoint-view-status-badge.serving {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: #ffffff;
+    border: 2px solid #0056b3;
+}
+
+.admin-appoint-view-status-badge.cancelled,
+.admin-appoint-view-status-badge.declined {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+    color: #ffffff;
+    border: 2px solid #c82333;
+}
+
+.admin-appoint-view-status-badge.pending {
+    background: linear-gradient(135deg, #ffc107, #f39c12);
+    color: #212529;
+    border: 2px solid #e0a800;
+}
+
+.admin-appoint-view-status-badge.scheduled {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #ffffff;
+    border: 2px solid #1e7e34;
+}
+
+.admin-appoint-view-status-badge.accepted {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: #ffffff;
+    border: 2px solid #0056b3;
+}
+
+/* Modern Action Buttons */
+.admin-appoint-view-action-btn {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0.25rem;
+    font-weight: 500;
+    font-family: var(--admin-mainpage-font-family);
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-appoint-view-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Accept Button */
+.admin-appoint-view-action-btn.admin-appoint-view-accept {
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), #6461A0);
+    color: #ffffff;
+}
+
+.admin-appoint-view-action-btn.admin-appoint-view-accept:hover {
+    background: linear-gradient(135deg, #2c3570, #5a5a9a);
+}
+
+/* Start Serving Button */
+.admin-appoint-view-action-btn.admin-appoint-view-serve {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: #ffffff;
+}
+
+.admin-appoint-view-action-btn.admin-appoint-view-serve:hover {
+    background: linear-gradient(135deg, #0056b3, #520dc2);
+}
+
+/* Done Button */
+.admin-appoint-view-action-btn.admin-appoint-view-done {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #ffffff;
+}
+
+.admin-appoint-view-action-btn.admin-appoint-view-done:hover {
+    background: linear-gradient(135deg, #218838, #1ea085);
+}
+
+/* Decline Button */
+.admin-appoint-view-action-btn.admin-appoint-view-decline {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+    color: #ffffff;
+}
+
+.admin-appoint-view-action-btn.admin-appoint-view-decline:hover {
+    background: linear-gradient(135deg, #c82333, #dc2626);
+}
+
+/* Archive Button */
+.admin-appoint-view-action-btn.admin-appoint-view-archive {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: #ffffff;
+}
+
+.admin-appoint-view-action-btn.admin-appoint-view-archive:hover {
+    background: linear-gradient(135deg, #5a6268, #3d4142);
+}
+
+
+/* Add layout styles for sidebar and topnav */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.content {
+  margin-left: 350px; /* Match sidebar width */
+  margin-top: 70px; /* Match topnav height */
+  padding: 1.5rem;
+  transition: margin-left 0.3s ease;
+  background: #f5f6fa; /* Light gray background like dashboard */
+  min-height: calc(100vh - 70px);
+}
+
+.content-expanded {
+  margin-left: 80px; /* Width of collapsed sidebar */
+}
+
+/* Override existing admin-content styles */
+.admin-content {
+  margin-left: 0; /* Remove default margin since we're handling it with .content */
+  padding: 0; /* Remove default padding since we're handling it with .content */
+}
+
+/* Adjust padding for the page container */
+.admin-appoint-view-page-container {
+  padding: 0;
+}
+
+.queue-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.queue-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.default-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    margin-top: 60px; /* Smaller topnav on mobile */
+    padding: 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .admin-appoint-view-stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-appoint-view-page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .admin-appoint-view-header-actions {
+        justify-content: center;
+    }
+
+    .admin-appoint-view-stats-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .admin-appoint-view-stat-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .admin-appoint-view-stat-icon {
+        align-self: center;
+    }
+
+    .admin-appoint-view-queue-header {
+        padding: 1rem;
+    }
+
+    .admin-appoint-view-queue-title {
+        font-size: 1.25rem;
+    }
+
+    .admin-appoint-view-queue-tabs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .admin-appoint-view-tab-btn {
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+
+    .admin-appoint-view-table-container {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    .admin-appoint-view-table {
+        min-width: 600px;
+    }
+
+    .admin-appoint-view-table th,
+    .admin-appoint-view-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .admin-appoint-view-status-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .admin-appoint-view-action-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+        margin: 0 0.1rem;
+    }
+
+    .serving-time {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-appoint-view-page-header {
+        padding: 1rem 0.75rem;
+    }
+
+    .admin-appoint-view-header-content h1.admin-appoint-view-page-title {
+        font-size: 1.5rem;
+    }
+
+    .admin-appoint-view-page-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .admin-appoint-view-back-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .admin-appoint-view-current-service {
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        gap: 0.5rem;
+    }
+
+    .admin-appoint-view-current-service::before {
+        width: 3px;
+    }
+
+    .current-service-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.6px;
+    }
+
+    .current-service-label i {
+        font-size: 0.9rem;
+    }
+
+    .current-service-name {
+        font-size: 1rem;
+        max-width: 200px;
+    }
+
+    .admin-appoint-view-stat-card {
+        padding: 1rem;
+    }
+
+    .admin-appoint-view-stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .admin-appoint-view-stat-number {
+        font-size: 1.5rem;
+    }
+
+    .admin-appoint-view-queue-header {
+        padding: 0.75rem;
+    }
+
+    .admin-appoint-view-queue-title {
+        font-size: 1.1rem;
+    }
+
+    .admin-appoint-view-tab-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .admin-appoint-view-table-container {
+        padding: 0.75rem;
+    }
+
+    .admin-appoint-view-table {
+        min-width: 500px;
+    }
+
+    .admin-appoint-view-table th,
+    .admin-appoint-view-table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+    }
+
+    .admin-appoint-view-action-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        margin: 0 0.05rem;
+    }
+}
+

@@ -1,0 +1,40 @@
+:root {
+   
+    --admin-mainpage-primary-bg: #0B0B1B;
+    --admin-mainpage-form-bg: #0B0B1B;
+    --admin-mainpage-accent-color: #333D79;  /* Updated to match user */
+    --admin-mainpage-accent-color-secondary: black;
+    --admin-mainpage-text-primary: black;
+    --admin-mainpage-text-secondary: black;
+    --admin-mainpage-text-hover: #0B0B1B;
+    --admin-mainpage-font-family: 'Merriweather', serif !important; 
+
+    /* Dashboard variables */
+    --admin-mainpage-white: #FFFFFF;
+    --admin-mainpage-background: #CDC8FE;
+    --admin-mainpage-error: #FF4444;
+    --admin-mainpage-success: #28a745;
+    --admin-mainpage-danger: #dc3545;
+    --admin-mainpage-secondary: #9693CE;
+    --admin-mainpage-shadow: rgba(100, 97, 160, 0.2);
+
+    /* Updated color variables to match user version */
+    --admin-mainpage-form-secondary: #FFFFFF;
+    --admin-mainpage-light-accent: #8A88C2;  /* Updated to match user */
+    --admin-mainpage-text-dark: #0B0B1B;     /* Updated to match user */
+    --admin-mainpage-text-light: #6461A0;    /* Added to match user */
+    --admin-mainpage-highlight: #8A88C2;
+
+    /* Spacing */
+    --admin-mainpage-spacing-xs: 0.25rem;
+    --admin-mainpage-spacing-sm: 0.5rem;
+    --admin-mainpage-spacing-md: 1rem;
+    --admin-mainpage-spacing-lg: 1.5rem;
+    --admin-mainpage-spacing-xl: 2rem;
+
+    /* Border radius */
+    --admin-mainpage-border-radius-sm: 8px;
+    --admin-mainpage-border-radius-md: 10px;
+    --admin-mainpage-border-radius-lg: 20px;
+    --admin-mainpage-border-radius-xl: 24px;
+}

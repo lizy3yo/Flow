@@ -1,0 +1,754 @@
+/* CONSOLIDATED CSS FILE - Combined topnav.css and usertopnavbar.css */
+
+/* Import theme variables */
+@import '@/styles/mainpage-user/root.css';
+
+/* ============================================================================
+   TOP NAVBAR STRUCTURE (from topnav.css)
+   ============================================================================ */
+
+.user-top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  background-color: #ffffff;
+  padding: 0 2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000; /* Higher than sidebar */
+  margin-bottom: 0;
+}
+
+.user-top-left {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--user-mainpage-text-dark);
+  margin-top: 1rem;
+}
+
+.navbar-logo {
+  height: 35px;
+  width: auto;
+  cursor: pointer;
+  margin-left: 0.8rem;
+  animation: logo-spin-infinite 16s linear infinite;
+}
+
+@keyframes logo-spin-infinite {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--user-mainpage-text-dark);
+}
+
+.user-top-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Reduced from 1.5rem to bring elements closer */
+}
+
+/* ============================================================================
+   USER MENU COMPONENT (from topnav.css)
+   ============================================================================ */
+
+/* User menu */
+.user-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Decreased gap between avatar and text */
+  padding: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background-color 0.2s;
+  outline: none; /* Remove default focus outline */
+}
+
+/* Add custom focus style */
+.user-user-menu:focus-visible {
+  box-shadow: 0 0 0 2px var(--user-mainpage-accent-color);
+}
+
+.user-user-menu:hover,
+.user-user-menu.dropdown-active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Change dropdown trigger from just hover to class-based */
+.user-user-menu:hover .user-user-dropdown,
+.user-user-menu.dropdown-active .user-user-dropdown {
+  display: block;
+}
+
+.user-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--user-mainpage-accent-color);
+}
+
+.user-user-menu i.bi-person-circle {
+  font-size: 1.8rem;
+  color: var(--user-mainpage-text-dark);
+}
+
+.user-user-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--user-mainpage-text-dark);
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 180px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 1000;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  animation: dropdown-appear 0.2s ease-out;
+}
+
+@keyframes dropdown-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-user-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  color: var(--user-mainpage-text-dark);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+/* User preference: Border-based hover effects */
+.user-user-dropdown a:hover {
+  background-color: #f8f9fa;
+  color: var(--user-mainpage-accent-color);
+}
+
+.user-user-dropdown a:focus-visible {
+  background-color: #f8f9fa;
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--user-mainpage-accent-color);
+}
+
+.user-user-dropdown a i {
+  width: 20px;
+  text-align: center;
+}
+
+/* ============================================================================
+   SIDEBAR COLLAPSE BUTTON (from topnav.css)
+   ============================================================================ */
+
+/* Fluid Animated Hamburger Menu Button */
+.user-top-left .sidebar-collapse-btn {
+  position: relative;
+  top: auto;
+  right: auto;
+  margin-right: 1.25rem; /* Increased space between button and logo */
+  width: 32px; /* Reduced from 40px */
+  height: 32px; /* Reduced from 40px */
+  background-color: white; /* User preference: White background */
+  color: var(--user-mainpage-text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid transparent; /* User preference: Border-based design */
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  border-radius: 6px;
+  opacity: 0.7; /* Make it less prominent than the logo */
+}
+
+/* User preference: Border-based hover effects */
+.user-top-left .sidebar-collapse-btn:hover {
+  background-color: white; /* Keep white background */
+  border-color: var(--user-mainpage-accent-color);
+  transform: scale(1.05);
+  opacity: 1; /* Full opacity on hover */
+}
+
+/* Hamburger Icon Container */
+.hamburger-icon {
+  width: 18px; /* Reduced from 24px */
+  height: 14px; /* Reduced from 18px */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+/* Hamburger Lines */
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--user-mainpage-text-dark);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Hamburger Icon Rotation Animation */
+.hamburger-icon {
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Active state - Rotate entire hamburger icon */
+.sidebar-collapse-btn.active .hamburger-icon {
+  transform: rotate(90deg);
+}
+
+.sidebar-collapse-btn.active .hamburger-line {
+  background-color: var(--user-mainpage-accent-color);
+}
+
+/* Hover effects for enhanced interaction */
+.sidebar-collapse-btn:hover .hamburger-line {
+  background-color: var(--user-mainpage-accent-color);
+}
+
+/* Focus state for accessibility */
+.sidebar-collapse-btn:focus-visible {
+  outline: 2px solid var(--user-mainpage-accent-color);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   AVATAR CONTAINER (from topnav.css)
+   ============================================================================ */
+
+/* Avatar container */
+.user-avatar-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+/* ============================================================================
+   CURRENT TIME DISPLAY (from topnav.css)
+   ============================================================================ */
+
+/* Current Time Display */
+.current-time-display {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Reduced from 8px */
+  padding: 6px 10px; /* Reduced horizontal padding from 12px */
+  margin-right: 0.5rem; /* Add right margin to separate from next element */
+  /* User preference: White background with border */
+  background-color: white;
+  border: 2px solid var(--user-mainpage-accent-color);
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--user-mainpage-text-dark);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-family: var(--user-mainpage-font-family);
+}
+
+.current-time-display i {
+  color: var(--user-mainpage-accent-color);
+  font-size: 16px;
+}
+
+/* ============================================================================
+   NOTIFICATION BELL COMPONENT (from topnav.css - Enhanced Version)
+   ============================================================================ */
+
+/* Notification Bell Component */
+.notification-bell-container {
+  position: relative;
+  margin: 0 0px;
+}
+
+.notification-bell {
+  position: relative;
+  /* User preference: White background with border */
+  background: white;
+  border: 2px solid transparent;
+  color: var(--user-mainpage-text-dark);
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* User preference: Border-based hover effects */
+.notification-bell:hover {
+  background-color: white; /* Keep white background */
+  border-color: var(--user-mainpage-accent-color);
+  color: var(--user-mainpage-accent-color);
+}
+
+.notification-bell.dropdown-active {
+  background-color: white;
+  border-color: var(--user-mainpage-accent-color);
+  color: var(--user-mainpage-accent-color);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f04438;
+  color: white;
+  border-radius: 10px;
+  padding: 0.125rem 0.35rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================================
+   NOTIFICATION DROPDOWN (from topnav.css - Enhanced Version)
+   ============================================================================ */
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: -75px;
+  width: 350px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+  margin-top: 8px;
+  /* User preference: White background with border */
+  border: 2px solid var(--user-mainpage-accent-color);
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--user-mainpage-text-dark);
+}
+
+.mark-all-read {
+  /* User preference: White background with border hover */
+  background: white;
+  border: 1px solid var(--user-mainpage-accent-color);
+  color: var(--user-mainpage-accent-color);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.mark-all-read:hover {
+  background: white;
+  border-color: var(--user-mainpage-text-dark);
+  color: var(--user-mainpage-text-dark);
+}
+
+.notification-list {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f2f4f7;
+  transition: all 0.2s;
+  cursor: pointer;
+  /* User preference: White background */
+  background-color: white;
+  border-left: 3px solid transparent;
+}
+
+/* User preference: Border-based hover effects */
+.notification-item:hover {
+  background-color: white;
+  border-left-color: var(--user-mainpage-accent-color);
+}
+
+.notification-item.unread {
+  background-color: #f0f9ff;
+  border-left-color: var(--user-mainpage-accent-color);
+}
+
+.notification-icon {
+  margin-right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e0f2fe;
+  color: var(--user-mainpage-accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-text {
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+  color: var(--user-mainpage-text-dark);
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: #667085;
+}
+
+.notification-read-btn {
+  /* User preference: White background with border */
+  background: white;
+  border: 1px solid var(--user-mainpage-accent-color);
+  color: var(--user-mainpage-accent-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.notification-read-btn:hover {
+  background: white;
+  border-color: var(--user-mainpage-text-dark);
+  color: var(--user-mainpage-text-dark);
+}
+
+.notification-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: #667085;
+}
+
+.notification-empty i {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.notification-footer {
+  padding: 12px 16px;
+  text-align: center;
+  border-top: 1px solid #f2f4f7;
+}
+
+.notification-footer a {
+  color: var(--user-mainpage-accent-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  /* User preference: Border-based hover effects */
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.notification-footer a:hover {
+  border-color: var(--user-mainpage-accent-color);
+}
+
+/* ============================================================================
+   SIGN OUT CONFIRMATION MODAL (from usertopnavbar.css)
+   ============================================================================ */
+
+/* Sign Out Confirmation Modal Styles */
+.signout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.signout-modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 350px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.signout-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.signout-modal-header h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.signout-modal-body {
+  padding: 20px;
+  color: var(--text-secondary);
+}
+
+.signout-modal-footer {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #eee;
+}
+
+.cancel-btn, .confirm-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cancel-btn {
+  background: none;
+  border: 1px solid #ddd;
+  color: var(--text-secondary);
+}
+
+.confirm-btn {
+  background-color: var(--danger-color, #dc3545);
+  border: none;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.confirm-btn:hover {
+  background-color: var(--danger-color-dark, #c82333);
+}
+
+.confirm-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN (from topnav.css)
+   ============================================================================ */
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .user-top-navbar {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-avatar-container {
+    width: 32px;
+    height: 32px;
+  }
+
+  .user-top-navbar {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  .breadcrumb {
+    font-size: 1.2rem;
+    gap: 0.5rem;
+  }
+
+  .navbar-logo {
+    height: 28px;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+  }
+
+  .user-user-name {
+    display: none;
+  }
+
+  .user-user-menu i.bi-person-circle {
+    font-size: 1.3rem;
+  }
+
+  .user-user-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .user-top-left .sidebar-collapse-btn {
+    width: 28px; /* Smaller on tablet */
+    height: 28px;
+    margin-right: 1rem; /* Maintain good spacing */
+  }
+
+  .hamburger-icon {
+    width: 16px; /* Proportionally smaller */
+    height: 12px;
+  }
+
+  .hamburger-line {
+    height: 2px;
+  }
+
+  /* Responsive styling for time display */
+  .current-time-display {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .current-time-display i {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-top-actions {
+    gap: 1rem;
+  }
+
+  .user-top-left .sidebar-collapse-btn {
+    width: 24px; /* Even smaller on mobile */
+    height: 24px;
+    margin-right: 0.75rem; /* Maintain spacing */
+  }
+
+  .hamburger-icon {
+    width: 14px; /* Very compact on mobile */
+    height: 10px;
+  }
+
+  .hamburger-line {
+    height: 1.5px;
+  }
+
+  .navbar-logo {
+    height: 24px;
+  }
+
+  .brand-text {
+    font-size: 1.1rem;
+  }
+
+  .current-time-display span {
+    display: none; /* Hide text on very small screens */
+  }
+
+  .current-time-display {
+    padding: 4px;
+  }
+
+  .current-time-display i {
+    margin-right: 0;
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS AND UTILITIES
+   ============================================================================ */
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

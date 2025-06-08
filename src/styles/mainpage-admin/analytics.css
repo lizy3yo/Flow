@@ -1,0 +1,192 @@
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .date-filter select {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-family: var(--admin-mainpage-font-family);
+   }   
+   .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+   }
+   
+   .stat-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .stat-card i {
+    font-size: 2rem;
+    color: #2196F3;
+   }
+   
+   .stat-info h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .stat-info p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    font-family: var(--admin-mainpage-font-family);
+   }   
+   .department-analytics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+   }
+   
+   .dept-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+   }
+   
+   .metric {
+    display: flex;
+    flex-direction: column;
+   }
+   
+   .metric .label {
+    font-size: 0.8rem;
+    color: #666;
+    font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .metric .value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    font-family: var(--admin-mainpage-font-family);
+   }   
+   .chart-container {
+    height: 200px;
+    margin-top: 1rem;
+   }
+   
+   .historical-analytics {
+     margin-top: 2rem;
+     background: white;
+     border-radius: 10px;
+     padding: 1.5rem;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+     font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .historical-analytics h2 {
+     margin-bottom: 1.5rem;
+     font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .history-controls {
+     display: flex;
+     justify-content: flex-end;
+     margin-bottom: 1rem;
+   }
+   
+   .history-filters select {
+     padding: 0.5rem 1rem;
+     border-radius: 6px;
+     border: 1px solid #ddd;
+     font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .history-chart-container {
+     height: 300px;
+     margin-bottom: 2rem;
+   }
+   
+   .history-table {
+     overflow-x: auto;
+   }
+   
+   .history-table table {
+     width: 100%;
+     border-collapse: collapse;
+     font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .history-table th,
+   .history-table td {
+     padding: 1rem;
+     text-align: left;
+     border-bottom: 1px solid #eee;
+     font-family: var(--admin-mainpage-font-family);
+   }
+   
+   .history-table th {
+     font-weight: 600;
+     color: #666;
+   }
+     .history-table td.total {
+     font-weight: bold;
+     color: #2196F3;
+   }
+
+/* Summary Cards */
+.summary-section {
+    margin-bottom: 2rem;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.summary-section h2 {
+    font-family: var(--admin-mainpage-font-family);
+    color: var(--admin-mainpage-text-primary);
+    margin-bottom: 1rem;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.summary-card h3 {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.summary-card .count {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--admin-mainpage-text-primary);
+    font-family: var(--admin-mainpage-font-family);
+}

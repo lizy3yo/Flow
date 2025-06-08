@@ -1,0 +1,240 @@
+html {
+    background-color: #0B0B1B !important;
+}
+
+/* Override Bootstrap and any other global styles */
+body {
+    background-color: #0B0B1B !important;
+    background: #0B0B1B !important;
+}
+
+/* Ensure the landing page container has dark background */
+#app {
+    background-color: #0B0B1B !important;
+    background: #0B0B1B !important;
+}
+
+.banner {
+    min-height: 80vh;  /* Increased height for more impact */
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #585592 0%, #3a3670 100%); /* Add gradient background */
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 2rem;
+    border: 8;
+    width: 100%;
+    border-radius: 28px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    margin: 0 auto 2rem;
+    max-width: 1435px;
+}
+
+.banner-text {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+    margin-top: 2.5rem; /* Increased top margin */
+    max-width: 1200px; /* Limit width for better readability */
+    padding: 0 2rem;
+}
+
+.banner-p1 {
+    margin-top: 5rem;
+    font-size: 1.5rem; /* Slightly larger */
+    color: #CDC8FE; /* Brighter color for better contrast */
+    font-weight: 500;
+    margin-bottom: -0.6rem;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.5px;
+}
+
+.banner-p2 {
+    font-size: 4rem;
+    color: #ffffff; /* Brighter color */
+    margin-bottom: 1rem; /* Reduced from 3rem to bring elements closer */
+    margin-top: 2rem;
+    font-family: 'Georgia', serif;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Enhanced text shadow */
+}
+
+.banner-h1 {
+    font-size: 5rem; /* Larger size for impact */
+    font-weight: 700; /* Increased weight for better 3D effect */
+    color: #fff !important; /* White for better contrast */
+    line-height: 1;
+    margin-bottom: 1.4rem;
+    margin-top: 1.2rem;
+    letter-spacing: -0.2rem;
+
+    font-family: 'Georgia', serif;
+    /* 3D effect */
+    text-shadow: 
+        0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0,0,0,.1),
+        0 0 5px rgba(0,0,0,.1),
+        0 1px 3px rgba(0,0,0,.3),
+        0 3px 5px rgba(0,0,0,.2),
+        0 5px 10px rgba(0,0,0,.25),
+        0 10px 10px rgba(0,0,0,.2),
+        0 20px 20px rgba(0,0,0,.15);
+    /* Optional 3D transform for more depth */
+    transform: perspective(500px) rotateX(7deg);
+    transform-origin: center bottom;
+    /* Animation for smoother appearance */
+    transition: transform 0.3s ease;
+}
+
+.banner-h1:hover {
+    transform: perspective(500px) rotateX(5deg) scale(1.02);
+}
+
+.banner-image {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    margin-top: 0; /* Remove the negative margin */
+}
+
+.banner-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 1; /* Slightly more visible */
+    filter: saturate(1.2); /* Add slight saturation */
+}
+
+/* Word cycle animations */
+.word-cycle {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 6.5rem; /* Reduced from 6rem */
+    width: 100%;
+    overflow: hidden;
+    margin-top: -0.5rem; /* Added negative margin to move up */
+    margin-bottom: 0.5rem; /* Added to maintain spacing below */
+}
+
+.word-cycle span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+    font-weight: 500; /* Make cycling words bolder */
+    letter-spacing: -0.2rem;
+    font-size: 5rem; /* Larger font size for emphasis */
+    color: #CDC8FE; /* Highlight color for impact */
+}
+
+/* Improved animation timing */
+.word-cycle.show span {
+    animation: slideWords 16s ease-in-out infinite;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--base-delay, 0s) + var(--item-delay, 0s));
+}
+
+.word-cycle span:nth-child(1) { --item-delay: 0s; }
+.word-cycle span:nth-child(2) { --item-delay: 4s; }
+.word-cycle span:nth-child(3) { --item-delay: 8s; }
+.word-cycle span:nth-child(4) { --item-delay: 12s; }
+
+@keyframes slideWords {
+    0%, 3% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    8%, 20% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    23%, 100% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+
+/* Enhanced pop-in animation */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-pop-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.9s cubic-bezier(0.17, 0.85, 0.438, 0.99);
+}
+
+.animate-pop-in.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: popIn 0.9s cubic-bezier(0.17, 0.85, 0.438, 0.99) forwards;
+}
+
+/* Keep the existing fade-up animation */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.17, 0.85, 0.438, 0.99);
+}
+
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Banner container animation */
+.banner.animate-pop-in {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: all 1.2s cubic-bezier(0.17, 0.85, 0.438, 0.99);
+}
+
+.banner.animate-pop-in.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: containerPopIn 1.2s cubic-bezier(0.17, 0.85, 0.438, 0.99) forwards;
+}
+
+@keyframes containerPopIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    70% {
+        transform: scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

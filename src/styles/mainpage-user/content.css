@@ -1,0 +1,64 @@
+/* Ensure clean white background for user pages only */
+.user-page-container,
+.user-page-container html,
+.user-page-container body {
+    background-color: white !important;
+    color: #333 !important;
+}
+
+.user-page-container {
+    background-color: white !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.user-content-wrapper {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 100%;
+    margin-left: 350px; /* Match sidebar width */
+    margin-right: 2rem; /* Add right margin for better spacing */
+    margin-top: 100px; /* Consistent spacing from fixed navbar (70px) + adequate whitespace */
+    transition: margin-left 0.3s ease;
+}
+
+.user-content {
+    padding: 2rem;
+    margin-left: 350px; /* Match sidebar width */
+    margin-right: 2rem; /* Add right margin for better spacing */
+    margin-top: 100px; /* Consistent spacing from fixed navbar (70px) + adequate whitespace */
+    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 100px);
+}
+
+/* Collapsed sidebar adjustments */
+.user-sidebar-collapsed .user-content {
+    margin-left: 95px; /* Match collapsed sidebar width */
+    margin-right: 2rem; /* Maintain right spacing */
+}
+
+.user-sidebar-collapsed .user-content-wrapper {
+    margin-left: 95px; /* Match collapsed sidebar width */
+    margin-right: 2rem; /* Maintain right spacing */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-content {
+        margin-left: 0;
+        margin-right: 1rem; /* Maintain some right spacing on mobile */
+        margin-top: 90px; /* Consistent mobile spacing */
+        padding: 1rem;
+    }
+
+    .user-content-wrapper {
+        margin-left: 0;
+        margin-right: 1rem; /* Maintain some right spacing on mobile */
+        margin-top: 90px; /* Consistent mobile spacing */
+        padding: 1rem;
+    }
+}

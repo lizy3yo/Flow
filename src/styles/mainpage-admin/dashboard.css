@@ -1,0 +1,1493 @@
+/* Quick Actions Section */
+.admin-dash-quick-actions {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.admin-dash-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--admin-mainpage-text-primary);
+    margin-bottom: 1rem;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.admin-dash-action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-dash-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+    color: white;
+    border: none;
+    border-radius: var(--admin-mainpage-border-radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-dash-action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.admin-dash-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.admin-dash-action-btn:hover::before {
+    left: 100%;
+}
+
+.admin-dash-action-btn:active {
+    transform: translateY(0);
+}
+
+.admin-dash-action-btn i {
+    font-size: 1.1rem;
+}
+
+/* Statistics Grid */
+.admin-dash-stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-dash-stat-card {
+    background: #ffffff;
+    color: var(--admin-mainpage-text-primary);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition:
+        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.6s ease;
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    animation: fadeInUp 0.6s ease-out both;
+    overflow: hidden;
+}
+
+.admin-dash-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border-color: var(--admin-mainpage-accent-color);
+}
+
+.admin-dash-stat-card.card-clicked {
+    transform: scale(0.98);
+}
+
+.admin-dash-stat-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(51, 61, 121, 0.05));
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.admin-dash-stat-card:hover .admin-dash-stat-overlay {
+    opacity: 1;
+}
+
+.admin-dash-stat-icon {
+    padding: 1rem;
+    border-radius: 12px;
+    margin-right: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.admin-dash-stat-icon.icon-regular {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.admin-dash-stat-icon.icon-priority {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.admin-dash-stat-icon.icon-scheduled {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.admin-dash-stat-icon.icon-units {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.admin-dash-stat-icon i {
+    font-size: 1.5rem;
+    color: white;
+    display: block;
+}
+
+.admin-dash-stat-info {
+    flex: 1;
+}
+
+.admin-dash-stat-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+    text-transform: uppercase;
+}
+
+.admin-dash-stat-number {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+}
+
+.stat-trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.4rem;
+    border-radius: 12px;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.stat-trend.trend-up {
+    color: #16a34a;
+    background-color: rgba(22, 163, 74, 0.1);
+    border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.stat-trend.trend-down {
+    color: #dc2626;
+    background-color: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.stat-trend.trend-neutral {
+    color: #6b7280;
+    background-color: rgba(107, 114, 128, 0.1);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+.stat-trend i {
+    font-size: 0.7rem;
+    animation: pulse 2s infinite;
+}
+
+.trend-up i {
+    animation: bounce-up 1.5s infinite;
+}
+
+.trend-down i {
+    animation: bounce-down 1.5s infinite;
+}
+
+/* Animations for trend arrows */
+@keyframes bounce-up {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-3px);
+    }
+    60% {
+        transform: translateY(-1px);
+    }
+}
+
+@keyframes bounce-down {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(3px);
+    }
+    60% {
+        transform: translateY(1px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Dashboard Grid Layout */
+.admin-dash-dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .admin-dash-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dash-chart-container {
+        max-width: 100%;
+    }
+}
+
+/* Common Section Styles */
+.admin-dash-activity-section,
+.admin-dash-departments-section,
+.admin-dash-service-hours-section {
+    background: var(--admin-mainpage-background);
+    color: var(--admin-mainpage-primary-bg);
+    padding: var(--admin-mainpage-spacing-lg);
+    border-radius: var(--admin-mainpage-border-radius-md);
+    box-shadow: 0 2px 4px var(--admin-mainpage-shadow);
+}
+
+.admin-dash-charts-section {
+    padding: var(--admin-mainpage-spacing-lg);
+}
+
+/* Activity Items */
+.admin-dash-activity-item {
+    display: flex;
+    align-items: center;
+    padding: var(--admin-mainpage-spacing-md) 0;
+    border-bottom: 1px solid var(--admin-mainpage-accent-color);
+}
+
+.admin-dash-activity-icon {
+    padding: var(--admin-mainpage-spacing-sm);
+    border-radius: var(--admin-mainpage-border-radius-sm);
+    margin-right: var(--admin-mainpage-spacing-md);
+}
+
+.admin-dash-activity-icon.appointment,
+.admin-dash-activity-icon.user,
+.admin-dash-activity-icon.queue,
+.admin-dash-activity-icon.system {
+    background: var(--admin-mainpage-secondary);
+}
+
+/* Status Indicators */
+.admin-dash-dept-status,
+.admin-dash-hours-status {
+    padding: var(--admin-mainpage-spacing-xs) var(--admin-mainpage-spacing-md);
+    border-radius: var(--admin-mainpage-border-radius-lg);
+    font-size: 0.8rem;
+}
+
+.admin-dash-dept-status.active,
+.admin-dash-hours-status.open {
+    background: var(--admin-mainpage-success);
+    color: var(--admin-mainpage-white);
+}
+
+.admin-dash-dept-status.busy,
+.admin-dash-hours-status.closed {
+    background: var(--admin-mainpage-danger);
+    color: var(--admin-mainpage-white);
+}
+
+/* Charts Section */
+.admin-dash-charts-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    animation: fadeInUp 1s ease-out;
+    width: 100%;
+    overflow: hidden; /* Prevent overflow */
+    min-height: 350px;
+    height: calc(100vh - 420px); /* Fit viewport minus space for navbar, stats, quick actions, and bottom spacing */
+    max-height: calc(100vh - 420px);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(51, 61, 121, 0.1);
+}
+
+.chart-header h2 {
+    margin: 0;
+        color: var(--admin-mainpage-text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.chart-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(51, 61, 121, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: var(--admin-mainpage-accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.chart-action-btn:hover {
+    background: var(--admin-mainpage-accent-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    height: 100%;
+    max-height: calc(100vh - 500px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+}
+
+.chart-wrapper.chart-loading {
+    pointer-events: none;
+}
+
+.chart-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+.chart-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(51, 61, 121, 0.2);
+    border-top: 3px solid var(--admin-mainpage-accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.admin-dash-chart-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+/* Typography Styles - Cleaned up conflicting rules */
+.admin-dash-activity-text {
+    font-size: 0.9rem;
+    color: var(--admin-mainpage-text-primary);
+    margin-left: 1.5rem;
+}
+
+/* Service Units Section */
+.admin-dash-service-units-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    animation: fadeInUp 0.8s ease-out;
+    min-height: 350px;
+    height: calc(100vh - 420px); /* Fit viewport minus space for navbar, stats, quick actions, and bottom spacing */
+    max-height: calc(100vh - 420px);
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.admin-dash-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+}
+
+.admin-dash-section-header h2 {
+    margin: 0;
+    color: var(--admin-mainpage-text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--admin-mainpage-font-family);
+}
+
+.admin-dash-units-summary {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.units-count, .units-active {
+    padding: 0.25rem 0.75rem; /* Reduced padding to fit within 40px height container */
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.units-count {
+    background: rgba(51, 61, 121, 0.1);
+    color: var(--admin-mainpage-accent-color);
+}
+
+.units-active {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+/* Loading Skeleton */
+.admin-dash-loading-skeleton {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skeleton-unit-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-header {
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    width: 60%;
+}
+
+.skeleton-details {
+    height: 16px;
+    background: #e9ecef;
+    border-radius: 4px;
+    width: 80%;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.admin-dash-service-units-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    max-height: calc(4 * (100px + 1rem) - 1rem); /* Height for exactly 4 units: 4 * (unit height + gap) - last gap */
+    padding-right: 0.5rem; /* Space for scrollbar */
+    box-sizing: border-box;
+}
+
+/* Style the scrollbar */
+.admin-dash-service-units-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.admin-dash-service-units-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+    margin: 4px 0;
+}
+
+.admin-dash-service-units-list::-webkit-scrollbar-thumb {
+    background: var(--admin-mainpage-accent-color);
+    border-radius: 8px;
+    border: 2px solid #f1f1f1;
+}
+
+.admin-dash-service-units-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Hide default scrollbar buttons */
+.admin-dash-service-units-list::-webkit-scrollbar-button {
+    display: none;
+}
+
+.admin-dash-service-unit-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(51, 61, 121, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out both;
+    min-height: 100px; /* Reduced height for better fit */
+    flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+.admin-dash-service-unit-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--admin-mainpage-accent-color);
+}
+
+.admin-dash-unit-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(51, 61, 121, 0.03));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.admin-dash-service-unit-item:hover .admin-dash-unit-hover-overlay {
+    opacity: 1;
+}
+
+.admin-dash-unit-main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* New bottom section to align details and status badge on same line */
+.admin-dash-unit-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0rem;
+}
+
+/* Ensure status badge aligns with the right edge of unit details */
+.admin-dash-unit-status-badge {
+    margin-right: 0;
+    flex-shrink: 0; /* Prevent badge from shrinking */
+}
+
+.unit-title-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.unit-title-section h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--admin-mainpage-text-primary);
+}
+
+.unit-queue-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(51, 61, 121, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--admin-mainpage-accent-color);
+}
+
+.admin-dash-unit-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.admin-dash-unit-status-badge.active {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.admin-dash-unit-status-badge.inactive {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.admin-dash-unit-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    flex: 1; /* Allow details to take available space */
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(248, 249, 250, 0.5);
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    background: rgba(51, 61, 121, 0.05);
+}
+
+.detail-item i {
+    font-size: 1rem;
+    color: var(--admin-mainpage-accent-color);
+}
+
+.detail-item.status-open {
+    color: #17a2b8; /* Teal blue for open status */
+    
+}
+
+.detail-item.status-closed {
+    color: #fd7e14; /* Orange for closed status */
+    
+}
+
+.detail-item.status-open i,
+.detail-item.status-closed i {
+    color: inherit;
+}
+
+/* Dashboard layout adjustments */
+.admin-dash-dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; /* Prevent grid overflow */
+    margin-bottom: 2rem; /* Add bottom spacing for the entire grid */
+}
+
+.admin-dash-chart-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--admin-mainpage-font-family);
+    min-width: 0; /* Allow container to shrink */
+}
+
+
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Sort Dropdown Styling */
+.admin-dash-sort-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid rgba(51, 61, 121, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 40px; /* Consistent height with other header actions */
+  min-width: 80px; /* Reduced minimum width for compact design */
+  cursor: pointer;
+}
+
+.admin-dash-sort-dropdown:hover {
+  border-color: var(--admin-mainpage-accent-color);
+  box-shadow: 0 4px 12px rgba(51, 61, 121, 0.15);
+}
+
+.admin-dash-sort-dropdown i {
+  color: var(--admin-mainpage-accent-color);
+  font-size: 0.9rem;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.admin-dash-sort-dropdown .selected-option {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--admin-mainpage-text-primary);
+  font-family: var(--admin-mainpage-font-family);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.admin-dash-sort-select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+  font-family: var(--admin-mainpage-font-family);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.admin-dash-sort-select:focus {
+  outline: none;
+}
+
+.admin-dash-sort-select option {
+  background: #ffffff;
+  color: var(--admin-mainpage-text-primary);
+  padding: 0.5rem;
+  font-weight: 500;
+}
+
+/* Custom dropdown arrow */
+.admin-dash-sort-dropdown::after {
+  content: '\f282'; /* Bootstrap chevron-down icon */
+  font-family: 'bootstrap-icons';
+  color: var(--admin-mainpage-accent-color);
+  font-size: 0.7rem;
+  pointer-events: none;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Enhanced Responsive Design */
+@media (min-width: 1440px) {
+    /* Ultra-wide screen optimizations */
+    .admin-dash-dashboard-grid {
+        gap: 2rem;
+    }
+      .admin-dash-service-units-section,
+    .admin-dash-charts-section {
+        padding: 2rem;
+        height: calc(100vh - 450px); /* Slightly larger offset for ultra-wide screens */
+        max-height: calc(100vh - 450px);
+    }
+    
+    .admin-dash-service-units-list {
+        max-height: calc(5 * (100px + 1rem) - 1rem); /* Show more units on larger screens */
+    }
+}
+
+@media (max-width: 1200px) {
+    .admin-dash-action-buttons {
+        justify-content: center;
+    }
+
+    .admin-dash-action-btn {
+        flex: 1;
+        min-width: 140px;
+        max-width: 180px;
+    }
+    
+    /* Improve dashboard grid for tablet screens */
+    .admin-dash-dashboard-grid {
+        gap: 1.25rem;
+    }
+      .admin-dash-service-units-section,
+    .admin-dash-charts-section {
+        padding: 1.25rem;
+        height: calc(100vh - 400px); /* Adjust for tablet screens */
+        max-height: calc(100vh - 400px);
+    }
+}
+
+@media (max-width: 992px) {
+    .admin-dash-stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .admin-dash-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }    .admin-dash-service-units-section,
+    .admin-dash-charts-section {
+        min-height: 320px;
+        height: calc(100vh - 350px); /* Adjust for medium screens */
+        max-height: calc(100vh - 350px);
+    }    .chart-wrapper {
+        min-height: 280px;
+        max-height: calc(100vh - 430px);
+    }
+
+    /* Maintain 3-unit limit on medium screens */
+    .admin-dash-service-units-list {
+        max-height: calc(3 * (100px + 1rem) - 1rem);
+    }
+    
+    /* Better spacing for medium screens */
+    .admin-dash-service-units-section {
+        padding: 1.25rem;
+    }
+    
+    .admin-dash-charts-section {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dash-stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dash-action-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .admin-dash-action-btn {
+        width: 100%;
+        max-width: none;
+    }
+
+    .admin-dash-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .admin-dash-units-summary {
+        align-self: stretch;
+        justify-content: space-between;
+    }
+    
+    .admin-dash-header-actions {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    /* Maintain consistent height even on mobile */
+    .admin-dash-header-actions > * {
+        height: 40px;
+    }
+    
+    .admin-dash-sort-dropdown {
+        order: 1;
+        flex: 0 0 auto; /* Don't grow, just take needed space */
+        min-width: 80px; /* Compact width */
+        height: 38px;
+    }
+
+    .admin-dash-unit-details {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .unit-title-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .chart-actions {
+        align-self: stretch;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Maintain 3-unit limit on mobile screens */
+    .admin-dash-service-units-list {
+        max-height: calc(3 * (100px + 1rem) - 1rem);
+    }
+      /* Improve spacing for mobile */
+    .admin-dash-service-units-section,
+    .admin-dash-charts-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        min-height: 300px;
+        height: calc(100vh - 280px); /* Adjust for mobile screens */
+        max-height: calc(100vh - 280px);
+    }
+      /* Better chart responsiveness on mobile */
+    .chart-wrapper {
+        min-height: 220px;
+        max-height: calc(100vh - 360px);
+        padding: 0.5rem;
+    }
+    
+    /* Responsive service unit items */
+    .admin-dash-service-unit-item {
+        min-height: 90px;
+        padding: 1rem;
+    }
+    
+    .admin-dash-unit-bottom-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .admin-dash-unit-status-badge {
+        align-self: flex-start;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-dash-stat-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .admin-dash-stat-icon {
+        margin-right: 0;
+        align-self: center;
+    }
+
+    .admin-dash-stat-number {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .stat-value {
+        font-size: 1.75rem;
+    }
+    
+    .admin-dash-sort-dropdown {
+        min-width: 70px; /* Reduced for compact design */
+        height: 36px; /* Slightly smaller on mobile */
+        padding: 0.4rem 0.5rem;
+        gap: 0.3rem;
+    }
+
+    .admin-dash-sort-dropdown .selected-option {
+        font-size: 0.8rem;
+    }
+
+    .admin-dash-sort-dropdown i {
+        font-size: 0.8rem;
+    }
+
+    .admin-dash-sort-dropdown::after {
+        font-size: 0.65rem;
+    }
+      /* Extra small screen optimizations */
+    .admin-dash-service-units-section,
+    .admin-dash-charts-section {
+        padding: 0.75rem;
+        margin: 0 -0.5rem 1rem -0.5rem; /* Extend to edges on very small screens */
+        border-radius: 12px;
+        min-height: 280px;
+        height: calc(100vh - 250px); /* Adjust for very small screens */
+        max-height: calc(100vh - 250px);
+    }
+    
+    .admin-dash-section-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .admin-dash-service-unit-item {
+        min-height: 85px;
+        padding: 0.75rem;
+    }
+      .chart-wrapper {
+        min-height: 200px;
+        max-height: calc(100vh - 320px);
+        padding: 0.25rem;
+    }
+    
+    .chart-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .chart-action-btn {
+        padding: 0.5rem;
+        min-width: 40px;
+    }
+    
+    .admin-dash-units-summary {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .admin-dash-header-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .admin-dash-view-all-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Extra small screens (320px and below) */
+@media (max-width: 320px) {
+    .admin-dash-service-units-section,
+    .admin-dash-charts-section {
+        padding: 0.5rem;
+        margin: 0 -0.75rem 1rem -0.75rem;
+        border-radius: 8px;
+        min-height: 250px;
+        height: calc(100vh - 220px); /* Adjust for extra small screens */
+        max-height: calc(100vh - 220px);
+    }
+    
+    .admin-dash-section-header {
+        gap: 0.75rem;
+    }
+    
+    .admin-dash-section-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .admin-dash-service-unit-item {
+        min-height: 80px;
+        padding: 0.5rem;
+    }
+    
+    .unit-title-section h3 {
+        font-size: 1rem;
+    }
+    
+    .unit-queue-indicator {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
+    }
+      .chart-wrapper {
+        min-height: 190px;
+        max-height: calc(100vh - 290px);
+        padding: 0;
+    }
+    
+    .chart-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .detail-item {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+    
+    .admin-dash-unit-status-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Trend indicator styling - Extracted from AdminDashboard.vue */
+.stat-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.4rem;
+  border-radius: 12px;
+  margin-left: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.stat-trend.trend-up {
+  color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.1);
+  border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.stat-trend.trend-down {
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.stat-trend.trend-neutral {
+  color: #6b7280;
+  background-color: rgba(107, 114, 128, 0.1);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+.stat-trend i {
+  font-size: 0.7rem;
+  animation: pulse 2s infinite;
+}
+
+.trend-up i {
+  animation: bounce-up 1.5s infinite;
+}
+
+.trend-down i {
+  animation: bounce-down 1.5s infinite;
+}
+
+/* Animations for trend arrows */
+@keyframes bounce-up {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes bounce-down {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(3px);
+  }
+  60% {
+    transform: translateY(1px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Page layout adjustments - Fix layout positioning to account for fixed top navbar */
+.page-container {
+  padding-top: 70px; /* Account for fixed top navbar height */
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.content {
+  padding: 1.5rem 2rem 2rem;
+  flex: 1;
+  margin-left: 350px; /* Match sidebar width */
+  width: calc(100% - 350px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  /* Remove any top margin/padding conflicts */
+  margin-top: 0;
+}
+
+.sidebar-collapsed-content .content {
+  margin-left: 95px; /* Match collapsed sidebar width from navbar.css */
+  width: calc(100% - 95px);
+}
+
+/* Override stat card hover effects with slower timing and reduced shadow */
+.admin-dash-stat-card {
+  transition:
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.6s ease !important;
+}
+
+.admin-dash-stat-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  border-color: var(--admin-mainpage-accent-color) !important;
+}
+
+.admin-dash-stat-overlay {
+  transition: opacity 0.6s ease !important;
+}
+
+/* Service Units Header Actions Styling */
+.admin-dash-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Reduced gap from 1rem to 0.5rem */
+}
+
+/* Ensure all header action elements have consistent height */
+.admin-dash-header-actions > * {
+  height: 40px; /* Consistent height for all elements */
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+/* Style the units summary container to match other elements */
+.admin-dash-units-summary {
+  padding: 0.5rem 0.75rem;
+  gap: 0.8rem;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.admin-dash-view-all-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--admin-mainpage-accent-color), var(--admin-mainpage-secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  min-width: 100px; /* Ensure consistent minimum width */
+}
+
+.admin-dash-view-all-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.admin-dash-view-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(51, 61, 121, 0.3);
+}
+
+.admin-dash-view-all-btn:hover::before {
+  left: 100%;
+}
+
+.admin-dash-view-all-btn:active {
+  transform: translateY(0);
+}
+
+/* Custom CSS to reduce sort dropdown width for shorter labels */
+.admin-dash-sort-dropdown {
+  min-width: auto !important;
+  padding: 0.3rem 0.5rem !important;
+  gap: 0.3rem !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.admin-dash-sort-dropdown i {
+  font-size: 0.75rem !important;
+}
+
+.admin-dash-sort-dropdown .selected-option {
+  white-space: nowrap;
+  font-size: 0.8rem !important;
+  font-weight: 500;
+}
+
+.admin-dash-sort-select {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+}
+
+/* Responsive adjustments for extracted styles */
+@media (max-width: 768px) {
+  .stat-trend {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.3rem;
+    margin-left: 0.25rem;
+  }
+  
+  .stat-trend i {
+    font-size: 0.6rem;
+  }
+
+  .page-container {
+    padding-top: 60px; /* Account for smaller mobile navbar */
+  }
+
+  .content,
+  .sidebar-collapsed-content .content {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .admin-dash-header-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .admin-dash-view-all-btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .admin-dash-sort-dropdown {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 992px) {
+  .content,
+  .sidebar-collapsed-content .content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* Specific canvas styling to ensure the chart canvas maximizes the available space within its container */
+.chart-wrapper canvas {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Ensure the chart fills the container better */
+.admin-dash-chart-container .chart-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0; /* Allow flex shrinking */
+}
+

@@ -1,0 +1,780 @@
+.user-login {
+    display: flex;
+    justify-content: flex-start;    /* Changed from center to flex-start to align contents to the left */
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;    min-height: 100vh;
+    background-color: #0B0B1B;
+    margin: 0 auto;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+     background-color: #333D79; /* Changed to blue */
+    background: linear-gradient(
+        135deg,
+        #292D5E 0%,
+        #333D79 25%,
+        #3A4788 50%,
+        #3D4A9A 75%,
+        #35316B 100%
+        );
+    height: 50rem;
+    border-radius: 2rem;
+    padding: 2rem;
+    padding-left: 12rem;  /* Reduced from 12rem to push content more to the left */
+    width: 70%;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-content h1 {
+    font-size: 3.9rem;
+    color: #FFFFFF;
+    margin-top: 18rem;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+    position: relative;
+    right: 0.2rem;
+}
+
+.login-content p {
+    color: #FFFFFF;
+    font-size: 1rem;
+    z-index: 2;
+    position: relative;
+    left: 3rem;
+}
+
+.login-content p router-link,
+.login-content p a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.login-content p router-link:hover,
+.login-content p a:hover {
+    color: #CDC8FE;
+}
+
+.user-login-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    height: 50rem;
+    width: 50%;
+    padding: 2rem;
+    padding-left: 5rem;
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 10rem 2rem 2rem 10rem;
+    box-shadow: -15px 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.login-content .main-back-button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    border-radius: 2rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.login-content .main-back-button:hover {
+    border-width: 4px !important;
+    border-color: #FFFFFF !important;
+    background-color: transparent !important;
+    transform: translateY(-1px);;
+}
+
+.login-content .main-back-button i {
+    font-size: 1rem;
+    color: #FFFFFF !important;
+}
+
+.user-login-form-container h2 {
+    color: #333D79;
+    font-family: 'georgia', serif;
+    font-size: 3rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Add the image spin animation */
+@keyframes spin {
+  100% {
+    transform: rotate(120deg); /* Reduced rotation for more subtle effect */
+  }
+}
+
+.user-login-form-container img {
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  will-change: transform; /* Performance optimization */
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  margin-top: -0.8rem;
+}
+
+.user-login-form-container img:hover {
+  animation: spin 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 1;
+}
+
+.user-login-form-container h3 {
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.user-login-forms {
+    width: 100%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-form-group-content {
+    margin-bottom: 1.5rem;
+    width: 80%;
+    max-width: 70rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-form-group-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333D79;
+    font-family: 'SourceSerifPro', serif;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: left;
+}
+
+.user-form-group-content input {
+    padding: 0.8rem;
+    border: 2px solid #333D79;
+    border-radius: 1rem;
+    background-color: #D9D9D9;
+    color: #0B0B1B;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 90%;
+    min-width: 300px;
+}
+
+.user-submit-btn {
+    max-width: 100%;
+    width: 18rem;
+    min-width: 150px;
+    padding: 1rem;
+    background-color: #333D79;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'Georgia', serif !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    height: 3.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-submit-btn:hover {
+    background-color: #6461A0;
+    color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(162, 174, 244, 0.5),
+                0 0 20px rgba(162, 174, 244, 0.5);
+}
+
+.navigation-links {
+    margin-top: 1rem;
+}
+
+.navigation-links a {
+    color: #CDC8FE;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-family: 'SourceSerifPro', serif;
+    transition: all 0.3s ease;
+}
+
+.navigation-links a:hover {
+    color: #FFFFFF;
+}
+
+.alert {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    width: 90%; /* Increased to match input container width */
+    min-width: 300px;
+    text-align: center;
+    max-width: 450px; /* Increased max-width slightly to match inputs better */
+    box-sizing: border-box;
+}
+
+/* Specific alert styling for setup password container */
+.setup-password-container + .alert {
+    position: relative;
+    margin: 1.5rem auto 0;
+    width: 100%;
+    max-width: 400px;
+    align-self: center;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Add these styles at the end of your CSS file */
+.password-input-container {
+    position: relative;
+    width: 90%;
+    min-width: 300px;
+}
+
+.password-input-container input {
+    width: 100%;
+    padding-right: 40px; /* Make room for the eye icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #0B0B1B;
+    padding: 5px;
+    z-index: 1000;
+
+}
+
+.toggle-password:hover {
+    color: #6461A0;
+}
+
+/* Add this new container for buttons */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: -1rem 0 1rem 0; /* Changed from 1rem 0 to move buttons up */
+    gap: 0.5rem; /* Reduced from 1rem to 0.5rem */
+}
+
+.back-button{
+    max-width: 100%;
+    min-width: 120px;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #333D79;
+    border: 2px solid #333D79;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-family: 'Georgia', serif !important;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button:hover {
+   box-shadow: 0 0 0 1.1px #333D79;
+}
+
+.forgot-password-container {
+    width: 90%;
+    min-width: 300px;
+    text-align: right;
+    margin-top: 0.5rem;
+}
+
+.forgot-password-link {
+    color: #333D79;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'SourceSerifPro', serif;
+    transition: all 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+/* Login options styling - updated for separate capsules */
+.login-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Use full width of parent */
+    margin: 3.5rem auto; /* Center with auto margins */
+    padding: 0.5rem;
+    gap: 1.5rem;
+    background-color: transparent; /* Remove background from container */
+}
+
+.login-option-btn {
+    width: 80%;
+    max-width: 300px;
+    padding: 1.2rem 1rem;
+    border: 2px solid #333D79; /* Stronger border for consistency */
+    border-radius: 1.5rem; /* More rounded for capsule effect */
+    background-color: #333D79;
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.15); /* Consistent shadow */
+    margin: 0 auto; /* Add auto horizontal margins */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem; /* Space between icon and text */
+}
+
+/* Icon styling within the login-option-btn */
+.login-option-btn i {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* Login option button text styling */
+.login-option-btn span {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    color: inherit;
+    white-space: nowrap;
+}
+
+/* Login option button hover effect - border-based */
+.login-option-btn:hover {
+    border-width: 3px;
+    border-color: #6461A0;
+    background-color: #333D79;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.25);
+}
+
+/* Login option separator styling */
+.login-option-separator {
+    position: relative;
+    width: 60%;
+    text-align: center;
+    margin: -0.5rem auto; /* Center with auto margins */
+    z-index: 1;
+}
+
+.login-option-separator span {
+    display: inline-block;
+    padding: 0 0.8rem;
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+}
+
+.login-option-separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #333D79;
+    z-index: 0;
+}
+
+/* Animation for method transition */
+.user-login-forms {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adjust existing styles to accommodate the login options */
+.user-login-form-container h3 {
+    margin-bottom: 0.5rem;
+}
+
+/* Password Setup Container Styling */
+.setup-password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left alignment for better visual hierarchy */
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto; /* Remove top margin to start from top */
+    padding: 2rem;
+    background-color: transparent;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* 1. Company branding - Flow logo at the very top */
+.setup-password-branding {
+    width: 100%;
+    margin-bottom: 1rem; /* Space between branding and page indicator */
+    text-align: center; /* Center-align branding elements */
+}
+
+.setup-password-branding h2 {
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the logo and text */
+    gap: 0.5rem;
+}
+
+/* 2. Page indicator - "User Login" text */
+.setup-password-page-indicator {
+    width: 100%;
+    margin-bottom: 2rem; /* Space between page indicator and main heading */
+    text-align: center; /* Center-align page indicator */
+}
+
+.setup-password-page-indicator h3 {
+    color: #333D79;
+    font-family: 'Merriweather', serif;
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. "Set Up Your Password" heading - main form title */
+.setup-password-heading {
+    width: 100%;
+    margin-bottom: 1rem; /* Space between heading and description */
+    text-align: center;
+}
+
+.setup-password-heading h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333D79;
+    font-family: 'Merriweather', serif;
+    font-size: 2.2rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. Descriptive text - explanation paragraph */
+.setup-password-description {
+    width: 100%;
+    margin-bottom: 2rem; /* Space between description and form fields */
+    text-align: center;
+}
+
+.setup-password-description p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333D79;
+    font-family: 'Merriweather', serif;
+    font-size: 0.8rem;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* 5. Password Setup Form Styling - form fields */
+.setup-password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left alignment */
+    gap: 0.4rem; /* Space between form fields */
+    width: 100%;
+    margin-bottom: 1.5rem; /* Space between form fields and action buttons */
+}
+
+/* Enhanced Password Setup Button Styling */
+.setup-password-container .user-submit-btn {
+    background-color: #333D79; /* Solid color background */
+    color: white; /* White text color */
+    border: 2px solid #333D79;
+    border-radius: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    width: auto;
+    max-width: none; /* Remove max-width restriction */
+    min-width: 160px;
+    height: 3rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.15);
+    flex: 1; /* Allow it to grow to fill remaining space */
+}
+
+/* Border-based hover effect for password setup button */
+.setup-password-container .user-submit-btn:hover {
+    border-width: 3px; /* Border-based hover effect as preferred */
+    border-color: #333D79;
+    background-color: #2A3168; /* Slightly darker shade on hover */
+    color: white; /* Maintain white text */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.25);
+}
+
+/* Active state for password setup button */
+.setup-password-container .user-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(51, 61, 121, 0.2);
+}
+
+/* Enhanced password input styling for setup */
+.setup-password-container .user-form-group-content {
+    width: 100%;
+    max-width: 400px;
+    align-items: flex-start; /* Left alignment */
+}
+
+.setup-password-container .user-form-group-content label {
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+.setup-password-container .password-input-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.setup-password-container .password-input-container input {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #333D79;
+    border-radius: 1rem;
+    background-color: #F8F9FA; /* Slightly off-white for better contrast */
+    color: #0B0B1B;
+    font-size: 1rem;
+    font-family: 'SourceSerifPro', serif;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.setup-password-container .password-input-container input:focus {
+    border-color: #6461A0;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 2px rgba(100, 97, 160, 0.2);
+}
+
+.setup-password-container .password-input-container input::placeholder {
+    color: #666;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Enhanced toggle password button for setup */
+.setup-password-container .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #333D79;
+    padding: 8px;
+    z-index: 1000;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.setup-password-container .toggle-password:hover {
+    background-color: rgba(51, 61, 121, 0.1);
+    color: #6461A0;
+}
+
+/* 6. Action Buttons Container - Set Password and Back buttons */
+.setup-password-buttons {
+    display: flex;
+    justify-content: flex-start; /* Left alignment for better visual hierarchy */
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem; /* Space above action buttons */
+    flex-wrap: nowrap; /* Keep buttons on same line */
+}
+
+/* Enhanced Back Button for Password Setup */
+.setup-back-button {
+    background-color: #FFFFFF; /* White background as preferred */
+    color: #333D79; /* Dark text for contrast */
+    border: 2px solid #333D79;
+    border-radius: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    min-width: 120px;
+    max-width: 150px;
+    height: 3rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.15);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Border-based hover effect for back button */
+.setup-back-button:hover {
+    border-width: 3px; /* Border-based hover effect as preferred */
+    border-color: #333D79;
+    background-color: #FFFFFF; /* Maintain white background */
+    color: #333D79; /* Maintain dark text */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.25);
+}
+
+/* Active state for back button */
+.setup-back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(51, 61, 121, 0.2);
+}
+
+/* Responsive design for password setup */
+@media (max-width: 768px) {
+    .setup-password-container {
+        padding: 1.5rem;
+        margin: 0 auto; /* Keep top alignment on mobile */
+    }
+
+    /* Responsive branding */
+    .setup-password-branding h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Responsive page indicator */
+    .setup-password-page-indicator h3 {
+        font-size: 2.5rem;
+    }
+
+    /* Responsive main heading */
+    .setup-password-heading h4 {
+        font-size: 1.8rem;
+    }
+
+    /* Responsive description */
+    .setup-password-description p {
+        font-size: 1rem;
+    }
+
+    /* Responsive form elements */
+    .setup-password-container .user-submit-btn {
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Responsive buttons container */
+    .setup-password-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+        margin-top: 1.5rem; /* Reduce top margin on mobile */
+    }
+
+    .setup-back-button {
+        width: 100%;
+        order: 2; /* Place back button below submit button on mobile */
+    }
+
+    .setup-password-container .user-submit-btn {
+        order: 1; /* Place submit button above back button on mobile */
+    }
+}

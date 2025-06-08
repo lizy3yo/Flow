@@ -1,0 +1,1072 @@
+/* Base Styles */
+.page-container {
+    background: #f8f9fa;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Enhanced content area with viewport maximization */
+.content {
+    padding: 2rem;
+    max-width: none; /* Remove max-width constraint for full viewport utilization */
+    margin: 0;
+    padding-top: 90px; /* Account for fixed UserTopNavbar (70px height) */
+    margin-left: 350px; /* Match sidebar width */
+    transition: all 0.3s ease;
+    width: calc(100% - 350px);
+    padding-right: 2rem;
+    background: transparent;
+}
+
+/* Header Section Styling */
+.user-book-header-section {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    position: relative;
+}
+
+.user-book-appointment-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #333d79, #9693ce);
+    color: white;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+    font-size: 0.95rem;
+    font-family: var(--user-mainpage-font-family);
+    margin-bottom: 1.5rem;
+    align-self: flex-start;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.user-book-appointment-back-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.user-book-appointment-back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+.user-book-appointment-back-btn:hover::before {
+    left: 100%;
+}
+
+.user-book-appointment-back-btn i {
+    font-size: 1rem;
+}
+
+.user-book-main-header {
+    color: #000000;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    font-family: var(--user-mainpage-font-family);
+    letter-spacing: -0.5px;
+}
+
+.user-book-subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    font-family: var(--user-mainpage-font-family);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Collapsed sidebar adjustments - maximize viewport space */
+.user-content-expanded {
+    margin-left: 95px; /* Match collapsed sidebar width */
+    width: calc(100% - 95px);
+    max-width: none; /* Remove max-width constraint */
+    margin-right: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Modern department cards grid with enhanced spacing */
+.user-book-departments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Modern appointment cards grid with enhanced spacing */
+.user-book-appointments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Enhanced department cards with UserDashboard styling patterns */
+.user-book-card {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 2rem;
+    margin: 0;
+    width: 100%;
+    min-height: 550px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Border-based hover effects matching UserDashboard patterns */
+.user-book-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--user-mainpage-gradient-hover);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.user-book-card:hover::before {
+    opacity: 1;
+}
+
+.user-book-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(100, 97, 160, 0.2);
+    border-color: rgba(100, 97, 160, 0.2);
+}
+
+/* Ensure content stays above hover overlay */
+.user-book-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+    height: 100%;
+}
+
+/* Main content wrapper */
+.user-book-content-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+/* Typography */
+.user-book-content h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--user-mainpage-text-dark);
+    margin: 0 0 0.6rem 0;
+    font-family: var(--user-mainpage-font-family);
+    line-height: 1.3;
+}
+
+.user-book-content p,
+.service-description {
+    font-size: 1rem;
+    color: #6c757d;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+    font-family: var(--user-mainpage-font-family);
+}
+
+/* Info section */
+.user-book-info {
+    width: 100%;
+    margin-bottom: 1rem;
+    flex-grow: 0;
+}
+
+.user-book-info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    margin: 0.3rem 0;
+    background-color: rgba(248, 249, 250, 0.6);
+    border-radius: var(--user-mainpage-border-radius-md);
+    font-size: 0.95rem;
+    color: var(--user-mainpage-text-dark);
+    font-family: var(--user-mainpage-font-family);
+    border: 1px solid rgba(100, 97, 160, 0.05);
+    transition: all 0.3s ease;
+}
+
+.user-book-info-item:hover {
+    background-color: rgba(100, 97, 160, 0.05);
+    border-color: rgba(100, 97, 160, 0.1);
+}
+
+.user-book-info-item i {
+    color: var(--user-mainpage-accent-color);
+    font-size: 1rem;
+    width: 16px;
+    text-align: center;
+}
+
+/* Enhanced Status Indicators - Based on Admin Design */
+.user-book-queue-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    outline: none;
+    gap: 8px;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--user-mainpage-font-family);
+    cursor: default;
+    z-index: 1;
+    background-color: #ebfaeb;
+    color: #0d6832;
+}
+
+.user-book-queue-active:hover {
+    transform: translateY(-1px);
+    background-color: #d7f7d7;
+}
+
+.user-book-queue-inactive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    outline: none;
+    gap: 8px;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--user-mainpage-font-family);
+    cursor: default;
+    z-index: 1;
+    background-color: #ffeaea;
+    color: #c62828;
+}
+
+.user-book-queue-inactive:hover {
+    transform: translateY(-1px);
+    background-color: #ffe0e0;
+}
+
+/* Status Indicator Dots */
+.user-book-queue-active::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    background-color: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    animation: pulse-green 2s infinite;
+}
+
+.user-book-queue-inactive::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    background-color: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    animation: pulse-red 2s infinite;
+}
+
+/* Pulse Animations */
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Action button */
+.user-book-view-btn {
+    background: linear-gradient(135deg, #333D79, #9693CE);
+    color: white;
+    border: none;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: var(--user-mainpage-font-family);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+    border: 2px solid transparent;
+    margin-top: auto;
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Table view specific styling for more compact appearance */
+.user-book-table-container .user-book-view-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: var(--user-mainpage-border-radius-sm);
+    margin-top: 0;
+    width: auto;
+}
+
+.user-book-view-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.user-book-view-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(51, 61, 121, 0.3);
+}
+
+/* Table view hover effect - more subtle */
+.user-book-table-container .user-book-view-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.3);
+}
+
+.user-book-view-btn:hover::before {
+    left: 100%;
+}
+
+.user-book-view-btn.disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.user-book-view-btn i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.user-book-view-btn:hover:not(.disabled) i {
+    transform: translateX(2px);
+}
+
+/* Modern filters container with enhanced spacing */
+.user-book-filters-container {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+}
+
+/* Enhanced search bar with modern styling */
+.user-book-search-bar {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.user-book-search-bar input {
+    width: 100%;
+    padding: 0.9rem 1rem 0.9rem 2.8rem;
+    font-size: 1rem;
+    border: 2px solid rgba(100, 97, 160, 0.2);
+    border-radius: var(--user-mainpage-border-radius-md);
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+    transition: all 0.3s ease;
+    font-family: var(--user-mainpage-font-family);
+}
+
+.user-book-search-bar input:focus {
+    outline: none;
+    border-color: var(--user-mainpage-accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 97, 160, 0.1);
+}
+
+.user-book-search-bar i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--user-mainpage-accent-color);
+    font-size: 1.1rem;
+}
+
+/* Modern filter options layout */
+.user-book-filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Enhanced filter select styling */
+.user-book-filter-select {
+    padding: 0.9rem 1rem;
+    border: 2px solid rgba(100, 97, 160, 0.2);
+    border-radius: var(--user-mainpage-border-radius-md);
+    font-size: 1rem;
+    min-width: 200px;
+    background-color: var(--user-mainpage-white);
+    color: var(--user-mainpage-text-dark);
+    transition: all 0.3s ease;
+    font-family: var(--user-mainpage-font-family);
+    cursor: pointer;
+}
+
+.user-book-filter-select:focus,
+.user-book-filter-select:hover {
+    outline: none;
+    border-color: var(--user-mainpage-accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 97, 160, 0.1);
+}
+
+/* Search highlight styling */
+.user-book-highlight,
+mark.user-book-highlight {
+    background: var(--user-mainpage-gradient-subtle);
+    color: var(--user-mainpage-text-dark);
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+    font-weight: 600;
+}
+
+/* View Toggle Buttons */
+.view-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(100, 97, 160, 0.1);
+    border-radius: var(--user-mainpage-border-radius-md);
+    padding: 0.25rem;
+}
+
+.view-toggle-btn {
+    padding: 0.75rem;
+    border: none;
+    background: transparent;
+    color: var(--user-mainpage-text-muted);
+    border-radius: var(--user-mainpage-border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.view-toggle-btn:hover {
+    background: rgba(100, 97, 160, 0.1);
+    color: var(--user-mainpage-accent-color);
+}
+
+.view-toggle-btn.active {
+    background: var(--user-mainpage-white);
+    color: var(--user-mainpage-accent-color);
+    box-shadow: 0 2px 8px rgba(100, 97, 160, 0.15);
+}
+
+/* Table View Styles */
+.user-book-table-container {
+    background: var(--user-mainpage-white);
+    border-radius: var(--user-mainpage-border-radius-xl, 24px);
+    padding: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 20px var(--user-mainpage-shadow);
+    border: 2px solid rgba(100, 97, 160, 0.1);
+    overflow: hidden;
+}
+
+.user-book-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--user-mainpage-border-radius-md);
+}
+
+.user-book-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--user-mainpage-font-family);
+    font-size: 0.95rem;
+}
+
+.user-book-table thead th {
+    background: var(--user-mainpage-gradient-subtle);
+    color: var(--user-mainpage-text-dark);
+    font-weight: 600;
+    padding: 1.2rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid rgba(100, 97, 160, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+.user-book-table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(100, 97, 160, 0.1);
+}
+
+.user-book-table tbody tr:hover {
+    background: rgba(100, 97, 160, 0.05);
+    transform: scale(1.002);
+}
+
+.user-book-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.user-book-table td {
+    padding: 1.2rem 1rem;
+    vertical-align: middle;
+    color: var(--user-mainpage-text-dark);
+    line-height: 1.5;
+}
+
+/* Service Name Styling */
+.service-name {
+    font-weight: 600;
+    color: var(--user-mainpage-text-dark);
+    font-size: 1rem;
+}
+
+/* Table Display Elements */
+.hours-display,
+.location-display,
+.queue-display,
+.wait-time-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.hours-display i,
+.location-display i,
+.queue-display i,
+.wait-time-display i {
+    color: var(--user-mainpage-accent-color);
+    font-size: 1rem;
+    width: 16px;
+    text-align: center;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: var(--user-mainpage-border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-badge.status-active {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.status-badge.status-active::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #28a745;
+    display: inline-block;
+}
+
+.status-badge.status-inactive {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.status-badge.status-inactive::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    display: inline-block;
+}
+
+/* Table Book Button */
+.table-book-btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: var(--user-mainpage-border-radius-sm);
+    background: linear-gradient(135deg, #333d79, #9693ce);
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+}
+
+.table-book-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(51, 61, 121, 0.3);
+}
+
+.table-book-btn.disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.table-book-btn.disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(51, 61, 121, 0.2);
+}
+
+.table-book-btn i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.table-book-btn:hover i {
+    transform: translateX(2px);
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+    .user-book-appointment-departments-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    .user-book-appointment-department-card {
+        min-height: 250px;
+        padding: 1rem;
+    }
+
+    .user-book-appointment-filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        margin: 1rem 0;
+    }
+
+    .user-book-appointment-search-bar {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .user-book-appointment-filter-options {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .user-book-appointment-filter-select {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .user-book-appointment-back-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 1rem;
+        padding-top: 70px;
+        width: 100%;
+    }
+
+    .user-content-expanded {
+        margin-left: 0;
+        padding: 1rem;
+        padding-top: 70px;
+        width: 100%;
+    }
+
+    .user-book-header-section {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .user-book-appointment-back-btn {
+        margin-bottom: 1rem;
+    }
+
+    .user-book-main-header {
+        font-size: 1.8rem;
+        margin-top: 0;
+    }
+
+    .user-book-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .user-book-filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .user-book-search-bar {
+        min-width: 100%;
+    }
+
+    .user-book-filter-options {
+        justify-content: center;
+        width: 100%;
+        gap: 0.8rem;
+    }
+
+    .user-book-filter-select {
+        min-width: 140px;
+        flex: 1;
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .user-book-departments-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .user-book-card {
+        min-height: 380px;
+        padding: 1.5rem;
+    }
+
+    .user-book-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .user-book-content p {
+        font-size: 0.95rem;
+    }
+
+    .view-toggle-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .view-toggle-btn {
+        flex: 1;
+        max-width: 80px;
+    }
+    
+    .user-book-table-wrapper {
+        border-radius: var(--user-mainpage-border-radius-sm);
+    }
+    
+    .user-book-table {
+        font-size: 0.85rem;
+        min-width: 800px; /* Force horizontal scroll on mobile */
+    }
+    
+    .user-book-table thead th {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .user-book-table td {
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .table-book-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-book-header-section {
+        padding: 1.2rem 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-appointment-back-btn {
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-main-header {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .user-book-card {
+        min-height: 320px;
+        padding: 1.2rem;
+    }
+
+    .user-book-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .user-book-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .user-book-info-item {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    .user-book-view-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .user-book-filters-container {
+        padding: 0.8rem;
+    }
+
+    .user-book-search-bar input {
+        padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Enhanced responsive design for larger screens */
+@media (min-width: 1200px) {
+    .user-book-departments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .user-book-table-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .user-book-departments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2.5rem;
+    }
+
+    .content {
+        padding: 2.5rem;
+        padding-top: 90px;
+    }
+
+    .user-content-expanded {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
+
+/* View Toggle Styles */
+.view-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(100, 97, 160, 0.1);
+    border-radius: var(--user-mainpage-border-radius-md);
+    padding: 0.25rem;
+}
+
+.view-toggle-btn {
+    padding: 0.75rem;
+    border: none;
+    background: transparent;
+    color: var(--user-mainpage-text-muted);
+    border-radius: var(--user-mainpage-border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.view-toggle-btn:hover {
+    background: rgba(100, 97, 160, 0.1);
+    color: var(--user-mainpage-accent-color);
+}
+
+.view-toggle-btn.active {
+    background: var(--user-mainpage-white);
+    color: var(--user-mainpage-accent-color);
+    box-shadow: 0 2px 8px rgba(100, 97, 160, 0.15);
+}
+
+/* Responsive Grid Styles */
+@media (max-width: 1200px) {
+    .user-book-appointments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .user-book-card {
+        min-height: 520px;
+        padding: 1.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .user-book-appointments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.2rem;
+    }
+    
+    .user-book-card {
+        min-height: 500px;
+        padding: 1.5rem;
+    }
+    
+    .user-book-content {
+        padding: 0.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .view-toggle-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .user-book-appointments-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+    
+    .user-book-card {
+        min-height: 450px;
+        padding: 1.2rem;
+    }
+    
+    .user-book-filters-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .user-book-search-bar {
+        min-width: 100%;
+    }
+    
+    .user-book-filter-options {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-book-card {
+        min-height: 400px;
+        padding: 1rem;
+    }
+    
+    .user-book-content {
+        padding: 0.2rem;
+    }
+}

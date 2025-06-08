@@ -1,0 +1,546 @@
+
+/* Mobile-first approach */
+.signup-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;    min-height: 100vh;
+    background-color: #0B0B1B;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+    background-color: #333D79;
+    background: linear-gradient(
+        135deg,
+        #292D5E 0%,
+        #333D79 25%,
+        #3A4788 50%,
+        #3D4A9A 75%,
+        #35316B 100%
+    );
+    /* Mobile styles */
+    width: 100%;
+    height: auto;
+    min-height: 60vh;
+    border-radius: 2rem 2rem 0 0;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    order: 1;
+}
+
+
+.signup-content h1 {
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-top: 2rem;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+    position: relative;
+    right: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.signup-content p {
+    color: #FFFFFF;
+    font-size: 1rem;
+    z-index: 2;
+    position: relative;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.signup-content p router-link,
+.signup-content p a {
+    color: #FFFFFF; /* Changed to white */
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    position: relative;
+    transition: all 0.3s ease;
+
+}
+
+.signup-content p router-link:hover,
+.signup-content p a:hover {
+    color: #60A5FA; /* Changed hover color to light blue for better contrast */
+}
+
+
+.selector-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    background: #FFFFFF;
+    /* Mobile styles */
+    width: 100%;
+    height: auto;
+    min-height: 40vh;
+    padding: 2rem 1rem;
+    z-index: 2;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.2);
+    order: 2;
+}
+
+.signup-content .back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    border-radius: 2rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    display: none; /* Hide on mobile */
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.signup-content .back-button:hover {
+    border-width: 4px !important;
+    border-color: #FFFFFF !important;
+    background-color: transparent !important;
+    transform: translateY(-1px);
+}
+
+.signup-content .back-button i {
+    font-size: 1rem;
+    color: #FFFFFF !important;
+}
+
+.selector-container h2{
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    margin-right: 0;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.selector-container h3{
+    color: #333D79;
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.selector-container img{
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    margin-top: -0.8rem;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(120deg); /* Reduced rotation for more subtle effect */
+  }
+}
+
+.selector-container img {
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  will-change: transform; /* Performance optimization */
+}
+
+.selector-container img:hover{
+  animation: spin 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 1;
+}
+
+.signup-buttons {
+    display: flex;
+    margin-top: 1rem;
+    font-family: 'Georgia', serif;
+    position: relative;
+    background-color: #60A5FA;
+    border-radius: 50px;
+    padding: 0.3rem;
+    width: 100%;
+    max-width: 20rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Sliding indicator */
+.signup-buttons::after {
+    content: '';
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: calc(50% - 0rem);
+    height: calc(100% - 0rem);
+    background-color: #1D4ED8;
+    border-radius: 50px;
+    z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Move indicator when the admin button is selected */
+.signup-buttons.admin-selected::after {
+    transform: translateX(0);
+}
+
+/* Move indicator when the user button is selected */
+.signup-buttons.user-selected::after {
+    transform: translateX(100%);
+}
+
+.signup-buttons .selector-button-admin,
+.signup-buttons .selector-button-user {
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+    width: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: transparent;
+}
+
+/* Selected state styling */
+.signup-buttons.admin-selected .selector-button-admin,
+.signup-buttons.user-selected .selector-button-user {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.hover-message {
+    margin-top: 10px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 0.9em;
+}
+
+.type-message {
+    color: #333D79;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+    margin-top: 0rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.continue-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 500;
+    padding: 0.8rem 2rem;
+    border-radius: 1.2rem;
+    font-size: 1.1rem;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    font-family: 'Georgia', serif;
+    height: 2.5rem;
+    width: 100%;
+    max-width: 15rem;
+}
+
+.continue-button:hover {
+    background-color: #43A047;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF;
+}
+
+.lines-selector-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Hide on mobile initially */
+    display: none;
+}
+
+.lines-selector-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+@import '@/styles/authentication/signup.css';
+
+/* Tablet screens - optimized for tablet viewing */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .signup-selector {
+        flex-direction: column;
+        max-width: 100%;
+        padding: 1rem;
+        gap: 0;
+    }
+    
+    .signup-content {
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        border-radius: 2rem 2rem 0 0;
+        padding: 3rem 2rem 2rem 2rem;
+        order: 1;
+        text-align: center;
+    }
+    
+    .signup-content h1 {
+        font-size: 3rem;
+        margin-top: 1rem;
+        text-align: center;
+        width: 100%;
+        right: 0;
+    }
+    
+    .signup-content p {
+        text-align: center;
+        left: 0;
+        width: 100%;
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .selector-container {
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        padding: 3rem 2rem;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        border-radius: 0 0 2rem 2rem;
+        box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.2);
+        order: 2;
+    }
+    
+    .selector-container h2 {
+        font-size: 2.5rem;
+        margin-top: 1rem;
+        margin-right: 0;
+        text-align: center;
+    }
+    
+    .selector-container h3 {
+        font-size: 2.5rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+    
+    .signup-buttons {
+        width: 100%;
+        max-width: 24rem;
+        margin: 1.5rem auto;
+    }
+    
+    .signup-buttons .selector-button-admin,
+    .signup-buttons .selector-button-user {
+        font-size: 1.3rem;
+        padding: 0.7rem 1rem;
+    }
+    
+    .type-message {
+        font-size: 1.3rem;
+        text-align: center;
+        margin-top: 1rem;
+    }
+    
+    .continue-button {
+        font-size: 1.2rem;
+        padding: 0.9rem 2rem;
+        height: 2.8rem;
+        width: 100%;
+        max-width: 18rem;
+        margin: 1.5rem auto;
+    }
+    
+    .signup-content .back-button {
+        display: none; /* Keep hidden on tablet */
+    }
+    
+    .lines-selector-img {
+        display: none; /* Hide decorative image on tablet for cleaner look */
+    }
+}
+
+/* Large tablet and small desktop transition */
+@media (min-width: 768px) and (orientation: landscape) {
+    .signup-selector {
+        flex-direction: row;
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .signup-content {
+        width: 55%;
+        height: 40rem;
+        border-radius: 2rem;
+        padding: 2rem 2rem 2rem 6rem;
+        order: 0;
+        text-align: left;
+    }
+    
+    .signup-content h1 {
+        font-size: 2.8rem;
+        margin-top: 8rem;
+        text-align: left;
+        width: auto;
+    }
+    
+    .signup-content p {
+        text-align: left;
+        left: 1.5rem;
+        width: auto;
+        font-size: 1rem;
+    }
+    
+    .selector-container {
+        width: 45%;
+        height: 40rem;
+        padding: 2rem 2rem 2rem 3rem;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 6rem 2rem 2rem 6rem;
+        box-shadow: -15px 0 30px rgba(0, 0, 0, 0.2);
+        order: 0;
+    }
+    
+    .selector-container h2,
+    .selector-container h3 {
+        font-size: 2.2rem;
+        margin-top: 4rem;
+        text-align: left;
+    }
+    
+    .selector-container h3 {
+        margin-top: 1rem;
+    }
+    
+    .signup-buttons {
+        width: 18rem;
+        margin: 1rem 0;
+    }
+    
+    .lines-selector-img {
+        display: flex;
+        top: 65%;
+    }
+}
+
+/* Desktop screens - restore original layout */
+@media (min-width: 1024px) {
+    .signup-selector {
+        max-width: 100%;
+    }
+    
+    .signup-content {
+        width: 50%;
+        height: 50rem;
+        padding: 2rem 2rem 2rem 12rem;
+    }
+    
+    .signup-content h1 {
+        font-size: 3.9rem;
+        margin-top: 18rem;
+        right: 0.2rem;
+    }
+    
+    .signup-content p {
+        left: 3rem;
+    }
+    
+    .selector-container {
+        width: 50%;
+        height: 50rem;
+        padding: 2rem 2rem 2rem 5rem;
+        border-radius: 10rem 2rem 2rem 10rem;
+    }
+    
+    .selector-container h2 {
+        font-size: 3rem;
+        margin-top: 10rem;
+        margin-right: 1rem;
+    }
+    
+    .selector-container h3 {
+        font-size: 3rem;
+        margin-top: 2rem;
+    }
+    
+    .signup-buttons {
+        width: 24rem;
+    }
+    
+    .signup-buttons .selector-button-admin,
+    .signup-buttons .selector-button-user {
+        font-size: 1.6rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .type-message {
+        font-size: 1.5rem;
+    }
+    
+    .continue-button {
+        font-size: 1.3rem;
+        padding: 1rem 2.5rem;
+        height: 3rem;
+    }
+      .signup-content .back-button {
+        display: flex; /* Show on desktop */
+        top: 2rem;
+        left: 2rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}

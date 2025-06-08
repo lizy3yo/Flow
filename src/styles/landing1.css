@@ -1,0 +1,953 @@
+/* Landing page specific styling - override any global white background */
+html {
+    background-color: #0B0B1B !important;
+}
+
+body {
+    background-color: #0B0B1B !important;
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 2rem; /* Reduced from 2rem */
+    background: radial-gradient(circle at 50% 30%, #353581 -20%, #080B1B 40%);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Georgia', serif !important;
+}
+
+.main-content {
+    opacity: 0;
+    transform: translateY(40px);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative; /* Add this line */
+    font-family: 'Georgia', serif !important;
+}
+
+.main-content.visible {
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Keep background images outside of the animated content */
+.lines-img, .dots-img {
+    z-index: 0;
+    font-family: 'Georgia', serif !important;
+    pointer-events: none;
+}
+/*Hero Section*/
+.title .title-h1 {
+    color: #A2AEF4;
+    font-size: 4.7rem;
+    font-family: 'Bethany Elingston', sans-serif !important;
+    padding: 1rem 1rem 0.5rem 1rem; /* Reduced bottom padding */
+    text-shadow: 0 0 10px rgba(162, 174, 244, 0.5),
+    0 0 20px rgba(162, 174, 244, 0.3),
+    0 0 30px rgba(162, 174, 244, 0.2);
+    margin-bottom: 0; /* Removed bottom margin */
+    letter-spacing: -0.2rem;
+}
+
+.title p {
+    color: #C6CAED;
+    font-size: 1.2rem;
+    font-family: 'Bethany Elingston', sans-serif;
+    padding: 0.5rem 1rem; /* Reduced top and bottom padding */
+    margin-bottom: 0.5rem; /* Added small bottom margin */
+}
+
+.title {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 1rem; /* Reduced from 1.5rem */
+    font-family: 'Georgia', serif !important;
+}
+
+/*Form*/
+.input-group{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia', serif !important;
+}
+
+.form {
+    width: 26rem;
+    padding: 15px 160px 15px 20px;
+    border-radius: 30px;
+    background-color: #F8F8F8;
+    color: #000000;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif !important;
+   margin-left: 4rem;
+}
+
+.btn-in {
+    position: absolute;
+    right: 4.1rem; /* Changed from 5px to 3px to give more space from edge */
+    top: 1.8rem;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    border-radius: 30px; /* Changed from 25px to 30px to match .form */
+    background-color: #333D79;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif !important;
+}
+
+.btn-out {
+    width: 20rem;
+    border-radius: 25px;
+    background-color: #000000;
+    background-color: #F8F8F8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif !important;
+    margin-right: 10rem;
+}
+
+.btn-icon {
+    margin-bottom: 5px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    font-family: 'Georgia', serif !important;
+}
+
+.form:focus {
+    border-color: #A2AEF4;
+    box-shadow: 0 0 10px rgba(162, 174, 244, 0.2);
+}
+
+.btn-in:hover {
+    background-color: #8A98E8;
+}
+
+.btn-out:hover {
+    background-color: rgba(162, 174, 244, 0.1);
+}
+
+/* Line Image*/
+.lines-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin: 0 auto;
+    position: absolute;
+    top: 25rem; /* Move upwards by decreasing this value */
+    left: 0;
+    right: 0;
+    z-index: 0;
+    font-family: 'Georgia', serif !important;
+}
+
+.lines-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== DOTS IMAGES - MOBILE FIRST RESPONSIVE DESIGN ===== */
+
+/* Base mobile styles (default - mobile first approach) */
+.dots-img {
+    position: absolute;
+    height: auto;
+    z-index: 0;
+    opacity: 0.6;
+    pointer-events: none;
+    will-change: transform, opacity;
+    /* Performance optimizations */
+    transform: translateZ(0); /* Hardware acceleration */
+    backface-visibility: hidden; /* Prevent flickering */
+    /* Reset positioning for mobile-first approach */
+    top: unset;
+    left: unset;
+    right: unset;
+    bottom: unset;
+}
+
+/* Ensure all dot images are responsive and optimized */
+.dots-img img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    /* Performance optimizations */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Accessibility */
+    alt: "";
+}
+
+/* Mobile base positioning and animations (320px+) */
+.dots-1  {
+    margin-top: 2rem;
+    left: 75%;
+    animation: float 5s ease-in-out infinite;
+    display: none; /* Hidden on mobile for cleaner look */
+}
+.dots-2  {
+    margin-top: 4rem;
+    left: 80%;
+    animation: float-reverse 7s ease-in-out infinite;
+}
+.dots-3  {
+    margin-top: 6rem;
+    left: 70%;
+    animation: float 6s ease-in-out infinite;
+    display: none; /* Hidden on mobile for cleaner look */
+}
+.dots-4  {
+    margin-top: 18rem;
+    left: 75%;
+    animation: float-reverse 6s ease-in-out infinite;
+}
+.dots-5  {
+    margin-top: 25rem;
+    left: 65%;
+    animation: float 7s ease-in-out infinite;
+    display: none; /* Hidden on mobile for cleaner look */
+}
+
+.dots-6  {
+    margin-top: 5rem;
+    right: 15%;
+    animation: float 8s ease-in-out infinite;
+}
+.dots-7  {
+    margin-top: 20rem;
+    right: 15%;
+    animation: float-reverse 8s ease-in-out infinite;
+    display: none; /* Hidden on mobile for cleaner look */
+}
+.dots-8  {
+    margin-top: 15rem;
+    right: 20%;
+    animation: float 5s ease-in-out infinite;
+}
+.dots-9  {
+    margin-top: 2rem;
+    right: 35%;
+    animation: float-reverse 6s ease-in-out infinite;
+    display: none; /* Hidden on mobile for cleaner look */
+}
+.dots-10 {
+    margin-top: 12rem;
+    right: 25%;
+    animation: float 8s ease-in-out infinite;
+}
+
+/* Mobile base image sizes and rotation */
+.dots-1 img   { max-width: 15%; transform: rotate(15deg); }
+.dots-2 img   { max-width: 15%; transform: rotate(45deg); }
+.dots-3 img   { max-width: 15%; transform: rotate(-15deg); }
+.dots-4 img   { max-width: 15%; transform: rotate(30deg); }
+.dots-5 img   { max-width: 15%; transform: rotate(0deg); }
+
+.dots-6 img   { max-width: 15%; transform: rotate(60deg); }
+.dots-7 img   { max-width: 15%; transform: rotate(-25deg); }
+.dots-8 img   { max-width: 15%; transform: rotate(15deg); }
+.dots-9 img   { max-width: 15%; transform: rotate(-45deg); }
+.dots-10 img  { max-width: 15%; transform: rotate(30deg); }
+
+/* ===== PROGRESSIVE ENHANCEMENT - TABLET (768px+) ===== */
+@media screen and (min-width: 768px) {
+    /* Show more dots on tablet */
+    .dots-1, .dots-3, .dots-5, .dots-7, .dots-9 {
+        display: block;
+    }
+
+    /* Tablet positioning adjustments */
+    .dots-1 { left: 75%; margin-top: 2rem; }
+    .dots-2 { left: 85%; margin-top: 4rem; }
+    .dots-3 { left: 70%; margin-top: 6rem; }
+    .dots-4 { left: 80%; margin-top: 18rem; }
+    .dots-5 { left: 65%; margin-top: 25rem; }
+
+    .dots-6 { right: 20%; margin-top: 4rem; }
+    .dots-7 { right: 15%; margin-top: 20rem; }
+    .dots-8 { right: 28%; margin-top: 15rem; }
+    .dots-9 { right: 35%; margin-top: 2rem; }
+    .dots-10 { right: 40%; margin-top: 12rem; }
+
+    /* Tablet image sizes */
+    .dots-1 img   { max-width: 18%; }
+    .dots-2 img   { max-width: 25%; }
+    .dots-3 img   { max-width: 16%; }
+    .dots-4 img   { max-width: 18%; }
+    .dots-5 img   { max-width: 15%; }
+
+    .dots-6 img   { max-width: 12%; }
+    .dots-7 img   { max-width: 14%; }
+    .dots-8 img   { max-width: 11%; }
+    .dots-9 img   { max-width: 10%; }
+    .dots-10 img  { max-width: 12%; }
+}
+
+/* ===== PROGRESSIVE ENHANCEMENT - DESKTOP (1024px+) ===== */
+@media screen and (min-width: 1024px) {
+    /* Desktop positioning - original design intent */
+    .dots-1 { left: 80%; margin-top: 1rem; }
+    .dots-2 { left: 90%; margin-top: 3rem; }
+    .dots-3 { left: 70%; margin-top: 4rem; }
+    .dots-4 { left: 80%; margin-top: 14rem; }
+    .dots-5 { left: 65%; margin-top: 20rem; }
+
+    .dots-6 { right: 25%; margin-top: 3rem; }
+    .dots-7 { right: 20%; margin-top: 16rem; }
+    .dots-8 { right: 33%; margin-top: 12rem; }
+    .dots-9 { right: 40%; margin-top: 1rem; }
+    .dots-10 { right: 45%; margin-top: 10rem; }
+
+    /* Desktop image sizes - original design */
+    .dots-1 img   { max-width: 30%; }
+    .dots-2 img   { max-width: 60%; }
+    .dots-3 img   { max-width: 20%; }
+    .dots-4 img   { max-width: 22%; }
+    .dots-5 img   { max-width: 18%; }
+
+    .dots-6 img   { max-width: 12%; }
+    .dots-7 img   { max-width: 15%; }
+    .dots-8 img   { max-width: 10%; }
+    .dots-9 img   { max-width: 8%; }
+    .dots-10 img  { max-width: 9%; }
+}
+
+/* ===== PROGRESSIVE ENHANCEMENT - LARGE DESKTOP (1200px+) ===== */
+@media screen and (min-width: 1200px) {
+    /* Enhanced animations for larger screens */
+    .dots-img {
+        opacity: 0.7; /* Slightly more visible on large screens */
+    }
+
+    /* Optimized positioning for large screens */
+    .dots-2 img   { max-width: 65%; } /* Slightly larger hero dot */
+    .dots-1 img   { max-width: 35%; } /* Enhanced primary accent */
+}
+
+/* ===== ACCESSIBILITY - REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    .dots-img {
+        animation: none !important;
+    }
+
+    .dots-1, .dots-2, .dots-3, .dots-4, .dots-5,
+    .dots-6, .dots-7, .dots-8, .dots-9, .dots-10 {
+        animation: none !important;
+    }
+}
+
+/* ===== PERFORMANCE - HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+    .dots-img {
+        opacity: 0.8; /* More visible in high contrast mode */
+        filter: contrast(1.2);
+    }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0) rotate(0deg) scale(1);    filter: brightness(1);   }
+  25%  { transform: translateY(-10px) rotate(3deg) scale(1.05); filter: brightness(1.1); }
+  50%  { transform: translateY(-20px) rotate(5deg) scale(1.12); filter: brightness(1.2); }
+  75%  { transform: translateY(-10px) rotate(3deg) scale(1.05); filter: brightness(1.1); }
+  100% { transform: translateY(0) rotate(0deg) scale(1);    filter: brightness(1);   }
+}
+
+@keyframes float-reverse {
+  0%   { transform: translateY(0) rotate(0deg) scale(1);    filter: brightness(1);   }
+  25%  { transform: translateY(10px) rotate(-3deg) scale(1.05); filter: brightness(1.1); }
+  50%  { transform: translateY(20px) rotate(-5deg) scale(1.12); filter: brightness(1.2); }
+  75%  { transform: translateY(10px) rotate(-3deg) scale(1.05); filter: brightness(1.1); }
+  100% { transform: translateY(0) rotate(0deg) scale(1);    filter: brightness(1);   }
+}
+
+
+.draft-img {
+    margin-top: 3rem;
+    z-index: 2;
+    position: relative;  /* Add this to establish stacking context */
+    font-family: 'Georgia', serif !important;
+}
+
+.draft-img img {
+    transform: scale(0.9);  /* Scale down to 70% of original size */
+    transition: transform 0.3s ease;  /* Smooth transition for any future hover effects */
+    border-radius: 2rem;  /* Round the corners */
+}
+
+.draft-preview-text {
+    color: #C6CAED;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif !important;
+    text-align: center;
+    margin-top: -0.7rem;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+/*footer*/
+.last {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px);
+    font-family: 'Georgia', serif !important;
+}
+
+.last.visible {
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.last-content {
+    flex: 1;
+    font-family: 'Georgia', serif !important;
+}
+
+.last h1 {
+    color: #A2AEF4;
+    font-size: 4.7rem;
+    font-family: 'Georgia', serif !important;
+    font-weight: 500;
+    padding: 1rem;
+    margin-left: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.05em;
+}
+
+.last p {
+    color: #C6CAED;
+    font-size: 18px;
+    font-family: 'Georgia', serif !important;
+    line-height: 1.6;
+    padding: 0.5rem 1rem;
+    margin-left: 19rem;
+    margin-bottom: 8rem;
+}
+
+.landing-img-design{
+    width: 30rem;
+    margin-right: 20rem;
+    margin-bottom: 8rem;
+    margin-top: 2rem;
+    border-radius: 5rem;
+    box-shadow: 0 0 10px rgba(162, 174, 244, 0.5),
+    0 0 20px rgba(162, 174, 244, 0.5),
+    0 0 30px rgba(162, 174, 244, 0.5);
+    font-family: 'Georgia', serif !important;
+}
+
+.sign-up-btn {
+    position: relative;
+    z-index: 10;
+    font-family: 'SourceSerifPro', serif;
+}
+.sign-up-btn {
+    background: #333D79;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 64px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    min-width: 300px;
+    text-decoration: none !important;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Georgia', serif !important;
+}
+
+.sign-up-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, #333D79, #4B5899, #333D79);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.sign-up-btn:hover::before {
+    left: 0;
+}
+
+.sign-up-btn:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    color: #FFFFFF;
+}
+
+.sign-up-btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@font-face {
+    font-family: 'Bethany Elingston';
+    src: url('./font/Bethany Elingston.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SourceSerifPro';
+    src: url('./font/SourceSerifPro-Regular.ttf') format('truetype');
+  }
+
+/* ===== RESPONSIVE UTILITIES ===== */
+
+/* Ensure images are responsive by default */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent text overflow on small screens */
+* {
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Improve touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .btn-in, .btn-out, .sign-up-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Desktop (1200px+) */
+@media screen and (min-width: 1200px) {
+    .main-container {
+        padding-top: 2rem;
+    }
+
+    .title .title-h1 {
+        font-size: 4.7rem;
+    }
+
+    .form {
+        width: 26rem;
+        margin-left: 4rem;
+    }
+
+    .btn-in {
+        right: 4.1rem;
+    }
+}
+
+/* Laptop/Desktop (1024px - 1199px) */
+@media screen and (max-width: 1199px) and (min-width: 1024px) {
+    .title .title-h1 {
+        font-size: 4rem;
+        padding: 0.8rem 1rem 0.4rem 1rem;
+    }
+
+    .title p {
+        font-size: 1.1rem;
+    }
+
+    .form {
+        width: 24rem;
+        margin-left: 3rem;
+    }
+
+    .btn-in {
+        right: 3.1rem;
+    }
+
+    .last h1 {
+        font-size: 4rem;
+        margin-left: 3rem;
+    }
+
+    .last p {
+        margin-left: 15rem;
+    }
+
+    .landing-img-design {
+        width: 25rem;
+        margin-right: 15rem;
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .main-container {
+        padding-top: 1.5rem;
+    }
+
+    .title .title-h1 {
+        font-size: 3.2rem;
+        padding: 0.6rem 0.8rem 0.3rem 0.8rem;
+        line-height: 1.1;
+    }
+
+    .title p {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .title {
+        max-width: 700px;
+        margin-bottom: 1.5rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form {
+        width: 20rem;
+        margin-left: 0;
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    .btn-in {
+        position: static;
+        transform: none;
+        margin-top: 0.5rem;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .btn-out {
+        margin-right: 0;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .lines-img {
+        top: 30rem;
+    }
+
+    .draft-img {
+        margin-top: 2rem;
+    }
+
+    .draft-img img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    /* Dots positioning handled by mobile-first approach above */
+
+    /* Footer section for tablet */
+    .last {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .last h1 {
+        font-size: 3rem;
+        margin-left: 0;
+        margin-bottom: 1rem;
+        padding-left: 0 !important;
+    }
+
+    .last p {
+        margin-left: 0;
+        margin-bottom: 2rem;
+        font-size: 16px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .landing-img-design {
+        width: 20rem;
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .sign-up-btn {
+        min-width: 250px;
+        font-size: 18px;
+        padding: 10px 50px;
+    }
+}
+
+/* Mobile (320px - 767px) */
+@media screen and (max-width: 767px) {
+    .main-container {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .title .title-h1 {
+        font-size: clamp(2.2rem, 8vw, 2.8rem);
+        padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+        line-height: 1.2;
+        letter-spacing: 0.01rem;
+    }
+
+    .title p {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+        padding: 0.3rem 0.5rem;
+        line-height: 1.4;
+    }
+
+    .title {
+        max-width: 100%;
+        margin-bottom: 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .form {
+        width: 100%;
+        max-width: 300px;
+        margin-left: 0;
+        padding: 12px 15px;
+        font-size: 0.9rem;
+        margin: 0 auto;
+    }
+
+    .btn-in {
+        position: static;
+        transform: none;
+        margin-top: 0.8rem;
+        width: 100%;
+        max-width: 150px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .btn-out {
+        margin-right: 0;
+        width: 100%;
+        max-width: 150px;
+        margin: 0 auto;
+    }
+
+    .lines-img {
+        top: 35rem;
+        left: 0;
+        right: 0;
+        padding: 0 1rem;
+    }
+
+    .lines-img img {
+        max-width: 90%;
+    }
+
+    .draft-img {
+        margin-top: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .draft-img img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Dots positioning handled by mobile-first approach above */
+
+    /* Footer section for mobile */
+    .last {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        margin-top: 2rem;
+    }
+
+    .last h1 {
+        font-size: clamp(2rem, 7vw, 2.5rem);
+        margin-left: 0;
+        margin-bottom: 1rem;
+        padding: 0.5rem !important;
+        padding-left: 0 !important;
+        line-height: 1.2;
+    }
+
+    .last p {
+        margin-left: 0;
+        margin-bottom: 1.5rem;
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
+        max-width: 100%;
+        padding: 0 0.5rem;
+        line-height: 1.5;
+    }
+
+    .landing-img-design {
+        width: 100%;
+        max-width: 280px;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+        border-radius: 2rem;
+    }
+
+    .sign-up-btn {
+        min-width: 200px;
+        font-size: 16px;
+        padding: 10px 30px;
+        margin: 1rem auto;
+        display: block;
+    }
+}
+
+/* Extra small mobile (320px - 480px) */
+@media screen and (max-width: 480px) {
+    .title .title-h1 {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+    }
+
+    .title p {
+        font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+    }
+
+    .form {
+        max-width: 280px;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .btn-in {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        max-width: 120px;
+    }
+
+    .last h1 {
+        font-size: clamp(1.6rem, 6vw, 2rem);
+    }
+
+    .last p {
+        font-size: clamp(0.8rem, 3vw, 0.9rem);
+    }
+
+    .landing-img-design {
+        max-width: 250px;
+        border-radius: 1.5rem;
+    }
+
+    .sign-up-btn {
+        min-width: 180px;
+        font-size: 14px;
+        padding: 8px 25px;
+    }
+}
+
+/* Scroll Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Initial state for animated elements */
+.scroll-animate {
+    will-change: transform, opacity;
+    visibility: hidden;
+}
+
+/* Remove the automatic animation classes since we're handling them in JS */
+.scroll-animate.fade-in-up,
+.scroll-animate.fade-in-right,
+.scroll-animate.fade-in-left {
+    animation: none;
+}
+
+/* Apply animations to specific sections */
+.title {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif !important;
+}
+
+.title.scroll-animate {
+    animation-delay: 0.2s;
+}
+
+.sign-up-btn.scroll-animate {
+    animation-delay: 0.4s;
+}
+
+.last {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Georgia', serif !important;
+}
+
+.last-content.scroll-animate {
+    animation-delay: 0.2s;
+}
+
+.landing-img-design.scroll-animate {
+    animation-delay: 0.4s;
+}
