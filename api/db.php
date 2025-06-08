@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Use environment variables instead of hard-coded values
 define('DB_HOST', '');
 define('DB_USER', '');
 define('DB_PASS', '');
