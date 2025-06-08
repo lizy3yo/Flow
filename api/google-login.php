@@ -27,7 +27,7 @@ try {
         'client_secret' => $client_secret,
         'code' => $data['token'],
         'grant_type' => 'authorization_code',
-        'redirect_uri' => 'http://localhost:8080'
+        'redirect_uri' => 'https://flow-chi-dun.vercel.app/login'
     ];
 
     $ch = curl_init($token_url);
