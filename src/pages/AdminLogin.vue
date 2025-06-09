@@ -94,12 +94,8 @@ export default {
             this.message = '';
             
             try {
-                // Use direct URL for production
-                const apiUrl = process.env.NODE_ENV === 'production' 
-                    ? 'https://flow-i3g6.vercel.app//admin-login.php'
-                    : 'https://flow-i3g6.vercel.app/admin-login.php';
-                    
-                const response = await axios.post(apiUrl, {
+                // Use the same backend URL as other components
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/admin-login.php', {
                     email: this.email,
                     password: this.password
                 }, {
@@ -109,24 +105,22 @@ export default {
                     withCredentials: true
                 });
                 
-                console.log('Login response:', response.data); // Debug log
+                console.log('Login response:', response.data);
                 
                 const { data } = response;
                 this.success = data.success;
                 this.message = data.message;
                 
                 if (data.success) {
-                    // Clear any old data first
                     localStorage.clear();
                     
-                    // Store new admin data
                     localStorage.setItem('userType', 'admin');
                     localStorage.setItem('adminId', data.admin.id);
                     localStorage.setItem('adminSessionToken', data.session_token);
                     localStorage.setItem('adminData', JSON.stringify(data.admin));
                     localStorage.setItem('admin', 'true');
                     
-                    console.log('Login successful, redirecting...'); // Debug log
+                    console.log('Login successful, redirecting...');
                     
                     await this.$router.push('/admin/dashboard');
                 }
