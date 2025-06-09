@@ -447,8 +447,19 @@ export default {
           return;
         }
 
+        // Get session token for authentication
+        const sessionToken = localStorage.getItem('adminSessionToken');
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        
+        if (sessionToken) {
+          headers['Authorization'] = `Bearer ${sessionToken}`;
+        }
+
         const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
-            withCredentials: true
+          withCredentials: true,
+          headers: headers
         });
 
         if (response.data) {
