@@ -1,18 +1,18 @@
 <?php
-// Set CORS headers BEFORE including db.php to avoid any output issues
-header('Access-Control-Allow-Origin: https://flow-chi-dun.vercel.app');
-header('Access-Control-Allow-Credentials: true');
+include 'db.php';
+
+// Update CORS headers to match your frontend domain
+header('Access-Control-Allow-Origin: https://flow-i3g6.vercel.app');
+header('Access-Control-Allow-Credentials: true'); 
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json');
 
-// Handle preflight OPTIONS request
+// Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
-
-include 'db.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -68,4 +68,3 @@ try {
 
 $stmt->close();
 $conn->close();
-?>

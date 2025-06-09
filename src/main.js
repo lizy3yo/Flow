@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from './router'
 import './utils/axios' // Add this line
 import GlobalChatbot from './chat/chat.vue'
+import axios from 'axios'
 
 const app = createApp(App)
 
@@ -18,5 +19,8 @@ app.use(vue3GoogleLogin, {
 });
 
 app.component('GlobalChatbot', GlobalChatbot)
+
+axios.defaults.baseURL = 'https://flow-backend-yxdw.onrender.com';
+axios.defaults.withCredentials = true;
 
 app.mount('#app')
