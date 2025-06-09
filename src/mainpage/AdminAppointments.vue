@@ -977,7 +977,8 @@ export default {
         // Format the data
         const serviceData = {
           ...this.editingService,
-          max_queues: parseInt(this.editingService.max_queues, 10)
+          max_queues: parseInt(this.editingService.max_queues, 10),
+          admin_id: localStorage.getItem('adminId') // Add this line
         };
 
         const response = await axios.put(
