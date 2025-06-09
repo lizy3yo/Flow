@@ -12,7 +12,8 @@
             <h2 v-if="loginMethod !== 'setup-password'"><img src="@/images/logo2.0.png" alt="Flow Logo" style="width: 2rem; height: 2rem;"> Flow</h2>
             <h3 v-if="loginMethod !== 'setup-password'">User Login</h3>
 
-            <!-- Login option buttons - only visible when no method is selected -->            <div v-if="loginMethod === null" class="login-options">
+            <!-- Login option buttons - only visible when no method is selected -->            
+            <div v-if="loginMethod === null" class="login-options">
                 <button
                     class="login-option-btn"
                     @click="loginMethod = 'email'"
@@ -79,7 +80,9 @@
                     <button type="button" class="back-button" @click="resetLoginMethod">🡐 Back</button>
                     <button type="submit" class="user-submit-btn">Login</button>
                 </div>
-            </form>            <!-- Set up password option - only visible when user needs to set up a password -->
+            </form>            
+            
+            <!-- Set up password option - only visible when user needs to set up a password -->
             <div v-else-if="loginMethod === 'setup-password'" class="setup-password-container">
                 <!-- 1. Company branding - Flow logo at the very top -->
                 <div class="setup-password-branding">
@@ -104,7 +107,8 @@
                 <!-- 5. Form fields - password inputs with labels -->
                 <form @submit.prevent="handlePasswordSetup" class="setup-password-form">
                     <div class="user-form-group-content">
-                        <label for="newPassword">New Password</label>                        <div class="password-input-container">
+                        <label for="newPassword">New Password</label>                        
+                        <div class="password-input-container">
                             <input
                                 :type="showPassword ? 'text' : 'password'"
                                 id="newPassword"
@@ -138,7 +142,9 @@
                                 required
                             >
                         </div>
-                    </div>                    <!-- 6. Action buttons - Set Password and Back buttons -->
+                    </div>                    
+                    
+                    <!-- 6. Action buttons - Set Password and Back buttons -->
                     <div class="setup-password-buttons">
                         <button type="button" class="setup-back-button" @click="resetLoginMethod">🡐 Back</button>
                         <button type="submit" class="user-submit-btn">Set Password</button>
@@ -177,9 +183,7 @@ export default {
             newPassword: '',
             confirmPassword: '',
             passwordError: '',
-            tempUserId: null,
-            userEmail: '',
-            tempLoginData: null
+            tempUserId: null
         }
     },
     computed: {
@@ -231,8 +235,6 @@ export default {
         },
         async handleSubmit() {
             try {
-                this.userEmail = this.email;
-
                 const response = await axios.post('https://flow-backend-yxdw.onrender.com/login.php', {
                     email: this.email,
                     password: this.password
@@ -246,7 +248,7 @@ export default {
                 const { data } = response;
 
                 if (data.success) {
-                    // Complete login directly without OTP
+                    // Complete login process directly
                     localStorage.clear();
                     localStorage.setItem('userType', 'user');
                     localStorage.setItem('userId', data.user_id);
@@ -331,42 +333,48 @@ export default {
 
                 if (response.data.success) {
                     this.success = true;
-                    this.message = 'Password set up successfully!';
-                    this.loginMethod = null; // Reset login method
-                    this.newPassword = '';
-                    this.confirmPassword = '';
+                    this.message = 'Password setup successful';
 
-                    // Optionally, log the user in automatically after password setup
-                    await this.handleSubmit();
+                    // Complete login process
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('token', response.data.session_token);
+
+                    setTimeout(() => {
+                        this.$router.push('/user/dashboard');
+                    }, 1000);
                 } else {
-                    this.success = false;
-                    this.message = response.data.message || 'Failed to set up password';
+                    throw new Error(response.data.message);
                 }
             } catch (error) {
                 this.success = false;
-                this.message = error.response?.data?.message || 'Error setting up password';
-                console.error('Password setup error:', error);
+                this.message = error.message || 'Failed to set up password. Please try again.';
             }
-        },
-
+        },        
+        
         resetLoginMethod() {
             this.loginMethod = null;
             this.email = '';
             this.password = '';
-            this.newPassword = '';
-            this.confirmPassword = '';
             this.message = '';
             this.success = false;
+            this.showPassword = false;
+            this.passwordError = '';
+            this.newPassword = '';
+            this.confirmPassword = '';
+        },
+
+        goBackToSelector() {
+            this.$router.push('/login');
         },
 
         checkPasswordValidity() {
             this.validatePassword(this.newPassword);
         }
     }
-}
+};
 </script>
 
-<style scoped>
+<style>
 @import '@/styles/authentication/userlogin.css';
 
 /* Password setup container styles moved to userlogin.css for better organization and consistency */
@@ -382,87 +390,4 @@ export default {
 .error-input {
     border-color: #dc3545 !important;
 }
-
-/* OTP Modal Styles */
-.otp-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.otp-modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-}
-
-.otp-input-container {
-    margin: 1.5rem 0;
-}
-
-.otp-input {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1.25rem;
-    text-align: center;
-    letter-spacing: 0.25rem;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-}
-
-.otp-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.verify-btn, .resend-btn {
-    flex: 1;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.verify-btn {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.resend-btn {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.resend-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-.close-modal {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.otp-message {
-    color: #666;
-    margin-top: 0.5rem;
-    text-align: center;
-}
-
 </style>
