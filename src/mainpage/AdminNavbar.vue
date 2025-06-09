@@ -190,7 +190,7 @@ export default {
             headers['Authorization'] = `Bearer ${sessionToken}`;
         }
 
-        const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
             withCredentials: true,
             headers: headers
         });

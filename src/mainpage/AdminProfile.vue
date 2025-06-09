@@ -430,7 +430,7 @@ export default {
 
         try {
             const response = await axios.post(
-                '/flow-application-cc/api/adminprofile.php',
+                'https://flow-backend-yxdw.onrender.com/adminprofile.php',
                 formData,
                 {
                     headers: {

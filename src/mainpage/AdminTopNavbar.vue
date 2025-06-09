@@ -319,7 +319,7 @@ export default {
     async confirmSignOut() {
       this.isLoggingOut = true;
       try {
-        const response = await axios.post('/api/flow-application-cc/api/logout.php', {}, {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/logout.php', {}, {
           withCredentials: true
         });
 
@@ -486,7 +486,7 @@ export default {
         const notification = this.notifications[index];
         
         try {
-          await axios.put('/flow-application-cc/api/AdminNotifications.php', {
+          await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
             notification_id: notification.id
           }, {
             withCredentials: true
@@ -503,7 +503,7 @@ export default {
     // Update markAllAsRead method
     async markAllAsRead() {
       try {
-        await axios.put('/flow-application-cc/api/AdminNotifications.php', {
+        await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
           markAllAsRead: true
         }, {
           withCredentials: true
