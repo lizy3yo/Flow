@@ -78,7 +78,8 @@ export default {
       totalPages: 1,
       totalNotifications: 0,
       loading: false,
-      isChangingPage: false
+      isChangingPage: false,
+      unreadCount: 0  // Add this missing property
     };
   },
   computed: {
@@ -154,6 +155,10 @@ export default {
             n.read_at = new Date().toISOString();
           }
         });
+        
+        // Reset unread count to 0
+        this.unreadCount = 0;
+        
       } catch (error) {
         console.error('Error marking all notifications as read:', error);
       }
