@@ -564,29 +564,29 @@ export default {
 
 .verify-btn {
     background-color: #4CAF50;
-}   color: white;
+    color: white;
 }
+
+.resend-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
 .resend-btn:disabled {
     opacity: 0.7;
-    cursor: not-allowed;0f0f0;
-}   color: #333;
+    cursor: not-allowed;
 }
+
 .close-modal {
     position: absolute;
-    top: 0.5rem;;
-    right: 1rem;allowed;
+    top: 0.5rem;
+    right: 1rem;
     font-size: 1.5rem;
     border: none;
     background: none;
-    cursor: pointer;te;
-}   top: 0.5rem;
-    right: 1rem;
-.otp-message { 1.5rem;
-    color: #666;;
-    margin-top: 0.5rem;
-    text-align: center;
+    cursor: pointer;
 }
-</style>
+
 .otp-message {
     color: #666;
     margin-top: 0.5rem;
