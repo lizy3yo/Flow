@@ -268,7 +268,7 @@ export default {
             try {
                 this.userEmail = this.email;
 
-                const response = await axios.post('https://flow-backend-yxdw.onrender.com/login.php', {
+                const response = await axios.post('/flow-application-cc/api/login.php', {
                     email: this.email,
                     password: this.password
                 }, {
@@ -284,7 +284,7 @@ export default {
                     this.tempLoginData = data;
 
                     // Send OTP or complete login based on verification status
-                    const otpResponse = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
+                    const otpResponse = await axios.post('/flow-application-cc/api/send-otp.php', {
                         email: this.userEmail
                     });
 
@@ -319,7 +319,7 @@ export default {
 
         async sendOtp() {
             try {
-                const response = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
+                const response = await axios.post('/flow-application-cc/api/send-otp.php', {
                     email: this.userEmail
                 });
                 console.log('OTP send response:', response.data);
@@ -335,15 +335,9 @@ export default {
 
         async verifyOtp() {
             try {
-                // Validate OTP format before sending
-                if (!this.otpCode || this.otpCode.length !== 6 || !/^\d{6}$/.test(this.otpCode)) {
-                    this.otpMessage = 'Please enter a valid 6-digit OTP';
-                    return;
-                }
-
-                const response = await axios.post('https://flow-backend-yxdw.onrender.com/verify-otp.php', {
+                const response = await axios.post('/flow-application-cc/api/verify-otp.php', {
                     email: this.userEmail,
-                    otp: this.otpCode.trim()
+                    otp: this.otpCode
                 });
 
                 if (response.data.success) {
@@ -356,11 +350,11 @@ export default {
 
                     await this.$router.push('/user/dashboard');
                 } else {
-                    this.otpMessage = response.data.message || 'Invalid verification code';
+                    this.otpMessage = 'Invalid verification code';
                 }
             } catch (error) {
                 console.error('OTP verification failed:', error);
-                this.otpMessage = error.response?.data?.message || 'Verification failed. Please try again.';
+                this.otpMessage = 'Verification failed. Please try again.';
             }
         },
 
@@ -393,7 +387,7 @@ export default {
             try {
                 const googleUser = await googleAuthCodeLogin();
 
-                const response = await axios.post('https://flow-backend-yxdw.onrender.com/google-login.php', {
+                const response = await axios.post('/flow-application-cc/api/google-login.php', {
                     token: googleUser.code
                 }, {
                     headers: {
@@ -443,7 +437,7 @@ export default {
             }
 
             try {
-                const response = await axios.post('https://flow-backend-yxdw.onrender.com/setup-password.php', {
+                const response = await axios.post('/flow-application-cc/api/setup-password.php', {
                     user_id: this.tempUserId,
                     password: this.newPassword
                 }, {
