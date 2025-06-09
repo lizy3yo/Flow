@@ -450,8 +450,8 @@ export default {
     },
     async fetchProfile() {
         try {
-            const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
-                withCredentials: true  // Important for sending cookies
+            const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+                withCredentials: true
             });
 
             if (response.data) {
@@ -466,42 +466,15 @@ export default {
             }
         } catch (error) {
             if (error.response?.status === 401) {
-                // Redirect to login if unauthorized
-                this.$router.push('/admin/login');            } else {
+                this.$router.push('/admin/login');
+            } else {
                 console.error('Error fetching profile:', error);
                 this.error = 'Failed to load profile data';
                 setTimeout(() => { this.error = null; }, 3000);
             }
         }
-    },    async saveChanges() {
-        if (!this.isDescriptionValid) {
-            this.error = 'Description must be at least 30 words';
-            setTimeout(() => { this.error = null; }, 3000);
-            return;
-        }
-
-        try {
-            const response = await axios.put('/flow-application-cc/api/adminprofile.php',
-                this.adminData,
-                { withCredentials: true }
-            );
-
-            if (response.data.success) {
-                this.success = 'Profile updated successfully';
-                setTimeout(() => { this.success = null; }, 3000);
-            } else {
-                throw new Error(response.data.error || 'Failed to update profile');
-            }
-        } catch (error) {
-            if (error.response?.status === 401) {
-                this.$router.push('/admin/login');
-            } else {
-                console.error('Error saving profile:', error);
-                this.error = 'Failed to save profile changes';
-                setTimeout(() => { this.error = null; }, 3000);
-            }
-        }
     },
+
     async saveAccountSettings() {
       // Validate name only
       const nameValidation = this.validateName(this.adminData.name);
@@ -530,7 +503,7 @@ export default {
       }
 
       try {
-        const response = await axios.put('/flow-application-cc/api/adminprofile.php',
+        const response = await axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php',
           accountData,
           { withCredentials: true }
         );
@@ -547,6 +520,7 @@ export default {
         setTimeout(() => { this.error = ''; }, 3000);
       }
     },
+
     async saveCompanySettings() {
       // Validate all company fields
       const locationValidation = this.validateLocation(this.adminData.location);
@@ -585,7 +559,7 @@ export default {
       };
 
       try {
-        const response = await axios.put('/flow-application-cc/api/adminprofile.php',
+        const response = await axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php',
           companyData,
           { withCredentials: true }
         );
@@ -698,7 +672,7 @@ export default {
 
         try {
             const response = await axios.post(
-                '/flow-application-cc/api/adminprofile.php',
+                'https://flow-backend-yxdw.onrender.com/adminprofile.php',
                 formData,
                 {
                     headers: {
@@ -706,7 +680,9 @@ export default {
                     },
                     withCredentials: true
                 }
-            );            if (response.data.success) {
+            );
+
+            if (response.data.success) {
                 this.adminData.avatar = response.data.avatar;
                 this.previewImage = null;
                 this.selectedFile = null;
@@ -724,13 +700,16 @@ export default {
             }
         }
     },
+
     async deleteAvatar() {
         if (confirm('Are you sure you want to delete your profile picture?')) {
             try {
-                const response = await axios.delete('/flow-application-cc/api/adminprofile.php', {
+                const response = await axios.delete('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
                     data: { action: 'delete_avatar' },
                     withCredentials: true
-                });                if (response.data.success) {
+                });
+
+                if (response.data.success) {
                     this.adminData.avatar = null;
                     this.closeAvatarModal();
                     this.success = 'Profile photo deleted successfully';
@@ -739,13 +718,16 @@ export default {
             } catch (error) {
                 if (error.response?.status === 401) {
                     this.$router.push('/admin/login');
-                } else {                    console.error('Error deleting avatar:', error);
+                } else {
+                    console.error('Error deleting avatar:', error);
                     this.error = 'Failed to delete profile photo';
                     setTimeout(() => { this.error = null; }, 3000);
                 }
             }
         }
-    },    toggleSidebar(collapsed) {
+    },
+
+    toggleSidebar(collapsed) {
       const newState = collapsed !== undefined ? collapsed : !this.isSidebarCollapsed;
       this.isSidebarCollapsed = newState;
 

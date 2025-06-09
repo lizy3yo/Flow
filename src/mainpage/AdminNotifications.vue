@@ -86,30 +86,35 @@ export default {
       return this.notifications.some(n => !n.read_at);
     }
   },
-  methods: {    async fetchNotifications() {
+  methods: {
+    async fetchNotifications() {
       try {
         // Only show loading spinner if it's not a page change
         if (!this.isChangingPage) {
           this.loading = true;
-        }        const response = await axios.get(`/flow-application-cc/api/AdminNotifications.php`, {
+        }
+
+        const response = await axios.get(`https://flow-backend-yxdw.onrender.com/AdminNotifications.php`, {
           params: {
             page: this.currentPage,
             limit: 5
           },
-          withCredentials: true // Add this to send cookies
+          withCredentials: true
         });
         
         if (response.data.error) {
             console.error('Server error:', response.data.error);
             return;
-        }        this.notifications = response.data.notifications;
+        }
+
+        this.notifications = response.data.notifications;
         this.totalPages = response.data.totalPages;
         this.totalNotifications = response.data.totalCount || 0;
         this.unreadCount = response.data.unread;
       } catch (error) {
         console.error('Error fetching notifications:', error);
         if (error.response?.status === 401) {
-            this.$router.push('/login');
+            this.$router.push('/admin/login');
         }
       } finally {
         this.loading = false;
@@ -119,7 +124,7 @@ export default {
 
     async markAsRead(notificationId) {
       try {
-        await axios.put('/flow-application-cc/api/AdminNotifications.php', {
+        await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
           notification_id: notificationId
         }, {
           withCredentials: true
@@ -137,7 +142,7 @@ export default {
 
     async markAllAsRead() {
       try {
-        await axios.put('/flow-application-cc/api/AdminNotifications.php', {
+        await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
           markAllAsRead: true
         }, {
           withCredentials: true
