@@ -15,14 +15,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
-// Check admin authentication using session token from cookies
+// Check admin authentication using multiple methods
 $admin_id = null;
 
-// Check if session exists
+// Method 1: Check session
 if (isset($_SESSION['admin_id'])) {
     $admin_id = $_SESSION['admin_id'];
 } else {
-    // No session, return 401
+    // Method 2: Check Authorization header for token
+    $headers = getallheaders();
+    if (isset($headers['Authorization'])) {
+        $token = str_replace('Bearer ', '', $headers['Authorization']);
+        
+        // Verify token against database
+        $stmt = $pdo->prepare("SELECT id FROM admins WHERE session_token = ?");
+        $stmt->execute([$token]);
+        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($admin) {
+            $admin_id = $admin['id'];
+            // Set session for future requests
+            $_SESSION['admin_id'] = $admin_id;
+        }
+    }
+}
+
+if (!$admin_id) {
     http_response_code(401);
     echo json_encode(['error' => 'Unauthorized access - please login']);
     exit();
