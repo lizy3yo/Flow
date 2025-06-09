@@ -1,14 +1,14 @@
 <?php
-
 include 'db.php';
 
-header('Access-Control-Allow-Origin: http://localhost:8080');
+header('Access-Control-Allow-Origin: https://flow-i3g6.vercel.app');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
     exit();
 }
 
@@ -21,11 +21,9 @@ if (empty($data['email']) || empty($data['password'])) {
 }
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
-    $stmt->bind_param("s", $data['email']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
+    $stmt->execute([$data['email']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($data['password'], $user['password'])) {
         // Start session
@@ -35,17 +33,9 @@ try {
         // Generate session token
         $session_token = bin2hex(random_bytes(32));
         
-        // Update session token in database with error checking
-        $token_stmt = $conn->prepare("UPDATE users SET session_token = ? WHERE id = ?");
-        if (!$token_stmt) {
-            throw new Exception("Failed to prepare token update statement");
-        }
-        
-        $token_stmt->bind_param("si", $session_token, $user['id']);
-        if (!$token_stmt->execute()) {
-            throw new Exception("Failed to update session token");
-        }
-        $token_stmt->close();
+        // Update session token in database
+        $token_stmt = $pdo->prepare("UPDATE users SET session_token = ? WHERE id = ?");
+        $token_stmt->execute([$session_token, $user['id']]);
         
         // Remove sensitive data
         unset($user['password']);
@@ -71,7 +61,4 @@ try {
         'message' => 'Server error: ' . $e->getMessage()
     ]);
 }
-
-$stmt->close();
-$conn->close();
 ?>

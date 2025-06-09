@@ -1,13 +1,12 @@
 <?php
-
 session_start();
 include "db.php";
 
-header('Access-Control-Allow-Origin: https://flow-backend-yxdw.onrender.com:8080');
-header('Access-Control-Allow-Methods: GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: https://flow-i3g6.vercel.app');
 header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
@@ -20,22 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
         if ($admin_id) {
             // Get specific establishment by admin_id
-            $stmt = $conn->prepare("SELECT e.*, a.name, a.email 
+            $stmt = $pdo->prepare("SELECT e.*, a.name, a.email 
                                   FROM establishments e 
                                   JOIN admins a ON e.admin_id = a.id 
                                   WHERE e.admin_id = ?");
-            $stmt->bind_param('i', $admin_id);
+            $stmt->execute([$admin_id]);
         } else {
             // Get all establishments
-            $stmt = $conn->prepare("SELECT e.*, a.name, a.email 
+            $stmt = $pdo->prepare("SELECT e.*, a.name, a.email 
                                   FROM establishments e 
                                   JOIN admins a ON e.admin_id = a.id");
+            $stmt->execute();
         }
         
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $establishments = $result->fetch_all(MYSQLI_ASSOC);
-        
+        $establishments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($establishments);
     } catch (Exception $e) {
         http_response_code(500);

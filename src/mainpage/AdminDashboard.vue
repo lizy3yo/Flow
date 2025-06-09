@@ -447,7 +447,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('/apihttps://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
             withCredentials: true
         });
 
@@ -468,7 +468,7 @@ export default {
     // New method to fetch admin status
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
           withCredentials: true
         });
         
@@ -802,7 +802,7 @@ export default {
       this.updateDepartmentStatuses();
       
       // Save ONLY the status change to the backend
-      axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+      axios.put('/flow-application-cc/api/adminprofile.php', {
         queue_status: newStatus,
         action: 'update_status_only' // Add this to tell the API to only update status
       }, { withCredentials: true })

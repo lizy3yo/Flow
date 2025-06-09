@@ -543,6 +543,10 @@ export default {
         }
       ];
     },
+    
+    hasFormErrors() {
+      return Object.values(this.errors).some(error => error !== '');
+    }
   },
 
   async mounted() {
@@ -584,7 +588,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('/apihttps://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         });
 
@@ -608,7 +612,7 @@ export default {
     
     async handleSignOut() {
       try {
-        const response = await axios.post('/apihttps://flow-backend-yxdw.onrender.com/logout.php', {}, {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/logout.php', {}, {
           withCredentials: true
         });
         

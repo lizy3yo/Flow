@@ -2,9 +2,10 @@
 
 include "db.php";
 
-header('Access-Control-Allow-Origin: https://flow-backend-yxdw.onrender.com:8080');
+header('Access-Control-Allow-Origin: https://flow-i3g6.vercel.app');
+header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -28,18 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if ($admin_id) {
             $sql .= " WHERE s.admin_id = ? AND s.is_archived = 0";
             $sql .= " GROUP BY s.id";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('i', $admin_id);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$admin_id]);
         } else {
             $sql .= " WHERE s.is_archived = 0";
             $sql .= " GROUP BY s.id";
-            $stmt = $conn->prepare($sql);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
         }
 
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $departments = $result->fetch_all(MYSQLI_ASSOC);
-
+        $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($departments);
 
     } catch (Exception $e) {

@@ -377,7 +377,7 @@ export default {
           return
         }
 
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
           withCredentials: true
         })
 
@@ -401,7 +401,7 @@ export default {
     
     async handleSignOut() {
       try {
-        const response = await axios.post('https://flow-backend-yxdw.onrender.com/logout.php', {}, {
+        const response = await axios.post('/flow-application-cc/api/logout.php', {}, {
           withCredentials: true
         })
         
@@ -418,7 +418,7 @@ export default {
     
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
           withCredentials: true
         })
         
@@ -432,7 +432,7 @@ export default {
     
     handleStatusChange(newStatus) {
       this.adminStatus = newStatus
-      axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+      axios.put('/flow-application-cc/api/adminprofile.php', {
         queue_status: newStatus,
         action: 'update_status_only'
       }, { withCredentials: true })
@@ -446,7 +446,7 @@ export default {
     
     async fetchArchives() {
       try {
-        const response = await axios.get(`https://flow-backend-yxdw.onrender.com/AdminArchive.php?type=${this.archiveType}`, {
+        const response = await axios.get(`/flow-application-cc/api/AdminArchive.php?type=${this.archiveType}`, {
           withCredentials: true
         });
         
@@ -477,7 +477,7 @@ export default {
 
     async executeRestore() {
       try {
-        const response = await axios.post('https://flow-backend-yxdw.onrender.com/AdminArchive.php', {
+        const response = await axios.post('/flow-application-cc/api/AdminArchive.php', {
           action: 'restore',
           type: this.restoreType,
           id: this.itemToRestore
@@ -510,7 +510,7 @@ export default {
 
     async executeDelete() {
       try {
-        const response = await axios.post('https://flow-backend-yxdw.onrender.com/AdminArchive.php', {
+        const response = await axios.post('/flow-application-cc/api/AdminArchive.php', {
           action: 'delete',
           type: this.deleteType,
           id: this.itemToDelete
@@ -547,7 +547,7 @@ export default {
 
     async saveNotificationSettings() {
       try {
-        const response = await axios.post('https://flow-backend-yxdw.onrender.com/AdminSettings.php', {
+        const response = await axios.post('/flow-application-cc/api/AdminSettings.php', {
           action: 'update_notifications',
           settings: this.notificationSettings
         }, {

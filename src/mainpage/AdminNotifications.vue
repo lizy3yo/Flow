@@ -91,7 +91,7 @@ export default {
         // Only show loading spinner if it's not a page change
         if (!this.isChangingPage) {
           this.loading = true;
-        }        const response = await axios.get(`https://flow-backend-yxdw.onrender.com/AdminNotifications.php`, {
+        }        const response = await axios.get(`/flow-application-cc/api/AdminNotifications.php`, {
           params: {
             page: this.currentPage,
             limit: 5
@@ -119,7 +119,7 @@ export default {
 
     async markAsRead(notificationId) {
       try {
-        await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
+        await axios.put('/flow-application-cc/api/AdminNotifications.php', {
           notification_id: notificationId
         }, {
           withCredentials: true
@@ -137,7 +137,7 @@ export default {
 
     async markAllAsRead() {
       try {
-        await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
+        await axios.put('/flow-application-cc/api/AdminNotifications.php', {
           markAllAsRead: true
         }, {
           withCredentials: true

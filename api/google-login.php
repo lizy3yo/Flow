@@ -2,13 +2,14 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 include 'db.php';
 
-header('Access-Control-Allow-Origin: https://flow-backend-yxdw.onrender.com:8080');
+header('Access-Control-Allow-Origin: https://flow-i3g6.vercel.app');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
     exit();
 }
 
@@ -60,22 +61,19 @@ try {
         }
 
         // Check if user exists
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
-        $stmt->bind_param("s", $user_info['email']);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
+        $stmt->execute([$user_info['email']]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
             // Create new user without password
-            $stmt = $conn->prepare("INSERT INTO users (email, first_name, last_name, password) VALUES (?, ?, ?, '')");
-            $stmt->bind_param("sss", 
+            $stmt = $pdo->prepare("INSERT INTO users (email, first_name, last_name, password) VALUES (?, ?, ?, '')");
+            $stmt->execute([
                 $user_info['email'], 
-                $user_info['given_name'], // Change from name to given_name
-                $user_info['family_name']  // Change from id to family_name
-            );
-            $stmt->execute();
-            $user_id = $conn->insert_id;
+                $user_info['given_name'], 
+                $user_info['family_name']
+            ]);
+            $user_id = $pdo->lastInsertId();
             $needs_password = true;
         } else {
             $user_id = $user['id'];
@@ -90,9 +88,8 @@ try {
         $session_token = bin2hex(random_bytes(32));
         
         // Store session token in database
-        $token_stmt = $conn->prepare("UPDATE users SET session_token = ? WHERE id = ?");
-        $token_stmt->bind_param("si", $session_token, $user_id);
-        $token_stmt->execute();
+        $token_stmt = $pdo->prepare("UPDATE users SET session_token = ? WHERE id = ?");
+        $token_stmt->execute([$session_token, $user_id]);
 
         // Return user data along with token
         echo json_encode([
@@ -119,6 +116,4 @@ try {
         'message' => 'Authentication failed: ' . $e->getMessage()
     ]);
 }
-
-$conn->close();
 ?>

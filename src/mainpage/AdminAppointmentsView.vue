@@ -130,7 +130,7 @@
                 <div class="queue-user">
                   <div v-if="queue.avatar" class="queue-user-avatar-container">
                     <img
-                      :src="'https://flow-backend-yxdw.onrender.com' + queue.avatar"
+                      :src="'http://localhost' + queue.avatar"
                       :alt="queue.name"
                       class="queue-user-avatar"
                       @error="$event.target.style.display='none'"
@@ -202,7 +202,7 @@
                 <div class="queue-user">
                   <div v-if="queue.avatar" class="queue-user-avatar-container">
                     <img
-                      :src="'https://flow-backend-yxdw.onrender.com' + queue.avatar"
+                      :src="'http://localhost' + queue.avatar"
                       :alt="queue.name"
                       class="queue-user-avatar"
                       @error="$event.target.style.display='none'"
@@ -253,7 +253,7 @@
                 <div class="queue-user">
                   <div v-if="queue.avatar" class="queue-user-avatar-container">
                     <img
-                      :src="'https://flow-backend-yxdw.onrender.com' + queue.avatar"
+                      :src="'http://localhost' + queue.avatar"
                       :alt="queue.name"
                       class="queue-user-avatar"
                       @error="$event.target.style.display='none'"
@@ -439,7 +439,7 @@ export default {
   methods: {
     async fetchQueues() {
       try {
-        const response = await fetch(`https://flow-backend-yxdw.onrender.com/adminqueuemanagement.php?service_id=${this.serviceId}`)
+        const response = await fetch(`/flow-application-cc/api/adminqueuemanagement.php?service_id=${this.serviceId}`)
         const data = await response.json()
 
         if (data.error) {
@@ -456,7 +456,7 @@ export default {
     },
     async updateQueueStatus(id, status) {
       try {
-        const response = await fetch('https://flow-backend-yxdw.onrender.com/adminqueuemanagement.php', {
+        const response = await fetch('/flow-application-cc/api/adminqueuemanagement.php', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -479,7 +479,7 @@ export default {
     },
     async archiveQueue(id) {
       try {
-        const response = await fetch(`https://flow-backend-yxdw.onrender.com/adminqueuemanagement.php?id=${id}`, {
+        const response = await fetch(`/flow-application-cc/api/adminqueuemanagement.php?id=${id}`, {
           method: 'DELETE'
         })
 
@@ -565,7 +565,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
           withCredentials: true
         });
 
@@ -589,7 +589,7 @@ export default {
 
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
           withCredentials: true
         });
         
@@ -605,7 +605,7 @@ export default {
       this.adminStatus = newStatus;
       
       // Save status change to backend
-      axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+      axios.put('/flow-application-cc/api/adminprofile.php', {
         queue_status: newStatus,
         action: 'update_status_only'
       }, { withCredentials: true })
@@ -619,7 +619,7 @@ export default {
 
     async handleSignOut() {
       try {
-        const response = await axios.post('/apihttps://flow-backend-yxdw.onrender.com/logout.php', {}, {
+        const response = await axios.post('/api/flow-application-cc/api/logout.php', {}, {
           withCredentials: true
         });
 
