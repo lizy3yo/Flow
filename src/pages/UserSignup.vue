@@ -113,6 +113,7 @@
                
             </form>
 
+            <!-- Terms Modal -->
             <div v-if="isTermsModalVisible" class="signup-modal-overlay">
                 <div class="signup-modal-content">
                     <div class="signup-modal-header">
@@ -167,6 +168,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Error Alert Modal -->
+            <div v-if="isErrorAlertVisible" class="signup-modal-overlay">
+                <div class="error-alert-content">
+                    <div class="error-alert-header">
+                        <div class="error-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="2" fill="none"/>
+                                <line x1="15" y1="9" x2="9" y2="15" stroke="#ef4444" stroke-width="2"/>
+                                <line x1="9" y1="9" x2="15" y2="15" stroke="#ef4444" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>Signup Error</h3>
+                        <button class="error-alert-close-button" @click="hideErrorAlert" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="error-alert-body">
+                        <p>{{ errorMessage }}</p>
+                    </div>
+                    <div class="error-alert-actions">
+                        <button class="error-alert-ok-button" @click="hideErrorAlert">OK</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -194,7 +220,9 @@ export default {
                 confirmPassword: '',
                 termsAccepted: ''
             },
-            isTermsModalVisible: false
+            isTermsModalVisible: false,
+            isErrorAlertVisible: false,
+            errorMessage: ''
         };
     },
     computed: {
@@ -300,6 +328,16 @@ export default {
             this.formData.termsAccepted = true;
             document.body.style.overflow = 'auto'; // Restore scrolling when modal is closed
         },
+        showErrorAlert(message) {
+            this.errorMessage = message;
+            this.isErrorAlertVisible = true;
+            document.body.style.overflow = 'hidden';
+        },
+        hideErrorAlert() {
+            this.isErrorAlertVisible = false;
+            this.errorMessage = '';
+            document.body.style.overflow = 'auto';
+        },
         async handleSubmit() {
             Object.keys(this.errors).forEach(key => {
                 this.errors[key] = '';
@@ -341,11 +379,11 @@ export default {
                 if (response.data.success) {
                     this.$router.push('/login');
                 } else {
-                    alert(response.data.message || 'Signup failed!');
+                    this.showErrorAlert(response.data.message || 'Signup failed!');
                 }
             } catch (error) {
                 console.error('Signup error:', error);
-                alert(error.response?.data?.message || 'An error occurred during signup');
+                this.showErrorAlert(error.response?.data?.message || 'An error occurred during signup');
             }
         }
     }
