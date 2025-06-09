@@ -281,21 +281,14 @@ export default {
                 const { data } = response;
 
                 if (data.success) {
-                    this.tempLoginData = data;
+                    // Complete login directly without OTP
+                    localStorage.clear();
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('userId', data.user_id);
+                    localStorage.setItem('userSessionToken', data.session_token);
+                    localStorage.setItem('userData', JSON.stringify(data.user));
 
-                    // Send OTP or complete login based on verification status
-                    const otpResponse = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
-                        email: this.userEmail
-                    });
-
-                    if (otpResponse.data.skipOtp) {
-                        // Already verified today, complete login directly
-                        await this.completeLogin();
-                    } else {
-                        // Show OTP modal and start timer
-                        this.showOtpModal = true;
-                        this.startResendTimer();
-                    }
+                    await this.$router.push('/user/dashboard');
                 } else {
                     this.success = false;
                     this.message = data.message;
