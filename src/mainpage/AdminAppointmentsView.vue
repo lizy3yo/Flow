@@ -439,35 +439,33 @@ export default {
   methods: {
     async fetchQueues() {
       try {
-        const response = await fetch(`/flow-application-cc/api/adminqueuemanagement.php?service_id=${this.serviceId}`)
-        const data = await response.json()
+        const response = await axios.get(`https://flow-backend-yxdw.onrender.com/adminqueuemanagement.php?service_id=${this.serviceId}`, {
+          withCredentials: true
+        })
+        const data = response.data
 
         if (data.error) {
           console.error(data.error)
           return
         }
 
-        this.queueList = data.regular
-        this.priorityQueueList = data.priority
-        this.scheduledQueueList = data.scheduled
+        this.queueList = data.regular || []
+        this.priorityQueueList = data.priority || []
+        this.scheduledQueueList = data.scheduled || []
       } catch (error) {
         console.error('Failed to fetch queues:', error)
       }
     },
     async updateQueueStatus(id, status) {
       try {
-        const response = await fetch('/flow-application-cc/api/adminqueuemanagement.php', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            queue_id: id,
-            status: status
-          })
+        const response = await axios.put('https://flow-backend-yxdw.onrender.com/adminqueuemanagement.php', {
+          queue_id: id,
+          status: status
+        }, {
+          withCredentials: true
         })
 
-        const data = await response.json()
+        const data = response.data
         if (data.success) {
           await this.fetchQueues() // Refresh the queues
         } else {
@@ -479,11 +477,11 @@ export default {
     },
     async archiveQueue(id) {
       try {
-        const response = await fetch(`/flow-application-cc/api/adminqueuemanagement.php?id=${id}`, {
-          method: 'DELETE'
+        const response = await axios.delete(`https://flow-backend-yxdw.onrender.com/adminqueuemanagement.php?id=${id}`, {
+          withCredentials: true
         })
 
-        const data = await response.json()
+        const data = response.data
         if (data.success) {
           await this.fetchQueues() // Refresh the queues
         } else {
@@ -565,7 +563,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         });
 
@@ -589,7 +587,7 @@ export default {
 
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         });
         
@@ -605,7 +603,7 @@ export default {
       this.adminStatus = newStatus;
       
       // Save status change to backend
-      axios.put('/flow-application-cc/api/adminprofile.php', {
+      axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
         queue_status: newStatus,
         action: 'update_status_only'
       }, { withCredentials: true })
@@ -619,7 +617,7 @@ export default {
 
     async handleSignOut() {
       try {
-        const response = await axios.post('/api/flow-application-cc/api/logout.php', {}, {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/logout.php', {}, {
           withCredentials: true
         });
 
