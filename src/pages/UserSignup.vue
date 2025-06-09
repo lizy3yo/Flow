@@ -314,12 +314,15 @@ export default {
         showErrorAlert(message) {
             this.errorMessage = message;
             this.isErrorAlertVisible = true;
-            document.body.style.overflow = 'hidden';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                this.hideErrorAlert();
+            }, 5000);
         },
         hideErrorAlert() {
             this.isErrorAlertVisible = false;
             this.errorMessage = '';
-            document.body.style.overflow = 'auto';
         },
         async handleSubmit() {
             Object.keys(this.errors).forEach(key => {
