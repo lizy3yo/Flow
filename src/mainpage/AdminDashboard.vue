@@ -447,7 +447,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
             withCredentials: true
         });
 
@@ -462,13 +462,17 @@ export default {
         }
       } catch (error) {
         console.error('Error fetching profile:', error);
+        if (error.response?.status === 401) {
+          localStorage.removeItem('admin');
+          this.$router.push('/admin/login');
+        }
       }
     },
 
     // New method to fetch admin status
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         });
         
@@ -500,13 +504,18 @@ export default {
       this.$refs.adminNavbar?.toggleSidebar();
     },
     handleSignOut() {
-      // Clear authentication data
-      localStorage.removeItem('adminId');
-      localStorage.removeItem('adminToken');
-      localStorage.removeItem('userData');
-
-      // Redirect to login page
-      this.$router.push('/admin/login');
+      try {
+        axios.post('https://flow-backend-yxdw.onrender.com/logout.php', {}, {
+          withCredentials: true
+        });
+      } catch (error) {
+        console.error('Logout error:', error);
+      } finally {
+        // Clear authentication data
+        localStorage.clear();
+        // Redirect to login page
+        this.$router.push('/admin/login');
+      }
     },
     async fetchDepartments() {
       try {
@@ -802,9 +811,9 @@ export default {
       this.updateDepartmentStatuses();
       
       // Save ONLY the status change to the backend
-      axios.put('/flow-application-cc/api/adminprofile.php', {
+      axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
         queue_status: newStatus,
-        action: 'update_status_only' // Add this to tell the API to only update status
+        action: 'update_status_only'
       }, { withCredentials: true })
       .then(response => {
         console.log('Status updated successfully:', response.data);
