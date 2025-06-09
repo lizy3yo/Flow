@@ -335,9 +335,15 @@ export default {
 
         async verifyOtp() {
             try {
+                // Validate OTP format before sending
+                if (!this.otpCode || this.otpCode.length !== 6 || !/^\d{6}$/.test(this.otpCode)) {
+                    this.otpMessage = 'Please enter a valid 6-digit OTP';
+                    return;
+                }
+
                 const response = await axios.post('https://flow-backend-yxdw.onrender.com/verify-otp.php', {
                     email: this.userEmail,
-                    otp: this.otpCode
+                    otp: this.otpCode.trim()
                 });
 
                 if (response.data.success) {
@@ -350,11 +356,11 @@ export default {
 
                     await this.$router.push('/user/dashboard');
                 } else {
-                    this.otpMessage = 'Invalid verification code';
+                    this.otpMessage = response.data.message || 'Invalid verification code';
                 }
             } catch (error) {
                 console.error('OTP verification failed:', error);
-                this.otpMessage = 'Verification failed. Please try again.';
+                this.otpMessage = error.response?.data?.message || 'Verification failed. Please try again.';
             }
         },
 
@@ -558,29 +564,29 @@ export default {
 
 .verify-btn {
     background-color: #4CAF50;
-    color: white;
+}   color: white;
 }
-
-.resend-btn {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
 .resend-btn:disabled {
     opacity: 0.7;
-    cursor: not-allowed;
+    cursor: not-allowed;0f0f0;
+}   color: #333;
 }
-
 .close-modal {
     position: absolute;
-    top: 0.5rem;
-    right: 1rem;
+    top: 0.5rem;;
+    right: 1rem;allowed;
     font-size: 1.5rem;
     border: none;
     background: none;
-    cursor: pointer;
+    cursor: pointer;te;
+}   top: 0.5rem;
+    right: 1rem;
+.otp-message { 1.5rem;
+    color: #666;;
+    margin-top: 0.5rem;
+    text-align: center;
 }
-
+</style>
 .otp-message {
     color: #666;
     margin-top: 0.5rem;
