@@ -426,7 +426,7 @@ export default {
     // Add new method to fetch notifications
     async fetchNotifications() {
       try {
-        const response = await axios.get('/flow-application-cc/api/AdminNotifications.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
           params: {
             // Remove the limit parameter to fetch all notifications
             // limit: 5 // Only get latest 5 for dropdown
