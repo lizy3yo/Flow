@@ -95,7 +95,7 @@ export default {
             
             try {
                 // Fix: Use correct backend URL
-                const response = await axios.post('/api/flow-application-cc/api/admin-login.php', 
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/admin-login.php', 
                     {
                         email: this.email,
                         password: this.password
