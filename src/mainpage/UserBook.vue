@@ -149,7 +149,7 @@
                         <div class="user-book-content">
                             <div class="user-book-icon">
                                 <img v-if="dept.avatar"
-                                     :src="`http://localhost${dept.avatar}`"
+                                     :src="formatAvatarUrl(dept.avatar)"
                                      :alt="dept.name"
                                      class="establishment-avatar"
                                 />
@@ -214,7 +214,7 @@
                                         <div class="service-info">
                                             <div class="service-avatar">
                                                 <img v-if="dept.avatar"
-                                                     :src="`http://localhost${dept.avatar}`"
+                                                     :src="formatAvatarUrl(dept.avatar)"
                                                      :alt="dept.name"
                                                      class="table-establishment-avatar"
                                                 />
@@ -308,7 +308,8 @@ export default {
 
     async created() {
         try {
-            const response = await axios.get('http://localhost/flow-application-cc/api/establishments.php')
+            // Use the same base URL as other components
+            const response = await axios.get('https://flow-backend-yxdw.onrender.com/establishments.php')
             if (response.data) {
                 this.departments = response.data.map(dept => ({
                     id: dept.admin_id,
@@ -439,7 +440,8 @@ export default {
         },
         async fetchUserProfile() {
             try {
-                const response = await axios.get('/flow-application-cc/api/user-profile.php', {
+                // Use the same base URL as other components
+                const response = await axios.get('https://flow-backend-yxdw.onrender.com/user-profile.php', {
                     withCredentials: true
                 });
 
@@ -473,13 +475,13 @@ export default {
                 return url;
             }
 
-            // If it's a relative path, make it absolute
+            // For establishment avatars, use the backend server URL
             if (url.startsWith('/')) {
-                return `http://localhost${url}`;
+                return `https://flow-backend-yxdw.onrender.com${url}`;
             }
 
             // If it doesn't start with a slash, add one
-            return `http://localhost/${url}`;
+            return `https://flow-backend-yxdw.onrender.com/${url}`;
         },
     },
     mounted() {
