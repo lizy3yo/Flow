@@ -392,4 +392,136 @@ export default {
 
 <style>
 @import '@/styles/authentication/usersignup.css';
+
+    /* Error Alert Modal Styles */
+.error-alert-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: errorAlertSlideIn 0.3s ease-out;
+    border: 2px solid #ef4444;
+}
+
+.error-alert-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #fee2e2;
+    background: #fef2f2;
+    border-radius: 12px 12px 0 0;
+}
+
+.error-alert-header h3 {
+    margin: 0;
+    color: #dc2626;
+    font-size: 1.25rem;
+    font-weight: 600;
+    flex: 1;
+    margin-left: 12px;
+}
+
+.error-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #fee2e2;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.error-alert-close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #dc2626;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.error-alert-close-button:hover {
+    background-color: #fee2e2;
+}
+
+.error-alert-body {
+    padding: 24px;
+    text-align: center;
+}
+
+.error-alert-body p {
+    margin: 0;
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.error-alert-actions {
+    padding: 16px 24px 24px;
+    text-align: center;
+}
+
+.error-alert-ok-button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 100px;
+}
+
+.error-alert-ok-button:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+.error-alert-ok-button:active {
+    transform: translateY(0);
+}
+
+@keyframes errorAlertSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Mobile responsiveness for error alert */
+@media (max-width: 480px) {
+    .error-alert-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .error-alert-header {
+        padding: 16px 20px 12px;
+    }
+    
+    .error-alert-body {
+        padding: 20px;
+    }
+    
+    .error-alert-actions {
+        padding: 12px 20px 20px;
+    }
+}
 </style>
