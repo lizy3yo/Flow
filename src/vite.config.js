@@ -7,10 +7,10 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost/flow-application/api',
+        target: 'https://flow-app.alwaysdata.net', // Your AlwaysData domain
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, '/flow-application-cc/api')
       }
     }
   },
