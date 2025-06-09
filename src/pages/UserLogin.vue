@@ -12,8 +12,7 @@
             <h2 v-if="loginMethod !== 'setup-password'"><img src="@/images/logo2.0.png" alt="Flow Logo" style="width: 2rem; height: 2rem;"> Flow</h2>
             <h3 v-if="loginMethod !== 'setup-password'">User Login</h3>
 
-            <!-- Login option buttons - only visible when no method is selected -->            
-            <div v-if="loginMethod === null" class="login-options">
+            <!-- Login option buttons - only visible when no method is selected -->            <div v-if="loginMethod === null" class="login-options">
                 <button
                     class="login-option-btn"
                     @click="loginMethod = 'email'"
@@ -80,9 +79,7 @@
                     <button type="button" class="back-button" @click="resetLoginMethod">🡐 Back</button>
                     <button type="submit" class="user-submit-btn">Login</button>
                 </div>
-            </form>            
-            
-            <!-- Set up password option - only visible when user needs to set up a password -->
+            </form>            <!-- Set up password option - only visible when user needs to set up a password -->
             <div v-else-if="loginMethod === 'setup-password'" class="setup-password-container">
                 <!-- 1. Company branding - Flow logo at the very top -->
                 <div class="setup-password-branding">
@@ -107,8 +104,7 @@
                 <!-- 5. Form fields - password inputs with labels -->
                 <form @submit.prevent="handlePasswordSetup" class="setup-password-form">
                     <div class="user-form-group-content">
-                        <label for="newPassword">New Password</label>                        
-                        <div class="password-input-container">
+                        <label for="newPassword">New Password</label>                        <div class="password-input-container">
                             <input
                                 :type="showPassword ? 'text' : 'password'"
                                 id="newPassword"
@@ -142,9 +138,7 @@
                                 required
                             >
                         </div>
-                    </div>                    
-                    
-                    <!-- 6. Action buttons - Set Password and Back buttons -->
+                    </div>                    <!-- 6. Action buttons - Set Password and Back buttons -->
                     <div class="setup-password-buttons">
                         <button type="button" class="setup-back-button" @click="resetLoginMethod">🡐 Back</button>
                         <button type="submit" class="user-submit-btn">Set Password</button>
@@ -161,6 +155,37 @@
             <div v-if="loginMethod !== 'setup-password' && message" :class="['alert', success ? 'alert-success' : 'alert-danger']">
                 {{ message }}
             </div>
+        </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div v-if="showOtpModal" class="otp-modal">
+        <div class="otp-modal-content">
+            <h4>Email Verification</h4>
+            <p>Please enter the 6-digit code sent to your email</p>
+
+            <div class="otp-input-container">
+                <input
+                    type="text"
+                    v-model="otpCode"
+                    maxlength="6"
+                    placeholder="Enter OTP"
+                    class="otp-input"
+                >
+            </div>
+
+            <div class="otp-message" v-if="otpMessage">
+                {{ otpMessage }}
+            </div>
+
+            <div class="otp-buttons">
+                <button @click="verifyOtp" class="verify-btn">Verify</button>
+                <button @click="resendOtp" class="resend-btn" :disabled="resendTimer > 0">
+                    {{ resendTimer > 0 ? `Resend in ${resendTimer}s` : 'Resend Code' }}
+                </button>
+            </div>
+
+            <button class="close-modal" @click="closeOtpModal">×</button>
         </div>
     </div>
 </template>
@@ -183,7 +208,13 @@ export default {
             newPassword: '',
             confirmPassword: '',
             passwordError: '',
-            tempUserId: null
+            tempUserId: null,
+            showOtpModal: false,
+            otpCode: '',
+            otpMessage: '',
+            resendTimer: 0,
+            userEmail: '',
+            tempLoginData: null
         }
     },
     computed: {
@@ -235,6 +266,8 @@ export default {
         },
         async handleSubmit() {
             try {
+                this.userEmail = this.email;
+
                 const response = await axios.post('https://flow-backend-yxdw.onrender.com/login.php', {
                     email: this.email,
                     password: this.password
@@ -248,14 +281,21 @@ export default {
                 const { data } = response;
 
                 if (data.success) {
-                    // Complete login process directly
-                    localStorage.clear();
-                    localStorage.setItem('userType', 'user');
-                    localStorage.setItem('userId', data.user_id);
-                    localStorage.setItem('userSessionToken', data.session_token);
-                    localStorage.setItem('userData', JSON.stringify(data.user));
+                    this.tempLoginData = data;
 
-                    await this.$router.push('/user/dashboard');
+                    // Send OTP or complete login based on verification status
+                    const otpResponse = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
+                        email: this.userEmail
+                    });
+
+                    if (otpResponse.data.skipOtp) {
+                        // Already verified today, complete login directly
+                        await this.completeLogin();
+                    } else {
+                        // Show OTP modal and start timer
+                        this.showOtpModal = true;
+                        this.startResendTimer();
+                    }
                 } else {
                     this.success = false;
                     this.message = data.message;
@@ -265,6 +305,88 @@ export default {
                 this.message = error.response?.data?.message || 'Login failed. Please check your credentials.';
                 console.error('Login error:', error);
             }
+        },
+
+        async completeLogin() {
+            localStorage.clear();
+            localStorage.setItem('userType', 'user');
+            localStorage.setItem('userId', this.tempLoginData.user_id);
+            localStorage.setItem('userSessionToken', this.tempLoginData.session_token);
+            localStorage.setItem('userData', JSON.stringify(this.tempLoginData.user));
+
+            await this.$router.push('/user/dashboard');
+        },
+
+        async sendOtp() {
+            try {
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
+                    email: this.userEmail
+                });
+                console.log('OTP send response:', response.data);
+
+                if (!response.data.success) {
+                    throw new Error(response.data.message);
+                }
+            } catch (error) {
+                console.error('Failed to send OTP:', error.response?.data || error.message);
+                this.otpMessage = error.response?.data?.message || 'Failed to send verification code';
+            }
+        },
+
+        async verifyOtp() {
+            try {
+                // Validate OTP format before sending
+                if (!this.otpCode || this.otpCode.length !== 6 || !/^\d{6}$/.test(this.otpCode)) {
+                    this.otpMessage = 'Please enter a valid 6-digit OTP';
+                    return;
+                }
+
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/verify-otp.php', {
+                    email: this.userEmail,
+                    otp: this.otpCode.trim()
+                });
+
+                if (response.data.success) {
+                    // Complete login process
+                    localStorage.clear();
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('userId', this.tempLoginData.user_id);
+                    localStorage.setItem('userSessionToken', this.tempLoginData.session_token);
+                    localStorage.setItem('userData', JSON.stringify(this.tempLoginData.user));
+
+                    await this.$router.push('/user/dashboard');
+                } else {
+                    this.otpMessage = response.data.message || 'Invalid verification code';
+                }
+            } catch (error) {
+                console.error('OTP verification failed:', error);
+                this.otpMessage = error.response?.data?.message || 'Verification failed. Please try again.';
+            }
+        },
+
+        startResendTimer() {
+            this.resendTimer = 30;
+            const timer = setInterval(() => {
+                this.resendTimer--;
+                if (this.resendTimer <= 0) {
+                    clearInterval(timer);
+                }
+            }, 1000);
+        },
+
+        async resendOtp() {
+            if (this.resendTimer <= 0) {
+                await this.sendOtp();
+                this.startResendTimer();
+                this.otpMessage = 'New code sent';
+            }
+        },
+
+        closeOtpModal() {
+            this.showOtpModal = false;
+            this.otpCode = '';
+            this.otpMessage = '';
+            this.resendTimer = 0;
         },
 
         async handleGoogleLogin() {
@@ -349,9 +471,7 @@ export default {
                 this.success = false;
                 this.message = error.message || 'Failed to set up password. Please try again.';
             }
-        },        
-        
-        resetLoginMethod() {
+        },        resetLoginMethod() {
             this.loginMethod = null;
             this.email = '';
             this.password = '';
@@ -389,5 +509,87 @@ export default {
 
 .error-input {
     border-color: #dc3545 !important;
+}
+
+/* OTP Modal Styles */
+.otp-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.otp-modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.otp-input-container {
+    margin: 1.5rem 0;
+}
+
+.otp-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    text-align: center;
+    letter-spacing: 0.25rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+
+.otp-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.verify-btn, .resend-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.verify-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.resend-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.resend-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.close-modal {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.otp-message {
+    color: #666;
+    margin-top: 0.5rem;
+    text-align: center;
 }
 </style>
