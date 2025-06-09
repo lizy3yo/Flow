@@ -377,7 +377,7 @@ export default {
           return
         }
 
-        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         })
 
@@ -401,7 +401,7 @@ export default {
     
     async handleSignOut() {
       try {
-        const response = await axios.post('/flow-application-cc/api/logout.php', {}, {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/logout.php', {}, {
           withCredentials: true
         })
         
@@ -418,7 +418,7 @@ export default {
     
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         })
         
@@ -432,7 +432,7 @@ export default {
     
     handleStatusChange(newStatus) {
       this.adminStatus = newStatus
-      axios.put('/flow-application-cc/api/adminprofile.php', {
+      axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
         queue_status: newStatus,
         action: 'update_status_only'
       }, { withCredentials: true })
@@ -446,7 +446,7 @@ export default {
     
     async fetchArchives() {
       try {
-        const response = await axios.get(`/flow-application-cc/api/AdminArchive.php?type=${this.archiveType}`, {
+        const response = await axios.get(`https://flow-backend-yxdw.onrender.com/AdminArchive.php?type=${this.archiveType}`, {
           withCredentials: true
         });
         
@@ -457,11 +457,13 @@ export default {
             this.archivedQueues = response.data;
           }
         }
-        console.log('Fetched archives:', response.data); // Add this for debugging
+        console.log('Fetched archives:', response.data);
       } catch (error) {
         console.error('Error fetching archives:', error)
       }
-    },    async restoreService(id) {
+    },
+
+    async restoreService(id) {
       this.confirmRestore(id, 'service')
     },
 
@@ -477,13 +479,15 @@ export default {
 
     async executeRestore() {
       try {
-        const response = await axios.post('/flow-application-cc/api/AdminArchive.php', {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/AdminArchive.php', {
           action: 'restore',
           type: this.restoreType,
           id: this.itemToRestore
         }, {
           withCredentials: true
-        });        if (response.data.success) {
+        });
+
+        if (response.data.success) {
           this.success = `${this.restoreType.charAt(0).toUpperCase() + this.restoreType.slice(1)} restored successfully`;
           setTimeout(() => {
             this.success = null;
@@ -510,13 +514,15 @@ export default {
 
     async executeDelete() {
       try {
-        const response = await axios.post('/flow-application-cc/api/AdminArchive.php', {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/AdminArchive.php', {
           action: 'delete',
           type: this.deleteType,
           id: this.itemToDelete
         }, {
           withCredentials: true
-        });        if (response.data.success) {
+        });
+
+        if (response.data.success) {
           this.success = `${this.deleteType.charAt(0).toUpperCase() + this.deleteType.slice(1)} deleted successfully`;
           setTimeout(() => {
             this.success = null;
@@ -535,24 +541,16 @@ export default {
       }
     },
 
-    formatDate(date) {
-      return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-    },
-
     async saveNotificationSettings() {
       try {
-        const response = await axios.post('/flow-application-cc/api/AdminSettings.php', {
+        const response = await axios.post('https://flow-backend-yxdw.onrender.com/AdminSettings.php', {
           action: 'update_notifications',
           settings: this.notificationSettings
         }, {
           withCredentials: true
-        });        if (response.data.success) {
+        });
+
+        if (response.data.success) {
           this.success = 'Notification settings saved successfully';
           setTimeout(() => {
             this.success = null;
