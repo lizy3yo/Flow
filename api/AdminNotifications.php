@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "db.php";
-require_once "Helper/notificationhelper.php";
 
 header('Access-Control-Allow-Origin: https://flow-i3g6.vercel.app');
 header('Access-Control-Allow-Credentials: true');
@@ -33,7 +32,7 @@ if (isset($_SESSION['admin_id'])) {
         
         if ($admin) {
             $admin_id = $admin['id'];
-            $_SESSION['admin_id'] = $admin_id; // Set session for future requests
+            $_SESSION['admin_id'] = $admin_id;
         }
     }
 }
@@ -48,7 +47,6 @@ $adminId = $admin_id;
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        // Get page and limit from query parameters
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
         $offset = ($page - 1) * $limit;
@@ -101,7 +99,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
         
         try {
             if (isset($data['markAllAsRead'])) {
-                // Mark all notifications as read
                 $stmt = $pdo->prepare("
                     UPDATE admin_notifications 
                     SET read_at = NOW() 
@@ -109,7 +106,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 ");
                 $stmt->execute([$adminId]);
             } else if (isset($data['notification_id'])) {
-                // Mark single notification as read
                 $stmt = $pdo->prepare("
                     UPDATE admin_notifications 
                     SET read_at = NOW() 

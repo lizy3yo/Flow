@@ -94,7 +94,6 @@ export default {
           this.loading = true;
         }
 
-        // Get the session token from localStorage
         const sessionToken = localStorage.getItem('adminSessionToken');
         const headers = {
           'Content-Type': 'application/json'
@@ -104,18 +103,19 @@ export default {
           headers['Authorization'] = `Bearer ${sessionToken}`;
         }
 
+        // Add page and limit as query parameters
         const response = await axios.get(`https://flow-backend-yxdw.onrender.com/AdminNotifications.php`, {
           params: {
             page: this.currentPage,
-            limit: 5
+            limit: 5  // Match the limit shown in your template
           },
-          headers: headers, // Add this line
+          headers: headers,
           withCredentials: true
         });
         
         if (response.data.error) {
-            console.error('Server error:', response.data.error);
-            return;
+          console.error('Server error:', response.data.error);
+          return;
         }
 
         this.notifications = response.data.notifications;
@@ -125,7 +125,7 @@ export default {
       } catch (error) {
         console.error('Error fetching notifications:', error);
         if (error.response?.status === 401) {
-            this.$router.push('/admin/login');
+          this.$router.push('/admin/login');
         }
       } finally {
         this.loading = false;
