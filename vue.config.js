@@ -4,7 +4,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost',
+        target: 'https://flow-backend-yxdw.onrender.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

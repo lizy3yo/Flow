@@ -415,7 +415,7 @@ import AdminNavbar from './AdminNavbar.vue'
 import AdminTopNavbar from './AdminTopNavbar.vue' // Add import for TopNavbar
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:8080/flow-application-cc/api/services.php'
+const API_BASE_URL = 'https://flow-backend-yxdw.onrender.com/services.php'
 
 export default {
   name: 'AdminAppointments',

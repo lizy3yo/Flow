@@ -95,7 +95,7 @@
                     <div class="department-header">
                         <div class="department-icon">
                             <img v-if="establishment?.avatar"
-                                 :src="`http://localhost${establishment.avatar}`"
+                                 :src="`https://flow-backend-yxdw.onrender.com${establishment.avatar}`"
                                  :alt="establishment.name"
                                  class="establishment-avatar"
                             />
@@ -376,7 +376,7 @@ import UserNavbar from './UserNavbar.vue'
 import UserTopNavbar from './UserTopNavbar.vue'
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:8080/flow-application-cc/api'
+const API_BASE_URL = 'https://flow-backend-yxdw.onrender.com'
 
 const getAuthHeaders = () => {
     const sessionToken = localStorage.getItem('userSessionToken');

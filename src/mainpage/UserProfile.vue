@@ -365,7 +365,7 @@ export default {
         return require('@/images/default-avatar.svg');
       }
       // Fix the URL construction for XAMPP
-      return `http://localhost${this.userData.avatar}`;
+      return `https://flow-backend-yxdw.onrender.com${this.userData.avatar}`;
     },    userProfile() {
       return {
         name: `${this.capitalizeFirstLetter(this.userData.first_name)} ${this.capitalizeFirstLetter(this.userData.last_name)}`.trim() || 'User',

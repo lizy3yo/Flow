@@ -133,7 +133,7 @@ export default {
         return null;
       }
       // For local development with XAMPP
-      return `http://localhost${this.userProfile.avatar}`;
+      return `https://flow-backend-yxdw.onrender.com${this.userProfile.avatar}`;
     }
   },
   methods: {

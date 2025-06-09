@@ -205,7 +205,7 @@ export default {
       }
 
       // For local development with XAMPP - match the profile component exactly
-      return `http://localhost${this.userProfile.avatar}`;
+      return `https://flow-backend-yxdw.onrender.com${this.userProfile.avatar}`;
     },
     // Count unread notifications
     unreadNotificationsCount() {

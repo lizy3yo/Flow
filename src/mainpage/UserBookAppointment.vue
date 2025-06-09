@@ -203,7 +203,7 @@ import UserNavbar from './UserNavbar.vue'
 import UserTopNavbar from './UserTopNavbar.vue'
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:8080/flow-application-cc/api'
+const API_BASE_URL = 'https://flow-backend-yxdw.onrender.com'
 
 export default {
     name: 'UserBookAppointment',

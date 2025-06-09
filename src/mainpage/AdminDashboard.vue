@@ -511,7 +511,7 @@ export default {
     async fetchDepartments() {
       try {
         const adminId = localStorage.getItem('adminId');
-        const response = await axios.get(`http://localhost:8080/flow-application-cc/api/departments.php?admin_id=${adminId}`);
+        const response = await axios.get(`https://flow-backend-yxdw.onrender.com/departments.php?admin_id=${adminId}`);
 
         if (response.data) {
           // Filter out archived services

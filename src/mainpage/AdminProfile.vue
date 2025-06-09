@@ -396,7 +396,7 @@ export default {
         }
 
         // For local development with XAMPP
-        return `http://localhost${this.adminData.avatar}`;
+        return `https://flow-backend-yxdw.onrender.com${this.adminData.avatar}`;
     },
     characterCount() {
       return this.adminData.description ? this.adminData.description.length : 0;

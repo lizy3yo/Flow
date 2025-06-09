@@ -130,7 +130,7 @@
                 <div class="queue-user">
                   <div v-if="queue.avatar" class="queue-user-avatar-container">
                     <img
-                      :src="'http://localhost' + queue.avatar"
+                      :src="'https://flow-backend-yxdw.onrender.com' + queue.avatar"
                       :alt="queue.name"
                       class="queue-user-avatar"
                       @error="$event.target.style.display='none'"
@@ -202,7 +202,7 @@
                 <div class="queue-user">
                   <div v-if="queue.avatar" class="queue-user-avatar-container">
                     <img
-                      :src="'http://localhost' + queue.avatar"
+                      :src="'https://flow-backend-yxdw.onrender.com' + queue.avatar"
                       :alt="queue.name"
                       class="queue-user-avatar"
                       @error="$event.target.style.display='none'"
@@ -253,7 +253,7 @@
                 <div class="queue-user">
                   <div v-if="queue.avatar" class="queue-user-avatar-container">
                     <img
-                      :src="'http://localhost' + queue.avatar"
+                      :src="'https://flow-backend-yxdw.onrender.com' + queue.avatar"
                       :alt="queue.name"
                       class="queue-user-avatar"
                       @error="$event.target.style.display='none'"

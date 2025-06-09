@@ -261,7 +261,7 @@ export default {
       
       // For local development with XAMPP
       if (this.userProfile.avatar.startsWith('/')) {
-        return `http://localhost${this.userProfile.avatar}`;
+        return `https://flow-backend-yxdw.onrender.com${this.userProfile.avatar}`;
       }
       
       return this.userProfile.avatar;
