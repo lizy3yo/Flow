@@ -378,4 +378,63 @@ export default {
 
 <style>
 @import '@/styles/authentication/usersignup.css';
+
+    /* Alert Container Styles */
+.user-service-alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.user-service-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideInRight 0.3s ease-out;
+    pointer-events: auto;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.user-service-alert-danger {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.user-service-alert i {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-service-alert-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .user-service-alert {
+        min-width: auto;
+        max-width: none;
+    }
+}
 </style>
