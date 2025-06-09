@@ -447,7 +447,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
             withCredentials: true
         });
 
@@ -472,7 +472,7 @@ export default {
     // New method to fetch admin status
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+        const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
           withCredentials: true
         });
         
