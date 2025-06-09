@@ -94,16 +94,16 @@ export default {
             this.message = '';
             
             try {
-                // Use the same backend URL as other components
+                // Fix: Use correct backend URL
                 const response = await axios.post('https://flow-backend-yxdw.onrender.com/admin-login.php', {
-    email: this.email,
-    password: this.password
-}, {
-    withCredentials: true,
-    headers: {
-        'Content-Type': 'application/json'
-    }
-});
+                    email: this.email,
+                    password: this.password
+                }, {
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
                 
                 console.log('Login response:', response.data);
                 
