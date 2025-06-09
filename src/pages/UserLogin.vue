@@ -266,8 +266,6 @@ export default {
         },
         async handleSubmit() {
             try {
-                this.userEmail = this.email;
-
                 const response = await axios.post('https://flow-backend-yxdw.onrender.com/login.php', {
                     email: this.email,
                     password: this.password
@@ -281,21 +279,14 @@ export default {
                 const { data } = response;
 
                 if (data.success) {
-                    this.tempLoginData = data;
+                    // Complete login directly without OTP
+                    localStorage.clear();
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('userId', data.user_id);
+                    localStorage.setItem('userSessionToken', data.session_token);
+                    localStorage.setItem('userData', JSON.stringify(data.user));
 
-                    // Send OTP or complete login based on verification status
-                    const otpResponse = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
-                        email: this.userEmail
-                    });
-
-                    if (otpResponse.data.skipOtp) {
-                        // Already verified today, complete login directly
-                        await this.completeLogin();
-                    } else {
-                        // Show OTP modal and start timer
-                        this.showOtpModal = true;
-                        this.startResendTimer();
-                    }
+                    await this.$router.push('/user/dashboard');
                 } else {
                     this.success = false;
                     this.message = data.message;
@@ -441,155 +432,3 @@ export default {
                 this.message = this.passwordError;
                 return;
             }
-
-            try {
-                const response = await axios.post('https://flow-backend-yxdw.onrender.com/setup-password.php', {
-                    user_id: this.tempUserId,
-                    password: this.newPassword
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    withCredentials: true
-                });
-
-                if (response.data.success) {
-                    this.success = true;
-                    this.message = 'Password setup successful';
-
-                    // Complete login process
-                    localStorage.setItem('userType', 'user');
-                    localStorage.setItem('token', response.data.session_token);
-
-                    setTimeout(() => {
-                        this.$router.push('/user/dashboard');
-                    }, 1000);
-                } else {
-                    throw new Error(response.data.message);
-                }
-            } catch (error) {
-                this.success = false;
-                this.message = error.message || 'Failed to set up password. Please try again.';
-            }
-        },        resetLoginMethod() {
-            this.loginMethod = null;
-            this.email = '';
-            this.password = '';
-            this.message = '';
-            this.success = false;
-            this.showPassword = false;
-            this.passwordError = '';
-            this.newPassword = '';
-            this.confirmPassword = '';
-        },
-
-        goBackToSelector() {
-            this.$router.push('/login');
-        },
-
-        checkPasswordValidity() {
-            this.validatePassword(this.newPassword);
-        }
-    }
-};
-</script>
-
-<style>
-@import '@/styles/authentication/userlogin.css';
-
-/* Password setup container styles moved to userlogin.css for better organization and consistency */
-
-/* Error message styles */
-.password-error-message {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-    text-align: left;
-}
-
-.error-input {
-    border-color: #dc3545 !important;
-}
-
-/* OTP Modal Styles */
-.otp-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.otp-modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-}
-
-.otp-input-container {
-    margin: 1.5rem 0;
-}
-
-.otp-input {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1.25rem;
-    text-align: center;
-    letter-spacing: 0.25rem;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-}
-
-.otp-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.verify-btn, .resend-btn {
-    flex: 1;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.verify-btn {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.resend-btn {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.resend-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-.close-modal {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.otp-message {
-    color: #666;
-    margin-top: 0.5rem;
-    text-align: center;
-}
-</style>
