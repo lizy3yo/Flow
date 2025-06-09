@@ -173,33 +173,46 @@ export default {
         localStorage.clear();
     },
     async fetchUserProfile() {
-        try {
-            const admin = localStorage.getItem('admin');
-            if (!admin) {
-                this.$router.push('/admin/login');
-                return;
-            }
-
-            const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
-                withCredentials: true
-            });
-
-            if (response.data) {
-                this.userProfile = {
-                    name: response.data.name || 'Unknown User',
-                    email: response.data.email || '',
-                    role: 'Administrator',
-                    avatar: response.data.avatar || null
-                };
-                localStorage.setItem('userData', JSON.stringify(this.userProfile));
-            }
-        } catch (error) {
-            console.error('Error fetching profile:', error);
-            if (error.response?.status === 401) {
-                localStorage.removeItem('admin');
-                this.$router.push('/admin/login');
-            }
+    try {
+        const admin = localStorage.getItem('admin');
+        if (!admin) {
+            this.$router.push('/admin/login');
+            return;
         }
+
+        // Get session token for authentication
+        const sessionToken = localStorage.getItem('adminSessionToken');
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (sessionToken) {
+            headers['Authorization'] = `Bearer ${sessionToken}`;
+        }
+
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
+            withCredentials: true,
+            headers: headers
+        });
+
+        if (response.data) {
+            this.userProfile = {
+                name: response.data.name || 'Unknown User',
+                email: response.data.email || '',
+                role: 'Administrator',
+                avatar: response.data.avatar || null
+            };
+            localStorage.setItem('userData', JSON.stringify(this.userProfile));
+        }
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+        if (error.response?.status === 401) {
+            localStorage.removeItem('admin');
+            localStorage.removeItem('adminSessionToken');
+            localStorage.removeItem('userData');
+            this.$router.push('/admin/login');
+        }
+    }
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen;
