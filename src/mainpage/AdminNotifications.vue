@@ -90,9 +90,18 @@ export default {
   methods: {
     async fetchNotifications() {
       try {
-        // Only show loading spinner if it's not a page change
         if (!this.isChangingPage) {
           this.loading = true;
+        }
+
+        // Get the session token from localStorage
+        const sessionToken = localStorage.getItem('adminSessionToken');
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        
+        if (sessionToken) {
+          headers['Authorization'] = `Bearer ${sessionToken}`;
         }
 
         const response = await axios.get(`https://flow-backend-yxdw.onrender.com/AdminNotifications.php`, {
@@ -100,6 +109,7 @@ export default {
             page: this.currentPage,
             limit: 5
           },
+          headers: headers, // Add this line
           withCredentials: true
         });
         
@@ -125,9 +135,19 @@ export default {
 
     async markAsRead(notificationId) {
       try {
+        const sessionToken = localStorage.getItem('adminSessionToken');
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        
+        if (sessionToken) {
+          headers['Authorization'] = `Bearer ${sessionToken}`;
+        }
+
         await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
           notification_id: notificationId
         }, {
+          headers: headers, // Add this line
           withCredentials: true
         });
         
@@ -143,9 +163,19 @@ export default {
 
     async markAllAsRead() {
       try {
+        const sessionToken = localStorage.getItem('adminSessionToken');
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        
+        if (sessionToken) {
+          headers['Authorization'] = `Bearer ${sessionToken}`;
+        }
+
         await axios.put('https://flow-backend-yxdw.onrender.com/AdminNotifications.php', {
           markAllAsRead: true
         }, {
+          headers: headers, // Add this line
           withCredentials: true
         });
         
