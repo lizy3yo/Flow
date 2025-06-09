@@ -430,7 +430,7 @@ export default {
 
         try {
             const response = await axios.post(
-                '/flow-application-cc/api/adminprofile.php',
+                'https://flow-backend-yxdw.onrender.com/adminprofile.php',
                 formData,
                 {
                     headers: {
@@ -450,7 +450,7 @@ export default {
     },
     async fetchProfile() {
         try {
-            const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+            const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
                 withCredentials: true  // Important for sending cookies
             });
 
@@ -481,7 +481,7 @@ export default {
         }
 
         try {
-            const response = await axios.put('/flow-application-cc/api/adminprofile.php',
+            const response = await axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php',
                 this.adminData,
                 { withCredentials: true }
             );
@@ -530,7 +530,7 @@ export default {
       }
 
       try {
-        const response = await axios.put('/flow-application-cc/api/adminprofile.php',
+        const response = await axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php',
           accountData,
           { withCredentials: true }
         );
@@ -585,7 +585,7 @@ export default {
       };
 
       try {
-        const response = await axios.put('/flow-application-cc/api/adminprofile.php',
+        const response = await axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php',
           companyData,
           { withCredentials: true }
         );
@@ -698,7 +698,7 @@ export default {
 
         try {
             const response = await axios.post(
-                '/flow-application-cc/api/adminprofile.php',
+                'https://flow-backend-yxdw.onrender.com/adminprofile.php',
                 formData,
                 {
                     headers: {
@@ -727,7 +727,7 @@ export default {
     async deleteAvatar() {
         if (confirm('Are you sure you want to delete your profile picture?')) {
             try {
-                const response = await axios.delete('/flow-application-cc/api/adminprofile.php', {
+                const response = await axios.delete('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
                     data: { action: 'delete_avatar' },
                     withCredentials: true
                 });                if (response.data.success) {

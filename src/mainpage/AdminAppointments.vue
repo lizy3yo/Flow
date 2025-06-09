@@ -584,7 +584,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('/apihttps://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         });
 
@@ -608,7 +608,7 @@ export default {
     
     async handleSignOut() {
       try {
-        const response = await axios.post('/api/flow-application-cc/api/logout.php', {}, {
+        const response = await axios.post('/apihttps://flow-backend-yxdw.onrender.com/logout.php', {}, {
           withCredentials: true
         });
         
@@ -1139,7 +1139,7 @@ export default {
 
     async fetchAdminStatus() {
       try {
-        const response = await axios.get('/flow-application-cc/api/adminprofile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           withCredentials: true
         });
         
@@ -1166,7 +1166,7 @@ export default {
       }));
 
       try {
-        axios.put('/flow-application-cc/api/adminprofile.php', {
+        axios.put('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
           queue_status: newStatus,
           action: 'update_status_only'
         }, { withCredentials: true });

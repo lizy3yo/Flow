@@ -319,7 +319,7 @@ export default {
 
         async sendOtp() {
             try {
-                const response = await axios.post('/flow-application-cc/api/send-otp.php', {
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/send-otp.php', {
                     email: this.userEmail
                 });
                 console.log('OTP send response:', response.data);
@@ -335,7 +335,7 @@ export default {
 
         async verifyOtp() {
             try {
-                const response = await axios.post('/flow-application-cc/api/verify-otp.php', {
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/verify-otp.php', {
                     email: this.userEmail,
                     otp: this.otpCode
                 });
@@ -387,7 +387,7 @@ export default {
             try {
                 const googleUser = await googleAuthCodeLogin();
 
-                const response = await axios.post('/flow-application-cc/api/google-login.php', {
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/google-login.php', {
                     token: googleUser.code
                 }, {
                     headers: {
@@ -437,7 +437,7 @@ export default {
             }
 
             try {
-                const response = await axios.post('/flow-application-cc/api/setup-password.php', {
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/setup-password.php', {
                     user_id: this.tempUserId,
                     password: this.newPassword
                 }, {

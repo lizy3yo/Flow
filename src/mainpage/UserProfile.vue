@@ -401,7 +401,7 @@ export default {
     
     async fetchProfile() {
       try {
-        const response = await axios.get('/flow-application-cc/api/user-profile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/user-profile.php', {
           withCredentials: true
         })
         if (response.data) {
@@ -425,7 +425,7 @@ export default {
         const fieldValue = (field === 'first_name' || field === 'last_name') ? 
           this.capitalizeFirstLetter(this.tempFields[field]) : this.tempFields[field];
           try {
-          const response = await axios.put('/flow-application-cc/api/user-profile.php', {
+          const response = await axios.put('https://flow-backend-yxdw.onrender.com/user-profile.php', {
             [field]: fieldValue
           }, {
             withCredentials: true
@@ -471,7 +471,7 @@ export default {
       
       if (this.tempEmail !== this.userData.email) {
         try {
-          const response = await axios.put('/flow-application-cc/api/user-profile.php', {
+          const response = await axios.put('https://flow-backend-yxdw.onrender.com/user-profile.php', {
             email: this.tempEmail
           }, {
             withCredentials: true
@@ -518,7 +518,7 @@ export default {
       }
       
       try {
-        const response = await axios.put('/flow-application-cc/api/user-profile.php', {
+        const response = await axios.put('https://flow-backend-yxdw.onrender.com/user-profile.php', {
           password: this.tempPassword
         }, {
           withCredentials: true
@@ -636,7 +636,7 @@ export default {
         formData.append('avatar', this.selectedFile);
 
         const response = await axios.post(
-          '/flow-application-cc/api/user-profile.php',
+          'https://flow-backend-yxdw.onrender.com/user-profile.php',
           formData,
           {
             headers: {
@@ -670,7 +670,7 @@ export default {
     },    async deleteAvatar() {
       if (confirm('Are you sure you want to delete your profile picture?')) {
         try {
-          const response = await axios.delete('/flow-application-cc/api/user-profile.php', {
+          const response = await axios.delete('https://flow-backend-yxdw.onrender.com/user-profile.php', {
             data: { action: 'delete_avatar' },
             withCredentials: true
           });
@@ -698,7 +698,7 @@ export default {
     },
     async fetchUserQueues() {
       try {
-        const response = await axios.get('/flow-application-cc/api/userappointments.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/userappointments.php', {
           withCredentials: true
         });
         this.userQueues = response.data || [];

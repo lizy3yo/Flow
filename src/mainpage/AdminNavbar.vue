@@ -152,7 +152,7 @@ export default {
     async confirmSignOut() {
       this.isLoggingOut = true;
       try {
-        const response = await axios.post('/api/flow-application-cc/api/logout.php', {}, {
+        const response = await axios.post('/apihttps://flow-backend-yxdw.onrender.com/logout.php', {}, {
           withCredentials: true
         });
 
@@ -180,7 +180,7 @@ export default {
                 return;
             }
 
-            const response = await axios.get('/api/flow-application-cc/api/adminprofile.php', {
+            const response = await axios.get('/apihttps://flow-backend-yxdw.onrender.com/adminprofile.php', {
                 withCredentials: true
             });
 

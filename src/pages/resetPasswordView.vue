@@ -261,7 +261,7 @@ export default {
 				});
 				
 				const response = await axios.post(
-					"/flow-application-cc/api/reset-password.php",
+					"https://flow-backend-yxdw.onrender.com/reset-password.php",
 					{
 						email: this.email,
 						otp: this.otpDigits.join("").trim(),

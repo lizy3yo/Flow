@@ -308,7 +308,7 @@ export default {
 
     async created() {
         try {
-            const response = await axios.get('https://flow-backend-yxdw.onrender.com/flow-application-cc/api/establishments.php')
+            const response = await axios.get('https://flow-backend-yxdw.onrender.comhttps://flow-backend-yxdw.onrender.com/establishments.php')
             if (response.data) {
                 this.departments = response.data.map(dept => ({
                     id: dept.admin_id,
@@ -439,7 +439,7 @@ export default {
         },
         async fetchUserProfile() {
             try {
-                const response = await axios.get('/flow-application-cc/api/user-profile.php', {
+                const response = await axios.get('https://flow-backend-yxdw.onrender.com/user-profile.php', {
                     withCredentials: true
                 });
 

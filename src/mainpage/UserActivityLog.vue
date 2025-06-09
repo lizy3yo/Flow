@@ -234,7 +234,7 @@ export default {
         }
 
         const offset = this.currentPage * this.pageSize;
-        const response = await axios.get('/flow-application-cc/api/UserQueueArchive.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/UserQueueArchive.php', {
           params: {
             limit: this.pageSize,
             offset: offset
@@ -271,7 +271,7 @@ export default {
     async refreshArchives() {
       // First trigger auto-archive for any completed/cancelled queues
       try {
-        await axios.get('/flow-application-cc/api/UserQueueArchive.php?action=auto-archive', {
+        await axios.get('https://flow-backend-yxdw.onrender.com/UserQueueArchive.php?action=auto-archive', {
           withCredentials: true
         });
       } catch (error) {
@@ -307,7 +307,7 @@ export default {
 
     async fetchUserProfile() {
       try {
-        const response = await axios.get('/flow-application-cc/api/user-profile.php', {
+        const response = await axios.get('https://flow-backend-yxdw.onrender.com/user-profile.php', {
           withCredentials: true
         });
         if (response.data) {

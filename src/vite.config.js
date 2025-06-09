@@ -10,7 +10,7 @@ export default defineConfig({
         target: 'https://flow-app.alwaysdata.net', // Your AlwaysData domain
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/flow-application-cc/api')
+        rewrite: (path) => path.replace(/^\/api/, 'https://flow-backend-yxdw.onrender.com')
       }
     }
   },

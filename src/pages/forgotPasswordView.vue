@@ -99,7 +99,7 @@ export default {
 			this.isLoading = true;
 			try {
 				const response = await axios.post(
-					"/flow-application-cc/api/forgot-password.php",
+					"https://flow-backend-yxdw.onrender.com/forgot-password.php",
 					{
 						email: this.email,
 					},
