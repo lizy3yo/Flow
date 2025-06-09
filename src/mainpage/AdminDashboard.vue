@@ -483,8 +483,19 @@ export default {
     // New method to fetch admin status
     async fetchAdminStatus() {
       try {
+        // Get session token for authentication
+        const sessionToken = localStorage.getItem('adminSessionToken');
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        
+        if (sessionToken) {
+          headers['Authorization'] = `Bearer ${sessionToken}`;
+        }
+
         const response = await axios.get('https://flow-backend-yxdw.onrender.com/adminprofile.php', {
-          withCredentials: true
+          withCredentials: true,
+          headers: headers  // Add this line
         });
         
         if (response.data) {
