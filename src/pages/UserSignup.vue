@@ -355,7 +355,7 @@ export default {
             }
 
             try {
-                const response = await axios.post('/flow-application/api/user-signup.php', {
+                const response = await axios.post('https://flow-backend-yxdw.onrender.com/user-signup.php', {
                     firstName: this.formData.firstName.trim(),
                     lastName: this.formData.lastName.trim(),
                     email: this.formData.email.toLowerCase().trim(),
