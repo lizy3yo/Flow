@@ -268,7 +268,7 @@ export default {
             try {
                 this.userEmail = this.email;
 
-                const response = await axios.post('/flow-application-cc/api/login.php', {
+                const response = await axios.post('https://flow-i3g6.vercel.app/login.php', {
                     email: this.email,
                     password: this.password
                 }, {
@@ -284,7 +284,7 @@ export default {
                     this.tempLoginData = data;
 
                     // Send OTP or complete login based on verification status
-                    const otpResponse = await axios.post('/flow-application-cc/api/send-otp.php', {
+                    const otpResponse = await axios.post('https://flow-i3g6.vercel.app/send-otp.php', {
                         email: this.userEmail
                     });
 

@@ -96,8 +96,8 @@ export default {
             try {
                 // Use direct URL for production
                 const apiUrl = process.env.NODE_ENV === 'production' 
-                    ? 'https://flow-backend-yxdw.onrender.com/admin-login.php'
-                    : '/api/flow-application-cc/api/admin-login.php';
+                    ? 'https://flow-i3g6.vercel.app//admin-login.php'
+                    : 'https://flow-i3g6.vercel.app/admin-login.php';
                     
                 const response = await axios.post(apiUrl, {
                     email: this.email,
