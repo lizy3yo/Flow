@@ -367,181 +367,30 @@ export default {
 </script>
 
 <style scoped>
-.user-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f4f4f9;
-}
+@import '@/styles/authentication/userlogin.css';
 
-.login-content {
-    text-align: center;
-    margin-bottom: 2rem;
-}
+/* Password setup container styles moved to userlogin.css for better organization and consistency */
 
-.main-back-button {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #007bff;
-}
-
-.user-login-form-container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-}
-
-h4 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
-
-.user-form-group-content {
-    margin-bottom: 1.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-input:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.password-input-container {
-    position: relative;
-}
-
-.toggle-password {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.forgot-password-container {
-    margin-top: 0.5rem;
-}
-
-.forgot-password-link {
+/* Error message styles */
+.password-error-message {
+    color: #dc3545;
     font-size: 0.875rem;
-    color: #007bff;
+    margin-top: 0.25rem;
+    text-align: left;
 }
 
-.buttons-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
+.error-input {
+    border-color: #dc3545 !important;
 }
 
-.back-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #007bff;
-}
-
-.user-submit-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.user-submit-btn:hover {
-    background-color: #0056b3;
-}
-
-.setup-password-container {
-    margin-top: 2rem;
-}
-
-.setup-password-branding {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.setup-password-page-indicator {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.setup-password-heading {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.setup-password-description {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.setup-password-form {
-    width: 100%;
-}
-
-.setup-password-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #000;
-}
-
+/* OTP Modal Styles */
 .otp-modal {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -549,89 +398,71 @@ input:focus {
 }
 
 .otp-modal-content {
-    background: #fff;
+    background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
-    margin: 0 auto;
+    position: relative;
 }
 
 .otp-input-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+    margin: 1.5rem 0;
 }
 
 .otp-input {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.25rem;
     text-align: center;
-    font-size: 1.5rem;
-    border: 1px solid #ced4da;
+    letter-spacing: 0.25rem;
+    border: 2px solid #ddd;
     border-radius: 4px;
-    margin: 0 0.25rem;
-}
-
-.otp-message {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #dc3545;
 }
 
 .otp-buttons {
     display: flex;
-    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.verify-btn, .resend-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .verify-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.verify-btn:hover {
-    background-color: #0056b3;
+    background-color: #4CAF50;
+    color: white;
 }
 
 .resend-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 0.875rem;
-    color: #007bff;
+    background-color: #f0f0f0;
+    color: #333;
 }
 
 .resend-btn:disabled {
-    color: #6c757d;
+    opacity: 0.7;
     cursor: not-allowed;
 }
 
-.alert {
-    padding: 0.75rem 1.25rem;
-    border-radius: 4px;
-    margin-top: 1rem;
-    font-size: 0.875rem;
+.close-modal {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+.otp-message {
+    color: #666;
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-.error-input {
-    border-color: #dc3545;
-}
 </style>
