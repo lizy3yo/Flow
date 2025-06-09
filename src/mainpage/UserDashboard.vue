@@ -257,21 +257,12 @@ export default {
       }
     },      async fetchUserProfile() {
       try {
-        const token = localStorage.getItem('authToken') || localStorage.getItem('token')
-        if (!token) {
-          this.$router.push('/login')
-          return
-        }
-
         const response = await axios.get(`${API_BASE_URL}/user-profile.php`, {
-          withCredentials: true,
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+          withCredentials: true
         })
         this.userData = response.data
         
+        // Update topNavUserProfile object for the TopNavbar component
         this.topNavUserProfile = {
           name: this.userData.name || `${this.userData.first_name || ''} ${this.userData.last_name || ''}`.trim() || 'User',
           email: this.userData.email || '',
@@ -280,34 +271,6 @@ export default {
       } catch (error) {
         console.error('Error fetching user profile:', error)
         if (error.response?.status === 401) {
-          localStorage.clear()
-          this.$router.push('/login')
-        }
-      }
-    },
-
-    async fetchQueues() {
-      try {
-        // Check if user is authenticated before making request
-        const token = localStorage.getItem('authToken') || localStorage.getItem('token')
-        if (!token) {
-          console.warn('No auth token found, redirecting to login')
-          this.$router.push('/login')
-          return
-        }
-
-        const response = await axios.get(`${API_BASE_URL}/userappointments.php`, {
-          withCredentials: true,
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        })
-        this.queues = response.data
-      } catch (error) {
-        console.error('Error fetching queues:', error)
-        if (error.response?.status === 401) {
-          localStorage.clear()
           this.$router.push('/login')
         }
       }
@@ -315,28 +278,38 @@ export default {
 
     async fetchDepartments() {
       try {
-        const response = await axios.get(`${API_BASE_URL}/establishments.php`, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+        const response = await axios.get(`${API_BASE_URL}/establishments.php`)
         this.departments = response.data.map(dept => ({
           id: dept.admin_id,
           name: dept.name,
           description: dept.description,
           status: dept.queue_status,
           icon: 'bi bi-building',
-          avatar: dept.avatar,
+          avatar: dept.avatar, // Add this line
           currentQueue: 0,
           maxQueue: 100
         }))
 
-        // Remove the queue count fetching to avoid CORS issues
-        // The count can be handled differently or removed if not critical
+        // Fetch current queue counts for each department
+        for (let dept of this.departments) {
+          const queueResponse = await axios.get(
+            `${API_BASE_URL}/appointments.php?service_id=${dept.id}&count=true`
+          )
+          dept.currentQueue = queueResponse.data.count || 0
+        }
       } catch (error) {
         console.error('Error fetching departments:', error)
-        // Set empty array to prevent UI errors
-        this.departments = []
+      }
+    },
+
+    async fetchQueues() {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/userappointments.php`, {
+          withCredentials: true
+        })
+        this.queues = response.data
+      } catch (error) {
+        console.error('Error fetching queues:', error)
       }
     },
 

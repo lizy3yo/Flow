@@ -149,7 +149,7 @@
                         <div class="user-book-content">
                             <div class="user-book-icon">
                                 <img v-if="dept.avatar"
-                                     :src="formatAvatarUrl(dept.avatar)"
+                                     :src="`http://localhost${dept.avatar}`"
                                      :alt="dept.name"
                                      class="establishment-avatar"
                                 />
@@ -214,7 +214,7 @@
                                         <div class="service-info">
                                             <div class="service-avatar">
                                                 <img v-if="dept.avatar"
-                                                     :src="formatAvatarUrl(dept.avatar)"
+                                                     :src="`http://localhost${dept.avatar}`"
                                                      :alt="dept.name"
                                                      class="table-establishment-avatar"
                                                 />
@@ -475,13 +475,13 @@ export default {
                 return url;
             }
 
-            // For establishment avatars, use the backend server URL
+            // If it's a relative path, make it absolute
             if (url.startsWith('/')) {
-                return `https://flow-backend-yxdw.onrender.com${url}`;
+                return `http://localhost${url}`;
             }
 
             // If it doesn't start with a slash, add one
-            return `https://flow-backend-yxdw.onrender.com/${url}`;
+            return `http://localhost/${url}`;
         },
     },
     mounted() {
