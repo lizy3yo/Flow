@@ -157,37 +157,6 @@
             </div>
         </div>
     </div>
-
-    <!-- OTP Modal -->
-    <div v-if="showOtpModal" class="otp-modal">
-        <div class="otp-modal-content">
-            <h4>Email Verification</h4>
-            <p>Please enter the 6-digit code sent to your email</p>
-
-            <div class="otp-input-container">
-                <input
-                    type="text"
-                    v-model="otpCode"
-                    maxlength="6"
-                    placeholder="Enter OTP"
-                    class="otp-input"
-                >
-            </div>
-
-            <div class="otp-message" v-if="otpMessage">
-                {{ otpMessage }}
-            </div>
-
-            <div class="otp-buttons">
-                <button @click="verifyOtp" class="verify-btn">Verify</button>
-                <button @click="resendOtp" class="resend-btn" :disabled="resendTimer > 0">
-                    {{ resendTimer > 0 ? `Resend in ${resendTimer}s` : 'Resend Code' }}
-                </button>
-            </div>
-
-            <button class="close-modal" @click="closeOtpModal">×</button>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -208,13 +177,7 @@ export default {
             newPassword: '',
             confirmPassword: '',
             passwordError: '',
-            tempUserId: null,
-            showOtpModal: false,
-            otpCode: '',
-            otpMessage: '',
-            resendTimer: 0,
-            userEmail: '',
-            tempLoginData: null
+            tempUserId: null
         }
     },
     computed: {
@@ -266,8 +229,6 @@ export default {
         },
         async handleSubmit() {
             try {
-                this.userEmail = this.email;
-
                 const response = await axios.post('/flow-application-cc/api/login.php', {
                     email: this.email,
                     password: this.password
@@ -281,21 +242,14 @@ export default {
                 const { data } = response;
 
                 if (data.success) {
-                    this.tempLoginData = data;
+                    // Complete login directly without OTP
+                    localStorage.clear();
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('userId', data.user_id);
+                    localStorage.setItem('userSessionToken', data.session_token);
+                    localStorage.setItem('userData', JSON.stringify(data.user));
 
-                    // Send OTP or complete login based on verification status
-                    const otpResponse = await axios.post('/flow-application-cc/api/send-otp.php', {
-                        email: this.userEmail
-                    });
-
-                    if (otpResponse.data.skipOtp) {
-                        // Already verified today, complete login directly
-                        await this.completeLogin();
-                    } else {
-                        // Show OTP modal and start timer
-                        this.showOtpModal = true;
-                        this.startResendTimer();
-                    }
+                    await this.$router.push('/user/dashboard');
                 } else {
                     this.success = false;
                     this.message = data.message;
@@ -305,16 +259,6 @@ export default {
                 this.message = error.response?.data?.message || 'Login failed. Please check your credentials.';
                 console.error('Login error:', error);
             }
-        },
-
-        async completeLogin() {
-            localStorage.clear();
-            localStorage.setItem('userType', 'user');
-            localStorage.setItem('userId', this.tempLoginData.user_id);
-            localStorage.setItem('userSessionToken', this.tempLoginData.session_token);
-            localStorage.setItem('userData', JSON.stringify(this.tempLoginData.user));
-
-            await this.$router.push('/user/dashboard');
         },
 
         async sendOtp() {
@@ -356,31 +300,6 @@ export default {
                 console.error('OTP verification failed:', error);
                 this.otpMessage = 'Verification failed. Please try again.';
             }
-        },
-
-        startResendTimer() {
-            this.resendTimer = 30;
-            const timer = setInterval(() => {
-                this.resendTimer--;
-                if (this.resendTimer <= 0) {
-                    clearInterval(timer);
-                }
-            }, 1000);
-        },
-
-        async resendOtp() {
-            if (this.resendTimer <= 0) {
-                await this.sendOtp();
-                this.startResendTimer();
-                this.otpMessage = 'New code sent';
-            }
-        },
-
-        closeOtpModal() {
-            this.showOtpModal = false;
-            this.otpCode = '';
-            this.otpMessage = '';
-            this.resendTimer = 0;
         },
 
         async handleGoogleLogin() {
